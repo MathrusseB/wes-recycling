@@ -1068,6 +1068,186 @@
       }
     }
 
+    /* ── Yard Regulations Section ────────────────────────── */
+    .regulations {
+      background: var(--bg);
+      padding: clamp(120px, 15vh, 200px) clamp(20px, 6vw, 80px);
+      margin-bottom: 60px;
+    }
+
+    .regulations__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .regulations__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm);
+      opacity: 0.85;
+      margin-bottom: 32px;
+    }
+
+    .regulations__eyebrow::before,
+    .regulations__eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    .regulations__headline {
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(48px, 8vw, 120px);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .regulations__headline::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.4);
+      margin: 0 auto 16px;
+    }
+
+    .regulations__content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .regulations__block {
+      margin-bottom: 56px;
+    }
+
+    .regulations__block:last-child {
+      margin-bottom: 0;
+    }
+
+    .regulations__block-title {
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(22px, 3vw, 32px);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .regulations__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .regulations__list li {
+      position: relative;
+      padding: 10px 0 10px 20px;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .regulations__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--warm);
+      opacity: 0.6;
+    }
+
+    .regulations__list li:last-child {
+      border-bottom: none;
+    }
+
+    .regulations__reject-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      columns: 2;
+      column-gap: 40px;
+    }
+
+    .regulations__reject-list li {
+      position: relative;
+      padding: 8px 0 8px 22px;
+      font-size: 15px;
+      font-weight: 400;
+      color: #cf6679;
+      line-height: 1.5;
+      break-inside: avoid;
+    }
+
+    .regulations__reject-list li::before {
+      content: '\00D7';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #cf6679;
+      line-height: 1;
+    }
+
+    .regulations__warning {
+      margin-top: 32px;
+      padding: 16px 24px;
+      background: rgba(207, 102, 121, 0.08);
+      border: 1px solid rgba(207, 102, 121, 0.2);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #cf6679;
+      text-align: center;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 640px) {
+      .regulations {
+        padding: clamp(80px, 12vh, 140px) clamp(20px, 6vw, 80px);
+      }
+
+      .regulations__reject-list {
+        columns: 1;
+      }
+
+      .regulations__list li,
+      .regulations__reject-list li {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 393px) {
+      .regulations {
+        padding: clamp(64px, 10vh, 120px) 16px;
+      }
+
+      .regulations__eyebrow {
+        font-size: 10px;
+      }
+
+      .regulations__block-title {
+        font-size: 20px;
+      }
+    }
+
     /* ── Locations Section ────────────────────────────────── */
     .locations {
       background: var(--bg);
@@ -2162,6 +2342,86 @@
     </div>
   </section>
 
+  <!-- ── YARD REGULATIONS ────────────────────────────── -->
+  <section class="regulations" id="regulations">
+    <div class="regulations__header">
+      <div class="regulations__eyebrow fade-in">Yard Regulations</div>
+      <h2 class="regulations__headline fade-in">KNOW BEFORE YOU GO.</h2>
+    </div>
+
+    <div class="regulations__content">
+
+      <!-- Yard Rules -->
+      <div class="regulations__block fade-in">
+        <h3 class="regulations__block-title">Yard Rules</h3>
+        <ul class="regulations__list">
+          <li>Speed limit: 5 mph at all times</li>
+          <li>Do not park on scales</li>
+          <li>No passengers allowed on truck beds or trailers</li>
+          <li>All passengers must exit the vehicle and stand in the designated area while being unloaded by mechanical equipment</li>
+          <li>Shirt and shoes must be worn at all times</li>
+          <li>Children under 16 must be accompanied by an adult at all times</li>
+          <li>Valid state-issued photo ID required to be on file</li>
+          <li>Items must be sorted before going to small scales</li>
+          <li>Non-ferrous loads must be pre-sorted by customer before bringing in to scrap</li>
+          <li>Deductions will be made for dirt, tires, wood, concrete, etc. at the discretion of the yard supervisor</li>
+          <li>$100 minimum charge for sorting items with radiation (subject to rejection)</li>
+          <li>Wes' Recycling is not responsible for damage to vehicles, tires, or trailers</li>
+        </ul>
+      </div>
+
+      <!-- Vehicle Requirements -->
+      <div class="regulations__block fade-in">
+        <h3 class="regulations__block-title">Vehicle Requirements</h3>
+        <ul class="regulations__list">
+          <li>Title required on all complete vehicles</li>
+          <li>Vehicles 35 years or older can be brought in without title &mdash; a Bill of Sale will be filled out</li>
+          <li>All fluids must be drained</li>
+          <li>Mercury switches removed</li>
+          <li>Air conditioning units must be disconnected</li>
+          <li>Refrigerants must be removed from all vehicles and appliances</li>
+          <li>Up to 4 passenger tires per vehicle before deducting tire weight</li>
+          <li>Will NOT accept hybrid or electric vehicles unless ALL EV batteries have been removed</li>
+        </ul>
+      </div>
+
+      <!-- Tank Rules -->
+      <div class="regulations__block fade-in">
+        <h3 class="regulations__block-title">Tank Rules</h3>
+        <ul class="regulations__list">
+          <li>Tanks larger than 100 gallons must have a 3' &times; 3' hole</li>
+          <li>Fuel tanks must have an 8" &times; 8" hole and be dry</li>
+          <li>Propane tanks, helium tanks, and fire extinguishers must have valve removed OR a hole big enough to see into the container</li>
+          <li>All tanks must be empty and dry</li>
+        </ul>
+      </div>
+
+      <!-- We Will NOT Accept -->
+      <div class="regulations__block fade-in">
+        <h3 class="regulations__block-title">We Will NOT Accept</h3>
+        <ul class="regulations__reject-list">
+          <li>Beer Kegs</li>
+          <li>Paint</li>
+          <li>Items containing Refrigerant</li>
+          <li>Radioactive Materials</li>
+          <li>Explosive Materials</li>
+          <li>Capacitors or anything with PCBs</li>
+          <li>Neon Signs</li>
+          <li>Thermostats</li>
+          <li>Mercury Switches</li>
+          <li>Closed Propane Tanks</li>
+          <li>Hybrid/Electric Vehicles (unless batteries removed)</li>
+          <li>Freon</li>
+        </ul>
+      </div>
+
+      <div class="regulations__warning fade-in">
+        Refusal to follow regulations may result in refusal to do business with you.
+      </div>
+
+    </div>
+  </section>
+
   <!-- ── LOCATIONS ───────────────────────────────────── -->
   <section class="locations" id="locations">
     <div class="locations__header">
@@ -2484,7 +2744,7 @@
       /* ── 1. Split section headlines into word spans ────── */
       var headlines = document.querySelectorAll(
         '.about__headline, .what-we-buy__headline, .pricing__headline,' +
-        '.locations__headline, .services__headline, .cta__headline, .contact__headline'
+        '.regulations__headline, .locations__headline, .services__headline, .cta__headline, .contact__headline'
       );
 
       headlines.forEach(function (h) {
