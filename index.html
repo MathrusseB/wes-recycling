@@ -81,9 +81,10 @@
     }
 
     .nav__logo img {
-      height: 36px;
+      height: 44px;
       width: auto;
       display: block;
+      filter: brightness(1.5);
     }
 
     /* Hamburger — always visible */
@@ -246,6 +247,7 @@
       font-size: clamp(64px, 12vw, 160px);
       line-height: 0.9;
       letter-spacing: -0.04em;
+      text-transform: uppercase;
       color: var(--text);
       margin-bottom: 24px;
     }
@@ -342,7 +344,7 @@
     /* ── Responsive ───────────────────────────────────────── */
     @media (max-width: 640px) {
       .nav__logo img {
-        height: 28px;
+        height: 36px;
       }
 
       .hero__content {
@@ -469,6 +471,7 @@
       font-size: clamp(48px, 8vw, 120px);
       line-height: 0.9;
       letter-spacing: -0.04em;
+      text-transform: uppercase;
       color: var(--text);
       margin-bottom: 24px;
     }
@@ -577,6 +580,7 @@
       font-size: clamp(48px, 8vw, 120px);
       line-height: 0.9;
       letter-spacing: -0.04em;
+      text-transform: uppercase;
       color: var(--text);
     }
 
@@ -650,8 +654,10 @@
     /* Word spans for clip-path reveal */
     .hero__word {
       display: inline-block;
-      clip-path: inset(100% 0 0 0);
+      clip-path: inset(100% 0 -10% 0);
       transform: translateY(100%);
+      overflow: visible;
+      padding-bottom: 0.15em;
     }
 
     /* Eyebrow: slide in from left after 300ms hold */
@@ -674,7 +680,7 @@
 
     /* Word reveal: clip-path + translateY, staggered per word */
     .hero.hero--entered .hero__word {
-      clip-path: inset(0 0 0 0);
+      clip-path: inset(-10% 0 -10% 0);
       transform: translateY(0);
       transition: clip-path 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
     }
@@ -715,13 +721,15 @@
     /* ── Section headline word reveal (scroll-triggered) ── */
     .section-word {
       display: inline-block;
-      clip-path: inset(100% 0 0 0);
+      clip-path: inset(100% 0 -10% 0);
       transform: translateY(100%);
       transition: clip-path 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+      overflow: visible;
+      padding-bottom: 0.15em;
     }
 
     .section-word.revealed {
-      clip-path: inset(0 0 0 0);
+      clip-path: inset(-10% 0 -10% 0);
       transform: translateY(0);
     }
 
@@ -834,6 +842,7 @@
       font-size: clamp(48px, 8vw, 120px);
       line-height: 0.9;
       letter-spacing: -0.04em;
+      text-transform: uppercase;
       color: var(--text);
       margin-bottom: 24px;
     }
@@ -1019,6 +1028,7 @@
       font-size: clamp(48px, 8vw, 120px);
       line-height: 0.9;
       letter-spacing: -0.04em;
+      text-transform: uppercase;
       color: var(--text);
     }
 
@@ -1218,6 +1228,7 @@
       font-size: clamp(48px, 8vw, 120px);
       line-height: 0.9;
       letter-spacing: -0.04em;
+      text-transform: uppercase;
       color: var(--text);
     }
 
@@ -1360,6 +1371,7 @@
       font-size: clamp(48px, 8vw, 120px);
       line-height: 0.9;
       letter-spacing: -0.04em;
+      text-transform: uppercase;
       color: var(--text);
       margin-bottom: 24px;
     }
@@ -1438,6 +1450,7 @@
       font-size: clamp(48px, 8vw, 120px);
       line-height: 0.9;
       letter-spacing: -0.04em;
+      text-transform: uppercase;
       color: var(--text);
     }
 
@@ -1716,6 +1729,7 @@
     .footer__logo img {
       height: 32px;
       width: auto;
+      filter: brightness(1.5);
     }
 
     /* Bottom bar */
