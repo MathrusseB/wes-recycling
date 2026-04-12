@@ -81,7 +81,7 @@
     }
 
     .nav__logo img {
-      height: 42px;
+      height: 36px;
       width: auto;
       display: block;
     }
@@ -366,6 +366,10 @@
 
     /* ── Responsive ───────────────────────────────────────── */
     @media (max-width: 640px) {
+      .nav__logo img {
+        height: 28px;
+      }
+
       .nav__links {
         display: none;
       }
@@ -1728,10 +1732,22 @@
       height: 18px;
     }
 
+    .footer__logo {
+      display: block;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px clamp(20px, 6vw, 80px) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer__logo img {
+      height: 32px;
+      width: auto;
+    }
+
     /* Bottom bar */
     .footer__bottom {
-      border-top: 1px solid var(--border);
-      padding: 24px clamp(20px, 6vw, 80px);
+      padding: 16px clamp(20px, 6vw, 80px) 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1781,7 +1797,7 @@
 
   <!-- ── NAV ──────────────────────────────────────────── -->
   <nav class="nav" id="nav">
-    <a href="#" class="nav__logo"><img src="images/IMG_6792.jpeg" alt="Wes' Recycling"></a>
+    <a href="#" class="nav__logo"><img src="images/logo-no-background.svg" alt="Wes' Recycling"></a>
 
     <div class="nav__links">
       <a href="#what-we-buy" class="nav__link">What We Buy</a>
@@ -2256,6 +2272,11 @@
           Sun: Closed
         </p>
       </div>
+    </div>
+
+    <!-- Footer logo -->
+    <div class="footer__logo">
+      <img src="images/logo-no-background.svg" alt="Wes' Recycling">
     </div>
 
     <!-- Bottom bar -->
