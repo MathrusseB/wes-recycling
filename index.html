@@ -15,6 +15,8 @@
     /* ── Reset ───────────────────────────────────────────── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html.lenis { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto; }
     body { overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
     ul, ol { list-style: none; }
@@ -200,14 +202,23 @@
       overflow: hidden;
     }
 
-    .hero__bg {
+    .hero__bg-wrap {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: -30px 0;
+      height: calc(100% + 60px);
       background-image: url('images/IMG_6795.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      z-index: 0;
+      transform: translateY(var(--parallax, 0px));
+      will-change: transform;
     }
 
     .hero__overlay {
@@ -416,15 +427,23 @@
       overflow: hidden;
     }
 
-    .about__bg {
+    .about__bg-wrap {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .about__bg {
+      position: absolute;
+      inset: -30px 0;
+      height: calc(100% + 60px);
       background-image: url('images/IMG_6791.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
-      z-index: 0;
+      transform: translateY(var(--parallax, 0px));
+      will-change: transform;
     }
 
     .about__overlay {
@@ -528,10 +547,6 @@
     }
 
     @media (max-width: 640px) {
-      .about__bg {
-        background-attachment: scroll;
-      }
-
       .about__stats {
         gap: 32px;
       }
@@ -1120,14 +1135,23 @@
       overflow: hidden;
     }
 
-    .services__bg {
+    .services__bg-wrap {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .services__bg {
+      position: absolute;
+      inset: -30px 0;
+      height: calc(100% + 60px);
       background-image: url('images/IMG_6793.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      z-index: 0;
+      transform: translateY(var(--parallax, 0px));
+      will-change: transform;
     }
 
     .services__overlay {
@@ -1275,14 +1299,23 @@
       overflow: hidden;
     }
 
-    .cta__bg {
+    .cta__bg-wrap {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .cta__bg {
+      position: absolute;
+      inset: -30px 0;
+      height: calc(100% + 60px);
       background-image: url('images/IMG_6787.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      z-index: 0;
+      transform: translateY(var(--parallax, 0px));
+      will-change: transform;
     }
 
     .cta__overlay {
@@ -1736,7 +1769,9 @@
 
   <!-- ── HERO ─────────────────────────────────────────── -->
   <section class="hero" id="hero">
-    <div class="hero__bg"></div>
+    <div class="hero__bg-wrap" data-parallax>
+      <div class="hero__bg"></div>
+    </div>
     <div class="hero__overlay"></div>
 
     <div class="hero__content">
@@ -1757,7 +1792,9 @@
 
   <!-- ── ABOUT ────────────────────────────────────────── -->
   <section class="about" id="about">
-    <div class="about__bg"></div>
+    <div class="about__bg-wrap" data-parallax>
+      <div class="about__bg"></div>
+    </div>
     <div class="about__overlay"></div>
 
     <div class="about__content">
@@ -2004,7 +2041,9 @@
 
   <!-- ── ADDITIONAL SERVICES ─────────────────────────── -->
   <section class="services" id="services">
-    <div class="services__bg"></div>
+    <div class="services__bg-wrap" data-parallax>
+      <div class="services__bg"></div>
+    </div>
     <div class="services__overlay"></div>
 
     <div class="services__inner">
@@ -2061,7 +2100,9 @@
 
   <!-- ── CTA ──────────────────────────────────────────── -->
   <section class="cta">
-    <div class="cta__bg"></div>
+    <div class="cta__bg-wrap" data-parallax>
+      <div class="cta__bg"></div>
+    </div>
     <div class="cta__overlay"></div>
 
     <div class="cta__content">
@@ -2185,6 +2226,7 @@
 
   </footer>
 
+  <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
   <script>
     /* ── Mobile menu toggle ─────────────────────────────── */
     (function () {
@@ -2300,6 +2342,45 @@
       }, { threshold: 0.5 });
 
       els.forEach(function (el) { countObs.observe(el); });
+    })();
+
+    /* ── Lenis smooth scroll ─────────────────────────────── */
+    (function () {
+      var lenis = new Lenis({
+        duration: 1.2,
+        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        smoothWheel: true
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    })();
+
+    /* ── Parallax on background images ───────────────────── */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var wraps = document.querySelectorAll('[data-parallax]');
+      if (!wraps.length) return;
+
+      function updateParallax() {
+        var wh = window.innerHeight;
+        wraps.forEach(function (wrap) {
+          var rect = wrap.getBoundingClientRect();
+          if (rect.bottom < 0 || rect.top > wh) return;
+          // progress: 0 when section enters bottom, 1 when it exits top
+          var progress = (wh - rect.top) / (wh + rect.height);
+          // map 0..1 to -30..+30
+          var offset = (progress - 0.5) * 60;
+          wrap.firstElementChild.style.setProperty('--parallax', offset + 'px');
+        });
+      }
+
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      updateParallax();
     })();
   </script>
 
