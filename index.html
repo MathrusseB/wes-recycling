@@ -955,6 +955,85 @@
       opacity: 0.6;
     }
 
+    .pricing__happy-hour {
+      max-width: 800px;
+      margin: 40px auto 0;
+      background: rgba(212, 168, 75, 0.08);
+      border: 1px solid rgba(212, 168, 75, 0.25);
+      border-radius: 12px;
+      padding: 20px 28px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--warm);
+      letter-spacing: 0.04em;
+    }
+
+    .pricing__happy-hour span {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0;
+    }
+
+    .pricing__sub-header {
+      max-width: 800px;
+      margin: 64px auto 24px;
+      text-align: center;
+    }
+
+    .pricing__sub-title {
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .pricing__sub-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .pricing__converter-note {
+      max-width: 800px;
+      margin: 48px auto 0;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      text-align: center;
+    }
+
+    .pricing__converter-note strong {
+      display: block;
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(20px, 3vw, 28px);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .pricing__converter-note p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
     @media (max-width: 640px) {
       .pricing {
         padding: clamp(80px, 12vh, 140px) clamp(20px, 6vw, 80px);
@@ -2018,6 +2097,69 @@
     </div>
 
     <p class="pricing__note fade-in">Prices subject to change. Call ahead to confirm.</p>
+
+    <div class="pricing__happy-hour fade-in">
+      Happy Hour Pricing &mdash; Tuesday &amp; Thursday 1&ndash;4pm
+      <span>Special scrap rates at both locations during Happy Hour</span>
+    </div>
+
+    <!-- ── eSCRAP PRICING ──────────────────────────────── -->
+    <div class="pricing__sub-header fade-in">
+      <h3 class="pricing__sub-title">eSCRAP PRICING</h3>
+      <div class="pricing__sub-badge">Updated Feb 17, 2026</div>
+    </div>
+
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CD Roms / Floppies / Fingers</td>
+            <td>$0.06</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Hard Drives</td>
+            <td>$0.12</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Junk Boards</td>
+            <td>$0.06</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Mother Boards</td>
+            <td>$0.51</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Power Supplies</td>
+            <td>$0.07</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Towers</td>
+            <td>$0.06</td>
+            <td>per lb</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="pricing__note fade-in">Same pricing at both locations.</p>
+
+    <!-- ── CATALYTIC CONVERTERS ─────────────────────────── -->
+    <div class="pricing__converter-note fade-in">
+      <strong>Catalytic Converters</strong>
+      <p>Converter pricing varies &mdash; all converters must be brought in for inspection. No phone quotes.</p>
+    </div>
   </section>
 
   <!-- ── LOCATIONS ───────────────────────────────────── -->
@@ -2414,13 +2556,13 @@
       cards.forEach(function (c) { cardObs.observe(c); });
 
       /* ── 4. Stagger pricing table rows ────────────────── */
-      var rows = document.querySelectorAll('.pricing__table tbody tr');
-      rows.forEach(function (row) {
-        row.classList.add('stagger-row');
-      });
+      var tableWraps = document.querySelectorAll('.pricing__table-wrap');
+      tableWraps.forEach(function (tableWrap) {
+        var rows = tableWrap.querySelectorAll('tbody tr');
+        rows.forEach(function (row) {
+          row.classList.add('stagger-row');
+        });
 
-      var tableWrap = document.querySelector('.pricing__table-wrap');
-      if (tableWrap) {
         var rowObs = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
             if (!e.isIntersecting) return;
@@ -2433,7 +2575,7 @@
           });
         }, { threshold: 0.1 });
         rowObs.observe(tableWrap);
-      }
+      });
 
       /* ── 5. Standard fade-in (everything else) ────────── */
       document.querySelectorAll('.fade-in').forEach(function (el) {
