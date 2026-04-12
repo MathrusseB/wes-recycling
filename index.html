@@ -993,6 +993,377 @@
         padding: 22px 18px;
       }
     }
+
+    /* ── Additional Services Section ─────────────────────── */
+    .services {
+      position: relative;
+      width: 100%;
+      padding: 120px clamp(20px, 6vw, 80px);
+      overflow: hidden;
+    }
+
+    .services__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/IMG_6793.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    .services__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(10, 10, 10, 0.88) 0%,
+        rgba(10, 10, 10, 0.65) 40%,
+        rgba(10, 10, 10, 0.75) 100%
+      );
+      z-index: 1;
+    }
+
+    .services__inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .services__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .services__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm);
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    .services__eyebrow::before,
+    .services__eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    .services__headline {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .services__card {
+      background: rgba(20, 20, 20, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 36px 28px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .services__card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .services__card-icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .services__card-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 24px;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .services__card-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .services__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .services {
+        padding: 80px clamp(20px, 6vw, 80px);
+      }
+
+      .services__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services__header {
+        margin-bottom: 40px;
+      }
+    }
+
+    @media (max-width: 393px) {
+      .services {
+        padding: 64px 16px;
+      }
+
+      .services__eyebrow {
+        font-size: 10px;
+      }
+    }
+
+    /* ── Contact Section ─────────────────────────────────── */
+    .contact {
+      background: var(--bg);
+      padding: 120px clamp(20px, 6vw, 80px);
+    }
+
+    .contact__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .contact__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm);
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    .contact__eyebrow::before,
+    .contact__eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    .contact__headline {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      max-width: 1000px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .contact__phones {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .contact__phone-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 28px;
+    }
+
+    .contact__phone-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .contact__phone-number {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(28px, 3vw, 38px);
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      transition: color 0.2s;
+    }
+
+    .contact__phone-number:hover {
+      color: var(--accent-hover);
+    }
+
+    .contact__social {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .contact__social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
+    }
+
+    .contact__social-link:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .contact__social-link svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .contact__form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact__input,
+    .contact__textarea {
+      width: 100%;
+      padding: 14px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+
+    .contact__input::placeholder,
+    .contact__textarea::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .contact__input:focus,
+    .contact__textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .contact__textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .contact__submit {
+      padding: 15px 32px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .contact__submit:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .contact__grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .contact__submit {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .contact {
+        padding: 80px clamp(20px, 6vw, 80px);
+      }
+
+      .contact__header {
+        margin-bottom: 40px;
+      }
+    }
+
+    @media (max-width: 393px) {
+      .contact {
+        padding: 64px 16px;
+      }
+
+      .contact__eyebrow {
+        font-size: 10px;
+      }
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .footer {
+      background: #050505;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .footer__credit {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.2);
+      margin-bottom: 6px;
+    }
+
+    .footer__credit a {
+      color: rgba(255, 255, 255, 0.3);
+      transition: color 0.25s;
+    }
+
+    .footer__credit a:hover {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .footer__copy {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.12);
+    }
   </style>
 </head>
 <body>
@@ -1292,6 +1663,119 @@
       </div>
     </div>
   </section>
+
+  <!-- ── ADDITIONAL SERVICES ─────────────────────────── -->
+  <section class="services" id="services">
+    <div class="services__bg"></div>
+    <div class="services__overlay"></div>
+
+    <div class="services__inner">
+      <div class="services__header">
+        <div class="services__eyebrow">Beyond the Yard</div>
+        <h2 class="services__headline">MORE THAN SCRAP.</h2>
+      </div>
+
+      <div class="services__grid">
+        <!-- Card 1 — Roll-Off Dumpster Rental -->
+        <div class="services__card fade-up">
+          <svg class="services__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="14" width="36" height="20" rx="2"/>
+            <path d="M4 28h36"/>
+            <path d="M10 34v4"/>
+            <path d="M34 34v4"/>
+            <path d="M14 14V8h16v6"/>
+            <line x1="12" y1="21" x2="32" y2="21"/>
+          </svg>
+          <h3 class="services__card-title">Roll-Off Dumpster Rental</h3>
+          <p class="services__card-desc">Cleanouts, demolition, construction. We drop it off, you fill it up, we haul it away.</p>
+        </div>
+
+        <!-- Card 2 — Steel Sales -->
+        <div class="services__card fade-up">
+          <svg class="services__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 38L18 6h8l12 32"/>
+            <line x1="11" y1="26" x2="33" y2="26"/>
+            <line x1="8" y1="32" x2="36" y2="32"/>
+            <line x1="22" y1="6" x2="22" y2="38"/>
+          </svg>
+          <h3 class="services__card-title">Steel Sales</h3>
+          <p class="services__card-desc">Structural and commercial steel. Beams, plate, angle — available at both locations.</p>
+        </div>
+
+        <!-- Card 3 — Fence Supplies -->
+        <div class="services__card fade-up">
+          <svg class="services__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="8" y2="38"/>
+            <line x1="22" y1="6" x2="22" y2="38"/>
+            <line x1="36" y1="6" x2="36" y2="38"/>
+            <line x1="8" y1="16" x2="36" y2="16"/>
+            <line x1="8" y1="28" x2="36" y2="28"/>
+            <path d="M5 6l3-2 3 2"/>
+            <path d="M19 6l3-2 3 2"/>
+            <path d="M33 6l3-2 3 2"/>
+          </svg>
+          <h3 class="services__card-title">Fence Supplies</h3>
+          <p class="services__card-desc">Fencing materials for property, livestock, and agricultural needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ─────────────────────────────────────── -->
+  <section class="contact" id="contact">
+    <div class="contact__header">
+      <div class="contact__eyebrow">Get in Touch</div>
+      <h2 class="contact__headline">BRING IT IN.</h2>
+    </div>
+
+    <div class="contact__grid">
+      <!-- Left — Phones & Social -->
+      <div class="contact__left">
+        <div class="contact__phones">
+          <div class="contact__phone-card">
+            <div class="contact__phone-label">Centerville</div>
+            <a href="tel:9137562387" class="contact__phone-number">913-756-2387</a>
+          </div>
+          <div class="contact__phone-card">
+            <div class="contact__phone-label">Prescott</div>
+            <a href="tel:9134714310" class="contact__phone-number">913-471-4310</a>
+          </div>
+        </div>
+
+        <div class="contact__social">
+          <a href="https://www.instagram.com/wes_recycling/" target="_blank" rel="noopener noreferrer" class="contact__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/WesRecyclingInc/" target="_blank" rel="noopener noreferrer" class="contact__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"/>
+            </svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+
+      <!-- Right — Contact Form -->
+      <form class="contact__form" onsubmit="return false;">
+        <input type="text" class="contact__input" placeholder="Name" required>
+        <input type="tel" class="contact__input" placeholder="Phone" required>
+        <input type="email" class="contact__input" placeholder="Email" required>
+        <textarea class="contact__textarea" placeholder="Message" required></textarea>
+        <button type="submit" class="contact__submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer__credit">Built by <a href="https://kleosdesign.com" target="_blank" rel="noopener noreferrer">Kleos.</a></p>
+    <p class="footer__copy">&copy; 2026 Wes' Recycling Inc.</p>
+  </footer>
 
   <script>
     /* ── Mobile menu toggle ─────────────────────────────── */
