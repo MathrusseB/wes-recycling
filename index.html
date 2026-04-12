@@ -69,11 +69,15 @@
     }
 
     .nav__logo {
-      font-family: 'Bebas Neue', cursive;
-      font-size: clamp(22px, 2.4vw, 30px);
-      letter-spacing: 0.04em;
-      color: var(--text);
+      display: flex;
+      align-items: center;
       white-space: nowrap;
+    }
+
+    .nav__logo img {
+      height: 42px;
+      width: auto;
+      display: block;
     }
 
     .nav__links {
@@ -1005,7 +1009,7 @@
     .services__bg {
       position: absolute;
       inset: 0;
-      background-image: url('images/IMG_6789.jpeg');
+      background-image: url('images/IMG_6793.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -1370,7 +1374,7 @@
 
   <!-- ── NAV ──────────────────────────────────────────── -->
   <nav class="nav" id="nav">
-    <a href="#" class="nav__logo">Wes' Recycling</a>
+    <a href="#" class="nav__logo"><img src="images/IMG_6792.jpeg" alt="Wes' Recycling"></a>
 
     <div class="nav__links">
       <a href="#what-we-buy" class="nav__link">What We Buy</a>
@@ -1687,7 +1691,7 @@
             <line x1="12" y1="21" x2="32" y2="21"/>
           </svg>
           <h3 class="services__card-title">Roll-Off Dumpster Rental</h3>
-          <p class="services__card-desc">Cleanouts, demolition, construction. We drop it off, you fill it up, we haul it away.</p>
+          <p class="services__card-desc">Need to clear out a property, tear down a building, or clean up a job site? We deliver roll-off dumpsters straight to your location. Fill it on your schedule — we pick it up and haul it away. Available at both yards.</p>
         </div>
 
         <!-- Card 2 — Steel Sales -->
@@ -1699,7 +1703,7 @@
             <line x1="22" y1="6" x2="22" y2="38"/>
           </svg>
           <h3 class="services__card-title">Steel Sales</h3>
-          <p class="services__card-desc">Structural and commercial steel. Beams, plate, angle — available at both locations.</p>
+          <p class="services__card-desc">We stock structural and commercial steel for your next project — beams, plate, angle iron, channel, tubing, and more. Sold by the piece or by the load at competitive prices. Stop by either location to see what's in the yard.</p>
         </div>
 
         <!-- Card 3 — Fence Supplies -->
@@ -1715,7 +1719,7 @@
             <path d="M33 6l3-2 3 2"/>
           </svg>
           <h3 class="services__card-title">Fence Supplies</h3>
-          <p class="services__card-desc">Fencing materials for property, livestock, and agricultural needs.</p>
+          <p class="services__card-desc">Barbed wire, T-posts, gates, panels, and everything else you need to fence your property. Whether it's livestock, agriculture, or perimeter fencing, we carry supplies at prices that beat the big-box stores.</p>
         </div>
       </div>
     </div>
@@ -1773,6 +1777,7 @@
 
   <!-- ── FOOTER ──────────────────────────────────────── -->
   <footer class="footer">
+    <img src="images/IMG_6792.jpeg" alt="Wes' Recycling" style="height: 42px; width: auto; margin: 0 auto 16px;">
     <p class="footer__credit">Built by <a href="https://kleosdesign.com" target="_blank" rel="noopener noreferrer">Kleos.</a></p>
     <p class="footer__copy">&copy; 2026 Wes' Recycling Inc.</p>
   </footer>
