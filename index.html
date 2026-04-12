@@ -15,6 +15,8 @@
     /* ── Reset ───────────────────────────────────────────── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html.lenis { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto; }
     body { overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
     ul, ol { list-style: none; }
@@ -200,14 +202,23 @@
       overflow: hidden;
     }
 
-    .hero__bg {
+    .hero__bg-wrap {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: -30px 0;
+      height: calc(100% + 60px);
       background-image: url('images/IMG_6795.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      z-index: 0;
+      transform: translateY(var(--parallax, 0px));
+      will-change: transform;
     }
 
     .hero__overlay {
@@ -416,15 +427,23 @@
       overflow: hidden;
     }
 
-    .about__bg {
+    .about__bg-wrap {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .about__bg {
+      position: absolute;
+      inset: -30px 0;
+      height: calc(100% + 60px);
       background-image: url('images/IMG_6791.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
-      z-index: 0;
+      transform: translateY(var(--parallax, 0px));
+      will-change: transform;
     }
 
     .about__overlay {
@@ -528,10 +547,6 @@
     }
 
     @media (max-width: 640px) {
-      .about__bg {
-        background-attachment: scroll;
-      }
-
       .about__stats {
         gap: 32px;
       }
@@ -1120,14 +1135,23 @@
       overflow: hidden;
     }
 
-    .services__bg {
+    .services__bg-wrap {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .services__bg {
+      position: absolute;
+      inset: -30px 0;
+      height: calc(100% + 60px);
       background-image: url('images/IMG_6793.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      z-index: 0;
+      transform: translateY(var(--parallax, 0px));
+      will-change: transform;
     }
 
     .services__overlay {
@@ -1275,14 +1299,23 @@
       overflow: hidden;
     }
 
-    .cta__bg {
+    .cta__bg-wrap {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .cta__bg {
+      position: absolute;
+      inset: -30px 0;
+      height: calc(100% + 60px);
       background-image: url('images/IMG_6787.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      z-index: 0;
+      transform: translateY(var(--parallax, 0px));
+      will-change: transform;
     }
 
     .cta__overlay {
@@ -1561,15 +1594,115 @@
     /* ── Footer ──────────────────────────────────────────── */
     .footer {
       background: #050505;
-      padding: 40px 20px;
-      text-align: center;
+    }
+
+    /* Marquee */
+    .footer__marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .footer__marquee-track {
+      display: inline-block;
+      animation: marqueeScroll 20s linear infinite;
+    }
+
+    .footer__marquee-text {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.12);
+    }
+
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Grid */
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: clamp(24px, 4vw, 64px);
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 56px clamp(20px, 6vw, 80px);
+    }
+
+    .footer__col-header {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .footer__address,
+    .footer__hours-summary {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .footer__phone {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--accent);
+      margin-top: 8px;
+      transition: color 0.25s;
+    }
+
+    .footer__phone:hover {
+      color: var(--accent-hover);
+    }
+
+    .footer__social-links {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .footer__social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      transition: color 0.25s;
+    }
+
+    .footer__social-link:hover {
+      color: var(--text);
+    }
+
+    .footer__social-link svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Bottom bar */
+    .footer__bottom {
+      border-top: 1px solid var(--border);
+      padding: 24px clamp(20px, 6vw, 80px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .footer__credit {
       font-size: 13px;
       font-weight: 300;
       color: rgba(255, 255, 255, 0.2);
-      margin-bottom: 6px;
     }
 
     .footer__credit a {
@@ -1585,6 +1718,22 @@
       font-size: 12px;
       font-weight: 300;
       color: rgba(255, 255, 255, 0.12);
+    }
+
+    @media (max-width: 768px) {
+      .footer__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px clamp(20px, 6vw, 80px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer__bottom {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -1620,7 +1769,9 @@
 
   <!-- ── HERO ─────────────────────────────────────────── -->
   <section class="hero" id="hero">
-    <div class="hero__bg"></div>
+    <div class="hero__bg-wrap" data-parallax>
+      <div class="hero__bg"></div>
+    </div>
     <div class="hero__overlay"></div>
 
     <div class="hero__content">
@@ -1641,7 +1792,9 @@
 
   <!-- ── ABOUT ────────────────────────────────────────── -->
   <section class="about" id="about">
-    <div class="about__bg"></div>
+    <div class="about__bg-wrap" data-parallax>
+      <div class="about__bg"></div>
+    </div>
     <div class="about__overlay"></div>
 
     <div class="about__content">
@@ -1888,7 +2041,9 @@
 
   <!-- ── ADDITIONAL SERVICES ─────────────────────────── -->
   <section class="services" id="services">
-    <div class="services__bg"></div>
+    <div class="services__bg-wrap" data-parallax>
+      <div class="services__bg"></div>
+    </div>
     <div class="services__overlay"></div>
 
     <div class="services__inner">
@@ -1945,7 +2100,9 @@
 
   <!-- ── CTA ──────────────────────────────────────────── -->
   <section class="cta">
-    <div class="cta__bg"></div>
+    <div class="cta__bg-wrap" data-parallax>
+      <div class="cta__bg"></div>
+    </div>
     <div class="cta__overlay"></div>
 
     <div class="cta__content">
@@ -2010,11 +2167,66 @@
 
   <!-- ── FOOTER ──────────────────────────────────────── -->
   <footer class="footer">
-    <img src="images/IMG_6792.jpeg" alt="Wes' Recycling" style="height: 42px; width: auto; margin: 0 auto 16px;">
-    <p class="footer__credit">Built by <a href="https://kleosdesign.com" target="_blank" rel="noopener noreferrer">Kleos.</a></p>
-    <p class="footer__copy">&copy; 2026 Wes' Recycling Inc.</p>
+
+    <!-- Marquee -->
+    <div class="footer__marquee">
+      <div class="footer__marquee-track">
+        <span class="footer__marquee-text">SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- 3-Column Grid -->
+    <div class="footer__grid">
+
+      <!-- Column 1: Centerville -->
+      <div class="footer__col">
+        <div class="footer__col-header">Centerville.</div>
+        <p class="footer__address">
+          5399 W 1000 Rd.<br>
+          Centerville, KS 66014
+        </p>
+        <a href="tel:9137562387" class="footer__phone">913-756-2387</a>
+      </div>
+
+      <!-- Column 2: Prescott -->
+      <div class="footer__col">
+        <div class="footer__col-header">Prescott.</div>
+        <p class="footer__address">
+          4008 Vernon Road<br>
+          Prescott, KS 66767
+        </p>
+        <a href="tel:9134714310" class="footer__phone">913-471-4310</a>
+      </div>
+
+      <!-- Column 3: Connect -->
+      <div class="footer__col">
+        <div class="footer__col-header">Connect.</div>
+        <div class="footer__social-links">
+          <a href="https://www.instagram.com/wes_recycling/" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/WesRecyclingInc/" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </a>
+        </div>
+        <p class="footer__hours-summary">
+          Mon – Sat: Open<br>
+          Sun: Closed
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Wes' Recycling Inc.</p>
+      <p class="footer__credit">Built by <a href="https://kleosdesign.com" target="_blank" rel="noopener noreferrer">Kleos.</a></p>
+    </div>
+
   </footer>
 
+  <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
   <script>
     /* ── Mobile menu toggle ─────────────────────────────── */
     (function () {
@@ -2130,6 +2342,45 @@
       }, { threshold: 0.5 });
 
       els.forEach(function (el) { countObs.observe(el); });
+    })();
+
+    /* ── Lenis smooth scroll ─────────────────────────────── */
+    (function () {
+      var lenis = new Lenis({
+        duration: 1.2,
+        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        smoothWheel: true
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    })();
+
+    /* ── Parallax on background images ───────────────────── */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var wraps = document.querySelectorAll('[data-parallax]');
+      if (!wraps.length) return;
+
+      function updateParallax() {
+        var wh = window.innerHeight;
+        wraps.forEach(function (wrap) {
+          var rect = wrap.getBoundingClientRect();
+          if (rect.bottom < 0 || rect.top > wh) return;
+          // progress: 0 when section enters bottom, 1 when it exits top
+          var progress = (wh - rect.top) / (wh + rect.height);
+          // map 0..1 to -30..+30
+          var offset = (progress - 0.5) * 60;
+          wrap.firstElementChild.style.setProperty('--parallax', offset + 'px');
+        });
+      }
+
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      updateParallax();
     })();
   </script>
 
