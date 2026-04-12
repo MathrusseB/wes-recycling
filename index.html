@@ -662,8 +662,8 @@
     /* Word spans for clip-path reveal */
     .hero__word {
       display: inline-block;
-      clip-path: inset(100% 0 -10% 0);
-      transform: translateY(100%);
+      clip-path: inset(100% 0 0 0);
+      transform: translateY(40px);
       overflow: visible;
       padding-bottom: 0.15em;
     }
@@ -690,14 +690,14 @@
     .hero.hero--entered .hero__word {
       clip-path: inset(-10% 0 0 0);
       transform: translateY(0);
-      transition: clip-path 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+      transition: clip-path 700ms var(--ease-out-expo), transform 700ms var(--ease-out-expo);
     }
     /* nth-child accounts for <br> as 4th child element */
     .hero.hero--entered .hero__word:nth-child(1) { transition-delay: 650ms; }
-    .hero.hero--entered .hero__word:nth-child(2) { transition-delay: 720ms; }
-    .hero.hero--entered .hero__word:nth-child(3) { transition-delay: 790ms; }
-    .hero.hero--entered .hero__word:nth-child(5) { transition-delay: 860ms; }
-    .hero.hero--entered .hero__word:nth-child(6) { transition-delay: 930ms; }
+    .hero.hero--entered .hero__word:nth-child(2) { transition-delay: 730ms; }
+    .hero.hero--entered .hero__word:nth-child(3) { transition-delay: 810ms; }
+    .hero.hero--entered .hero__word:nth-child(5) { transition-delay: 890ms; }
+    .hero.hero--entered .hero__word:nth-child(6) { transition-delay: 970ms; }
 
     /* Subtitle + buttons: fade in after headline */
     .hero__sub {
@@ -710,28 +710,28 @@
       opacity: 1;
       transform: translateY(0);
       transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
-      transition-delay: 1000ms;
+      transition-delay: 1100ms;
     }
     .hero.hero--entered .hero__buttons {
       opacity: 1;
       transform: translateY(0);
       transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
-      transition-delay: 1050ms;
+      transition-delay: 1150ms;
     }
 
     /* Scroll indicator: fade in at end, preserve translateX(-50%) centering */
     .hero.hero--entered .hero__scroll {
       opacity: 1;
       transition: opacity 400ms var(--ease-out-expo);
-      transition-delay: 1200ms;
+      transition-delay: 1350ms;
     }
 
     /* ── Section headline word reveal (scroll-triggered) ── */
     .section-word {
       display: inline-block;
-      clip-path: inset(100% 0 -10% 0);
-      transform: translateY(100%);
-      transition: clip-path 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+      clip-path: inset(100% 0 0 0);
+      transform: translateY(40px);
+      transition: clip-path 700ms var(--ease-out-expo), transform 700ms var(--ease-out-expo);
       overflow: visible;
       padding-bottom: 0.15em;
     }
@@ -2829,7 +2829,7 @@
           if (!e.isIntersecting) return;
           var words = e.target.querySelectorAll('.section-word');
           words.forEach(function (w, i) {
-            w.style.transitionDelay = (i * 50) + 'ms';
+            w.style.transitionDelay = (i * 80) + 'ms';
             // Force reflow before adding class
             void w.offsetWidth;
             w.classList.add('revealed');
