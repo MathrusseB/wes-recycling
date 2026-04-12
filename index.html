@@ -346,7 +346,7 @@
 
     @keyframes scrollBounce {
       0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.6; }
-      50%      { transform: rotate(45deg) translateY(6px); opacity: 1; }
+      50%      { transform: rotate(45deg) translateY(8px); opacity: 1; }
     }
 
     /* ── Responsive ───────────────────────────────────────── */
@@ -498,36 +498,33 @@
 
     .about__stats {
       display: flex;
-      gap: 16px;
       justify-content: center;
+      gap: clamp(32px, 6vw, 80px);
       flex-wrap: wrap;
     }
 
     .about__stat {
-      background: rgba(20, 20, 20, 0.7);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px 32px;
-      min-width: 170px;
+      text-align: center;
       flex: 1;
-      max-width: 220px;
+      min-width: 120px;
+      max-width: 240px;
     }
 
     .about__stat-value {
       font-family: 'Oswald', sans-serif;
       font-weight: 700;
-      font-size: 40px;
-      color: #10B981;
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-      margin-bottom: 4px;
+      font-size: clamp(48px, 6vw, 80px);
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
     }
 
     .about__stat-label {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       color: var(--text-secondary);
-      letter-spacing: 0.02em;
     }
 
     @media (max-width: 640px) {
@@ -536,13 +533,7 @@
       }
 
       .about__stats {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .about__stat {
-        width: 100%;
-        max-width: 320px;
+        gap: 32px;
       }
     }
 
@@ -665,48 +656,79 @@
       opacity: 0;
     }
 
-    .hero__eyebrow {
-      transform: translateX(-30px);
-      transition: opacity 400ms var(--ease-out-expo), transform 400ms var(--ease-out-expo);
-    }
-    .hero__headline {
-      transform: translateY(40px);
-      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
-      transition-delay: 200ms;
-    }
-    .hero__sub {
-      transform: translateY(30px);
-      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
-      transition-delay: 400ms;
-    }
-    .hero__buttons {
-      transform: translateY(30px);
-      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
-      transition-delay: 600ms;
-    }
-    .hero__scroll {
-      transition: opacity 400ms var(--ease-out-expo);
-      transition-delay: 1000ms;
+    /* Word spans for clip-path reveal */
+    .hero__word {
+      display: inline-block;
+      clip-path: inset(100% 0 0 0);
+      transform: translateY(100%);
     }
 
-    .hero.hero--entered .hero__eyebrow,
-    .hero.hero--entered .hero__headline,
-    .hero.hero--entered .hero__sub,
+    /* Eyebrow: slide in from left after 300ms hold */
+    .hero__eyebrow {
+      transform: translateX(-30px);
+    }
+    .hero.hero--entered .hero__eyebrow {
+      opacity: 0.85;
+      transform: translateX(0);
+      transition: opacity 400ms var(--ease-out-expo), transform 400ms var(--ease-out-expo);
+      transition-delay: 300ms;
+    }
+
+    /* Headline container: just fade in to show the ::before divider */
+    .hero.hero--entered .hero__headline {
+      opacity: 1;
+      transition: opacity 200ms var(--ease-out-expo);
+      transition-delay: 600ms;
+    }
+
+    /* Word reveal: clip-path + translateY, staggered per word */
+    .hero.hero--entered .hero__word {
+      clip-path: inset(0 0 0 0);
+      transform: translateY(0);
+      transition: clip-path 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+    }
+    /* nth-child accounts for <br> as 4th child element */
+    .hero.hero--entered .hero__word:nth-child(1) { transition-delay: 650ms; }
+    .hero.hero--entered .hero__word:nth-child(2) { transition-delay: 720ms; }
+    .hero.hero--entered .hero__word:nth-child(3) { transition-delay: 790ms; }
+    .hero.hero--entered .hero__word:nth-child(5) { transition-delay: 860ms; }
+    .hero.hero--entered .hero__word:nth-child(6) { transition-delay: 930ms; }
+
+    /* Subtitle + buttons: fade in after headline */
+    .hero__sub {
+      transform: translateY(20px);
+    }
+    .hero__buttons {
+      transform: translateY(20px);
+    }
+    .hero.hero--entered .hero__sub {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+      transition-delay: 1000ms;
+    }
     .hero.hero--entered .hero__buttons {
       opacity: 1;
-      transform: none;
+      transform: translateY(0);
+      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+      transition-delay: 1050ms;
     }
-    .hero.hero--entered .hero__eyebrow { opacity: 0.85; }
-    /* Scroll indicator: only fade in — preserve translateX(-50%) centering */
-    .hero.hero--entered .hero__scroll { opacity: 1; }
+
+    /* Scroll indicator: fade in at end, preserve translateX(-50%) centering */
+    .hero.hero--entered .hero__scroll {
+      opacity: 1;
+      transition: opacity 400ms var(--ease-out-expo);
+      transition-delay: 1200ms;
+    }
 
     /* ── Reduced motion ──────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       .hero__eyebrow, .hero__headline, .hero__sub,
-      .hero__buttons,
+      .hero__buttons, .hero__word,
       .fade-in {
         opacity: 1 !important;
         transform: none !important;
+        clip-path: none !important;
         transition: none !important;
       }
       .hero__scroll {
@@ -1517,7 +1539,7 @@
 
     <div class="hero__content">
       <div class="hero__eyebrow">Centerville &amp; Prescott, Kansas</div>
-      <h1 class="hero__headline">Linn County's Scrap<br>Metal Recycler</h1>
+      <h1 class="hero__headline"><span class="hero__word">Linn</span> <span class="hero__word">County's</span> <span class="hero__word">Scrap</span><br><span class="hero__word">Metal</span> <span class="hero__word">Recycler</span></h1>
       <p class="hero__sub">Metal in, cash out. Two locations. Fair prices. No excuses.</p>
       <div class="hero__buttons">
         <a href="#pricing" class="btn btn--filled">View Current Pricing</a>
@@ -1543,16 +1565,16 @@
 
       <div class="about__stats">
         <div class="about__stat fade-in">
-          <div class="about__stat-value">2</div>
+          <div class="about__stat-value" data-count-to="2">0</div>
           <div class="about__stat-label">Locations</div>
         </div>
         <div class="about__stat fade-in">
-          <div class="about__stat-value">Cash Up to $350</div>
+          <div class="about__stat-value" data-count-to="350" data-prefix="$">$0</div>
           <div class="about__stat-label">Paid on the Spot</div>
         </div>
         <div class="about__stat fade-in">
-          <div class="about__stat-value">Open 6 Days</div>
-          <div class="about__stat-label">Monday – Saturday</div>
+          <div class="about__stat-value" data-count-to="6">0</div>
+          <div class="about__stat-label">Days a Week</div>
         </div>
       </div>
     </div>
@@ -1967,6 +1989,47 @@
       }, {threshold:0.15});
       document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
     }
+
+    /* ── Stat count-up animation ─────────────────────────── */
+    (function () {
+      var els = document.querySelectorAll('[data-count-to]');
+      if (!els.length) return;
+
+      var duration = 1500;
+
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function animateValue(el) {
+        var target = parseInt(el.getAttribute('data-count-to'), 10);
+        var prefix = el.getAttribute('data-prefix') || '';
+        var start = null;
+
+        function step(ts) {
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          var value = Math.round(easeOutCubic(progress) * target);
+          el.textContent = prefix + value;
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      var countObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            animateValue(e.target);
+            countObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      els.forEach(function (el) { countObs.observe(el); });
+    })();
   </script>
 
 </body>
