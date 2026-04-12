@@ -740,10 +740,47 @@
       transition-delay: 1200ms;
     }
 
+    /* ── Section headline word reveal (scroll-triggered) ── */
+    .section-word {
+      display: inline-block;
+      clip-path: inset(100% 0 0 0);
+      transform: translateY(100%);
+      transition: clip-path 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+    }
+
+    .section-word.revealed {
+      clip-path: inset(0 0 0 0);
+      transform: translateY(0);
+    }
+
+    /* ── Staggered card/row reveals ─────────────────────── */
+    .stagger-card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+    }
+
+    .stagger-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-row {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
+    }
+
+    .stagger-row.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
     /* ── Reduced motion ──────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       .hero__eyebrow, .hero__headline, .hero__sub,
       .hero__buttons, .hero__word,
+      .section-word, .stagger-card, .stagger-row,
       .fade-in {
         opacity: 1 !important;
         transform: none !important;
@@ -2299,24 +2336,123 @@
 
     })();
 
-    /* ── Fade-in scroll animations ────────────────────────── */
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('.fade-in').forEach(el => {
-        el.style.opacity='0';
-        el.style.transform='translateY(30px)';
+    /* ── Scroll animations (upgraded) ───────────────────── */
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ── 1. Split section headlines into word spans ────── */
+      var headlines = document.querySelectorAll(
+        '.about__headline, .what-we-buy__headline, .pricing__headline,' +
+        '.locations__headline, .services__headline, .cta__headline, .contact__headline'
+      );
+
+      headlines.forEach(function (h) {
+        // Remove fade-in class — we handle these ourselves
+        h.classList.remove('fade-in');
+
+        var text = h.textContent;
+        var words = text.split(/\s+/);
+        // Preserve the ::before pseudo-element by keeping it implicit
+        h.innerHTML = '';
+        words.forEach(function (word) {
+          var span = document.createElement('span');
+          span.className = 'section-word';
+          span.textContent = word;
+          h.appendChild(document.createTextNode(' '));
+          h.appendChild(span);
+        });
+
+        if (reduced) return;
+
+        // Make headline visible (words handle their own reveal)
+        h.style.opacity = '1';
+        h.style.transform = 'none';
       });
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if(e.isIntersecting){
-            e.target.style.transition='opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)';
-            e.target.style.opacity='1';
-            e.target.style.transform='translateY(0)';
-            obs.unobserve(e.target);
+
+      if (reduced) return;
+
+      /* ── 2. Headline word observer ────────────────────── */
+      var headlineObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var words = e.target.querySelectorAll('.section-word');
+          words.forEach(function (w, i) {
+            w.style.transitionDelay = (i * 50) + 'ms';
+            // Force reflow before adding class
+            void w.offsetWidth;
+            w.classList.add('revealed');
+          });
+          headlineObs.unobserve(e.target);
+        });
+      }, { threshold: 0.2 });
+
+      headlines.forEach(function (h) { headlineObs.observe(h); });
+
+      /* ── 3. Stagger What We Buy cards ─────────────────── */
+      var cards = document.querySelectorAll('.what-we-buy__card');
+      cards.forEach(function (card) {
+        card.classList.remove('fade-in');
+        card.classList.add('stagger-card');
+      });
+
+      var cardObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          // Find all sibling cards in this grid and stagger them
+          var grid = e.target.parentElement;
+          if (grid._staggerDone) return;
+          grid._staggerDone = true;
+          var siblings = grid.querySelectorAll('.stagger-card');
+          siblings.forEach(function (c, i) {
+            c.style.transitionDelay = (i * 100) + 'ms';
+            void c.offsetWidth;
+            c.classList.add('revealed');
+            cardObs.unobserve(c);
+          });
+        });
+      }, { threshold: 0.1 });
+
+      cards.forEach(function (c) { cardObs.observe(c); });
+
+      /* ── 4. Stagger pricing table rows ────────────────── */
+      var rows = document.querySelectorAll('.pricing__table tbody tr');
+      rows.forEach(function (row) {
+        row.classList.add('stagger-row');
+      });
+
+      var tableWrap = document.querySelector('.pricing__table-wrap');
+      if (tableWrap) {
+        var rowObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            rows.forEach(function (row, i) {
+              row.style.transitionDelay = (i * 50) + 'ms';
+              void row.offsetWidth;
+              row.classList.add('revealed');
+            });
+            rowObs.unobserve(e.target);
+          });
+        }, { threshold: 0.1 });
+        rowObs.observe(tableWrap);
+      }
+
+      /* ── 5. Standard fade-in (everything else) ────────── */
+      document.querySelectorAll('.fade-in').forEach(function (el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+      });
+      var fadeObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.style.transition = 'opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)';
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateY(0)';
+            fadeObs.unobserve(e.target);
           }
         });
-      }, {threshold:0.15});
-      document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-    }
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.fade-in').forEach(function (el) { fadeObs.observe(el); });
+    })();
 
     /* ── Stat count-up animation ─────────────────────────── */
     (function () {
