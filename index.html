@@ -1264,6 +1264,92 @@
       }
     }
 
+    /* ── CTA Section ─────────────────────────────────────── */
+    .cta {
+      position: relative;
+      width: 100%;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .cta__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/IMG_6787.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    .cta__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(10, 10, 10, 0.8) 0%,
+        rgba(10, 10, 10, 0.6) 40%,
+        rgba(10, 10, 10, 0.75) 100%
+      );
+      z-index: 1;
+    }
+
+    .cta__content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      padding: clamp(120px, 15vh, 200px) clamp(20px, 6vw, 80px);
+    }
+
+    .cta__headline {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(48px, 8vw, 120px);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .cta__headline::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      margin: 0 auto 16px;
+    }
+
+    .cta__sub {
+      font-weight: 300;
+      font-size: clamp(16px, 1.8vw, 22px);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .cta__buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .cta__buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .cta__buttons .btn {
+        width: 100%;
+        max-width: 360px;
+      }
+    }
+
     /* ── Contact Section ─────────────────────────────────── */
     .contact {
       background: var(--bg);
@@ -1853,6 +1939,21 @@
           <h3 class="services__card-title">Fence Supplies</h3>
           <p class="services__card-desc">Barbed wire, T-posts, gates, panels, and everything else you need to fence your property. Whether it's livestock, agriculture, or perimeter fencing, we carry supplies at prices that beat the big-box stores.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────── -->
+  <section class="cta">
+    <div class="cta__bg"></div>
+    <div class="cta__overlay"></div>
+
+    <div class="cta__content">
+      <h2 class="cta__headline fade-in">READY TO GET PAID?</h2>
+      <p class="cta__sub fade-in">Drive in with your scrap. Drive out with cash.</p>
+      <div class="cta__buttons fade-in">
+        <a href="#contact" class="btn btn--filled">Call for Quote</a>
+        <a href="#locations" class="btn btn--ghost">Get Directions</a>
       </div>
     </div>
   </section>
