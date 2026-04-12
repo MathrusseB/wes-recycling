@@ -86,46 +86,9 @@
       display: block;
     }
 
-    .nav__links {
-      display: flex;
-      align-items: center;
-      gap: clamp(20px, 2.5vw, 36px);
-    }
-
-    .nav__link {
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      color: var(--text-secondary);
-      transition: color 0.25s;
-      white-space: nowrap;
-    }
-
-    .nav__link:hover {
-      color: var(--text);
-    }
-
-    .nav__cta {
-      display: inline-flex;
-      align-items: center;
-      padding: 10px 22px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #0A0A0A;
-      background: #F0F0F0;
-      border-radius: 6px;
-      transition: background 0.25s, transform 0.2s;
-      white-space: nowrap;
-    }
-
-    .nav__cta:hover {
-      background: #FFFFFF;
-      transform: translateY(-1px);
-    }
-
-    /* Hamburger */
+    /* Hamburger — always visible */
     .nav__hamburger {
-      display: none;
+      display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 5px;
@@ -155,19 +118,19 @@
       transform: translateY(-7px) rotate(-45deg);
     }
 
-    /* Mobile menu */
+    /* Fullscreen overlay menu */
     .nav__mobile {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(10, 10, 10, 0.95);
+      background: rgba(10, 10, 10, 0.97);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       z-index: 999;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 28px;
+      gap: 32px;
       opacity: 0;
       transition: opacity 0.35s ease;
     }
@@ -179,8 +142,9 @@
 
     .nav__mobile a {
       font-family: 'Anton', sans-serif; font-weight: 400;
-      font-size: 32px;
-      letter-spacing: 0.06em;
+      font-size: clamp(36px, 6vw, 56px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       color: var(--text-secondary);
       transition: color 0.25s;
     }
@@ -190,10 +154,20 @@
     }
 
     .nav__mobile .nav__cta {
-      margin-top: 8px;
+      margin-top: 16px;
       font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 36px;
+      color: #0A0A0A;
+      background: #F0F0F0;
+      border-radius: 6px;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .nav__mobile .nav__cta:hover {
+      background: #FFFFFF;
+      transform: translateY(-1px);
     }
 
     /* ── Hero ─────────────────────────────────────────────── */
@@ -368,14 +342,6 @@
     @media (max-width: 640px) {
       .nav__logo img {
         height: 28px;
-      }
-
-      .nav__links {
-        display: none;
-      }
-
-      .nav__hamburger {
-        display: flex;
       }
 
       .hero__content {
@@ -1799,14 +1765,6 @@
   <nav class="nav" id="nav">
     <a href="#" class="nav__logo"><img src="images/logo-no-background.svg" alt="Wes' Recycling"></a>
 
-    <div class="nav__links">
-      <a href="#what-we-buy" class="nav__link">What We Buy</a>
-      <a href="#pricing" class="nav__link">Pricing</a>
-      <a href="#locations" class="nav__link">Locations</a>
-      <a href="#services" class="nav__link">Services</a>
-      <a href="#contact" class="nav__cta">Call for Cash Quote</a>
-    </div>
-
     <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span>
       <span></span>
@@ -1814,13 +1772,13 @@
     </button>
   </nav>
 
-  <!-- Mobile overlay -->
+  <!-- Fullscreen overlay menu -->
   <div class="nav__mobile" id="mobileMenu">
     <a href="#what-we-buy">What We Buy</a>
     <a href="#pricing">Pricing</a>
     <a href="#locations">Locations</a>
     <a href="#services">Services</a>
-    <a href="#contact" class="nav__cta">Call for Cash Quote</a>
+    <a href="#contact" class="nav__cta">Contact</a>
   </div>
 
   <!-- ── HERO ─────────────────────────────────────────── -->
