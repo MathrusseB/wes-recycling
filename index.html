@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
     /* ── Reset ───────────────────────────────────────────── */
@@ -27,15 +27,15 @@
       --surface: #141414;
       --text: #F0F0F0;
       --text-secondary: rgba(255,255,255,0.55);
-      --accent: #4A6FA5;
-      --accent-hover: #5D85BD;
+      --accent: #10B981;
+      --accent-hover: #34D399;
       --warm: #D4A84B;
       --border: rgba(255,255,255,0.08);
       --nav-height: 72px;
     }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 400;
       color: var(--text);
       background: var(--bg);
@@ -172,7 +172,7 @@
     }
 
     .nav__mobile a {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: 32px;
       letter-spacing: 0.06em;
       color: var(--text-secondary);
@@ -185,7 +185,7 @@
 
     .nav__mobile .nav__cta {
       margin-top: 8px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 16px;
       padding: 14px 32px;
     }
@@ -252,7 +252,7 @@
     }
 
     .hero__headline {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: clamp(42px, 7vw, 96px);
       line-height: 0.95;
       letter-spacing: 0.02em;
@@ -461,7 +461,7 @@
     }
 
     .about__headline {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: clamp(36px, 5.5vw, 72px);
       line-height: 0.95;
       letter-spacing: 0.02em;
@@ -496,9 +496,10 @@
     }
 
     .about__stat-value {
-      font-family: 'Bebas Neue', cursive;
-      font-size: clamp(28px, 3vw, 40px);
-      color: var(--accent);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 40px;
+      color: #10B981;
       letter-spacing: 0.02em;
       line-height: 1.1;
       margin-bottom: 4px;
@@ -571,7 +572,7 @@
     }
 
     .what-we-buy__headline {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: clamp(36px, 5vw, 64px);
       line-height: 0.95;
       letter-spacing: 0.02em;
@@ -607,7 +608,7 @@
     }
 
     .what-we-buy__card-title {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: 24px;
       letter-spacing: 0.03em;
       color: var(--text);
@@ -671,99 +672,15 @@
     /* Scroll indicator: only fade in — preserve translateX(-50%) centering */
     .hero.hero--entered .hero__scroll { opacity: 1; }
 
-    /* ── Section reveal base classes ─────────────────────── */
-    /* Eyebrow: fade in + slide right */
-    .anim-eyebrow {
-      opacity: 0;
-      transform: translateX(-30px);
-      transition: opacity 400ms var(--ease-out-expo), transform 400ms var(--ease-out-expo);
-    }
-    /* Headline: fade in + slide up */
-    .anim-headline {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
-      transition-delay: 100ms;
-    }
-    /* Body text: fade in + slide up */
-    .anim-body {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
-      transition-delay: 200ms;
-    }
-    /* Cards: fade in + slide up (stagger via JS) */
-    .anim-card {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
-    }
-    /* Stat boxes: fade in + scale */
-    .anim-stat {
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
-    }
-    /* Pricing rows: fade in + slide right */
-    .anim-row {
-      opacity: 0;
-      transform: translateX(-20px);
-      transition: opacity 400ms var(--ease-out-expo), transform 400ms var(--ease-out-expo);
-    }
-    /* Contact left: slide from left */
-    .anim-slide-left {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
-    }
-    /* Contact right: slide from right */
-    .anim-slide-right {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
-      transition-delay: 150ms;
-    }
-
-    /* Visible state — applied by IntersectionObserver */
-    .anim-eyebrow.visible,
-    .anim-headline.visible,
-    .anim-body.visible,
-    .anim-card.visible,
-    .anim-stat.visible,
-    .anim-row.visible,
-    .anim-slide-left.visible,
-    .anim-slide-right.visible {
-      opacity: 1;
-      transform: none;
-    }
-    /* Eyebrows keep their designed opacity */
-    .anim-eyebrow.visible { opacity: 0.85; }
-
-    /* Legacy fade-up (still used on cards in HTML) */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
-    }
-    .fade-up.is-visible,
-    .fade-up.visible {
-      opacity: 1;
-      transform: none;
-    }
-
     /* ── Reduced motion ──────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       .hero__eyebrow, .hero__headline, .hero__sub,
       .hero__buttons,
-      .anim-eyebrow, .anim-headline, .anim-body,
-      .anim-card, .anim-stat, .anim-row,
-      .anim-slide-left, .anim-slide-right,
-      .fade-up {
+      .fade-in {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
       }
-      /* Scroll indicator: show immediately but keep centering transform */
       .hero__scroll {
         opacity: 1 !important;
         transition: none !important;
@@ -834,7 +751,7 @@
     }
 
     .pricing__headline {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: clamp(36px, 5vw, 64px);
       line-height: 0.95;
       letter-spacing: 0.02em;
@@ -877,7 +794,7 @@
     }
 
     .pricing__table thead th {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: 14px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -1010,7 +927,7 @@
     }
 
     .locations__headline {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: clamp(36px, 5vw, 64px);
       line-height: 0.95;
       letter-spacing: 0.02em;
@@ -1051,7 +968,7 @@
     }
 
     .locations__name {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: 26px;
       letter-spacing: 0.03em;
       color: var(--text);
@@ -1071,7 +988,7 @@
       align-items: center;
       gap: 6px;
       font-size: 20px;
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       letter-spacing: 0.04em;
       color: var(--warm);
       margin: 10px 0 4px;
@@ -1190,7 +1107,7 @@
     }
 
     .services__headline {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: clamp(36px, 5vw, 64px);
       line-height: 0.95;
       letter-spacing: 0.02em;
@@ -1226,7 +1143,7 @@
     }
 
     .services__card-title {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: 24px;
       letter-spacing: 0.03em;
       color: var(--text);
@@ -1304,7 +1221,7 @@
     }
 
     .contact__headline {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: clamp(36px, 5vw, 64px);
       line-height: 0.95;
       letter-spacing: 0.02em;
@@ -1343,7 +1260,7 @@
     }
 
     .contact__phone-number {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
       font-size: clamp(28px, 3vw, 38px);
       letter-spacing: 0.04em;
       color: var(--accent);
@@ -1395,7 +1312,7 @@
     .contact__textarea {
       width: 100%;
       padding: 14px 18px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 15px;
       font-weight: 300;
       color: var(--text);
@@ -1510,7 +1427,7 @@
       <a href="#pricing" class="nav__link">Pricing</a>
       <a href="#locations" class="nav__link">Locations</a>
       <a href="#services" class="nav__link">Services</a>
-      <a href="#contact" class="nav__cta">Contact Us</a>
+      <a href="#contact" class="nav__cta">Call for Cash Quote</a>
     </div>
 
     <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
@@ -1526,7 +1443,7 @@
     <a href="#pricing">Pricing</a>
     <a href="#locations">Locations</a>
     <a href="#services">Services</a>
-    <a href="#contact" class="nav__cta">Contact Us</a>
+    <a href="#contact" class="nav__cta">Call for Cash Quote</a>
   </div>
 
   <!-- ── HERO ─────────────────────────────────────────── -->
@@ -1537,7 +1454,7 @@
     <div class="hero__content">
       <div class="hero__eyebrow">Centerville &amp; Prescott, Kansas</div>
       <h1 class="hero__headline">Linn County's Scrap<br>Metal Recycler</h1>
-      <p class="hero__sub">Two locations. Fair prices. Cash on the spot.</p>
+      <p class="hero__sub">Metal in, cash out. Two locations. Fair prices. No excuses.</p>
       <div class="hero__buttons">
         <a href="#pricing" class="btn btn--filled">View Current Pricing</a>
         <a href="#locations" class="btn btn--ghost">Get Directions</a>
@@ -1557,7 +1474,7 @@
 
     <div class="about__content">
       <div class="about__eyebrow fade-in">Linn County, Kansas</div>
-      <h2 class="about__headline fade-in">WE DON'T JUST BUY SCRAP.</h2>
+      <h2 class="about__headline fade-in">FULL TRUCKLOADS. NO EXCUSES.</h2>
       <p class="about__body fade-in">We turn your metal into cash — sorted or unsorted, one piece or a truckload. Two yards. Fair prices posted daily. Drive in, weigh out, get paid.</p>
 
       <div class="about__stats">
@@ -1586,7 +1503,7 @@
 
     <div class="what-we-buy__grid">
       <!-- Card 1 — Ferrous Metals -->
-      <div class="what-we-buy__card fade-up fade-in">
+      <div class="what-we-buy__card fade-in">
         <svg class="what-we-buy__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="6" y="14" width="32" height="22" rx="2"/>
           <path d="M14 14V10a8 8 0 0 1 16 0v4"/>
@@ -1597,7 +1514,7 @@
       </div>
 
       <!-- Card 2 — Aluminum -->
-      <div class="what-we-buy__card fade-up fade-in">
+      <div class="what-we-buy__card fade-in">
         <svg class="what-we-buy__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 38V6h6l4 10 4-10h6v32"/>
           <line x1="10" y1="22" x2="34" y2="22"/>
@@ -1608,7 +1525,7 @@
       </div>
 
       <!-- Card 3 — Copper & Brass -->
-      <div class="what-we-buy__card fade-up fade-in">
+      <div class="what-we-buy__card fade-in">
         <svg class="what-we-buy__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 4v6"/>
           <path d="M22 34v6"/>
@@ -1620,7 +1537,7 @@
       </div>
 
       <!-- Card 4 — Vehicles & Equipment -->
-      <div class="what-we-buy__card fade-up fade-in">
+      <div class="what-we-buy__card fade-in">
         <svg class="what-we-buy__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M8 28h28"/>
           <path d="M10 28l2-10h20l2 10"/>
@@ -1635,7 +1552,7 @@
       </div>
 
       <!-- Card 5 — Appliances -->
-      <div class="what-we-buy__card fade-up fade-in">
+      <div class="what-we-buy__card fade-in">
         <svg class="what-we-buy__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="10" y="4" width="24" height="36" rx="2"/>
           <line x1="10" y1="16" x2="34" y2="16"/>
@@ -1649,7 +1566,7 @@
       </div>
 
       <!-- Card 6 — Industrial Scrap -->
-      <div class="what-we-buy__card fade-up fade-in">
+      <div class="what-we-buy__card fade-in">
         <svg class="what-we-buy__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 38h36"/>
           <polygon points="10,38 14,16 20,16 20,38"/>
@@ -1752,7 +1669,7 @@
 
     <div class="locations__grid">
       <!-- Centerville -->
-      <div class="locations__card fade-up fade-in">
+      <div class="locations__card fade-in">
         <iframe
           class="locations__map"
           loading="lazy"
@@ -1774,7 +1691,7 @@
       </div>
 
       <!-- Prescott -->
-      <div class="locations__card fade-up fade-in">
+      <div class="locations__card fade-in">
         <iframe
           class="locations__map"
           loading="lazy"
@@ -1810,7 +1727,7 @@
 
       <div class="services__grid">
         <!-- Card 1 — Roll-Off Dumpster Rental -->
-        <div class="services__card fade-up fade-in">
+        <div class="services__card fade-in">
           <svg class="services__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="4" y="14" width="36" height="20" rx="2"/>
             <path d="M4 28h36"/>
@@ -1824,7 +1741,7 @@
         </div>
 
         <!-- Card 2 — Steel Sales -->
-        <div class="services__card fade-up fade-in">
+        <div class="services__card fade-in">
           <svg class="services__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 38L18 6h8l12 32"/>
             <line x1="11" y1="26" x2="33" y2="26"/>
@@ -1836,7 +1753,7 @@
         </div>
 
         <!-- Card 3 — Fence Supplies -->
-        <div class="services__card fade-up fade-in">
+        <div class="services__card fade-in">
           <svg class="services__card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="8" y1="6" x2="8" y2="38"/>
             <line x1="22" y1="6" x2="22" y2="38"/>
@@ -1966,126 +1883,26 @@
         hero.classList.add('hero--entered');
       }
 
-      if (prefersReduced) return;
-
-      /* ── Tag elements for animation ─────────────────────── */
-      // Sections to animate (not hero — it's page-load only)
-      var sections = document.querySelectorAll('.about, .what-we-buy, .pricing, .locations, .services, .contact');
-
-      sections.forEach(function (section) {
-        // Eyebrows
-        var eyebrow = section.querySelector('[class*="__eyebrow"]');
-        if (eyebrow) eyebrow.classList.add('anim-eyebrow');
-
-        // Headlines
-        var headline = section.querySelector('[class*="__headline"]');
-        if (headline) headline.classList.add('anim-headline');
-
-        // Body text (about section)
-        var body = section.querySelector('.about__body');
-        if (body) body.classList.add('anim-body');
-
-        // Pricing badge
-        var badge = section.querySelector('.pricing__badge');
-        if (badge) badge.classList.add('anim-body');
-
-        // Stat boxes
-        section.querySelectorAll('.about__stat').forEach(function (stat) {
-          stat.classList.add('anim-stat');
-        });
-
-        // Pricing table rows
-        section.querySelectorAll('.pricing__table tbody tr').forEach(function (row) {
-          row.classList.add('anim-row');
-        });
-
-        // Cards (what-we-buy, services) — these already have fade-up
-        section.querySelectorAll('.fade-up').forEach(function (card) {
-          card.classList.add('anim-card');
-        });
-
-        // Location cards
-        section.querySelectorAll('.locations__card').forEach(function (card) {
-          card.classList.add('anim-card');
-        });
-
-        // Contact columns
-        var contactLeft = section.querySelector('.contact__left');
-        if (contactLeft) contactLeft.classList.add('anim-slide-left');
-
-        var contactForm = section.querySelector('.contact__form');
-        if (contactForm) contactForm.classList.add('anim-slide-right');
-      });
-
-      /* ── IntersectionObserver ───────────────────────────── */
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-
-          var section = entry.target;
-          observer.unobserve(section);
-
-          // Eyebrow — immediate
-          var eyebrow = section.querySelector('.anim-eyebrow');
-          if (eyebrow) eyebrow.classList.add('visible');
-
-          // Headline — 100ms after eyebrow
-          var headline = section.querySelector('.anim-headline');
-          if (headline) setTimeout(function () { headline.classList.add('visible'); }, 100);
-
-          // Body / badge — 200ms
-          section.querySelectorAll('.anim-body').forEach(function (el, i) {
-            setTimeout(function () { el.classList.add('visible'); }, 200 + i * 100);
-          });
-
-          // Cards (what-we-buy, services, locations) — stagger 100ms
-          var cards = section.querySelectorAll('.anim-card');
-          cards.forEach(function (card, i) {
-            setTimeout(function () { card.classList.add('visible'); card.classList.add('is-visible'); }, 200 + i * 100);
-          });
-
-          // Stat boxes — stagger 150ms
-          var stats = section.querySelectorAll('.anim-stat');
-          stats.forEach(function (stat, i) {
-            setTimeout(function () { stat.classList.add('visible'); }, 200 + i * 150);
-          });
-
-          // Pricing rows — stagger 50ms
-          var rows = section.querySelectorAll('.anim-row');
-          rows.forEach(function (row, i) {
-            setTimeout(function () { row.classList.add('visible'); }, 200 + i * 50);
-          });
-
-          // Contact slide-left / slide-right
-          var slideLeft = section.querySelector('.anim-slide-left');
-          if (slideLeft) setTimeout(function () { slideLeft.classList.add('visible'); }, 100);
-
-          var slideRight = section.querySelector('.anim-slide-right');
-          if (slideRight) setTimeout(function () { slideRight.classList.add('visible'); }, 250);
-        });
-      }, { threshold: 0.15 });
-
-      sections.forEach(function (section) {
-        observer.observe(section);
-      });
     })();
 
     /* ── Fade-in scroll animations ────────────────────────── */
-    document.querySelectorAll('.fade-in').forEach(el => {
-      el.style.opacity='0';
-      el.style.transform='translateY(30px)';
-    });
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if(e.isIntersecting){
-          e.target.style.transition='opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)';
-          e.target.style.opacity='1';
-          e.target.style.transform='translateY(0)';
-          obs.unobserve(e.target);
-        }
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        el.style.opacity='0';
+        el.style.transform='translateY(30px)';
       });
-    }, {threshold:0.15});
-    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if(e.isIntersecting){
+            e.target.style.transition='opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)';
+            e.target.style.opacity='1';
+            e.target.style.transform='translateY(0)';
+            obs.unobserve(e.target);
+          }
+        });
+      }, {threshold:0.15});
+      document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    }
   </script>
 
 </body>
