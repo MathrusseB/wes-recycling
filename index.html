@@ -60,7 +60,7 @@
       backdrop-filter: blur(0px);
       -webkit-backdrop-filter: blur(0px);
       border-bottom: 1px solid transparent;
-      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .nav.scrolled {
@@ -68,6 +68,10 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom-color: var(--border);
+    }
+
+    .nav.nav--hidden {
+      transform: translateY(-100%);
     }
 
     .nav__logo {
@@ -2249,18 +2253,29 @@
         });
       });
 
-      /* ── Nav scroll effect ──────────────────────────────── */
+      /* ── Nav scroll effect: bg + hide/show ────────────── */
       var nav = document.getElementById('nav');
-      var scrolled = false;
+      var lastScrollY = 0;
+      var scrollThreshold = 40;
 
       window.addEventListener('scroll', function () {
-        if (window.scrollY > 40 && !scrolled) {
+        var currentY = window.scrollY;
+
+        // Background blur toggle
+        if (currentY > scrollThreshold) {
           nav.classList.add('scrolled');
-          scrolled = true;
-        } else if (window.scrollY <= 40 && scrolled) {
+        } else {
           nav.classList.remove('scrolled');
-          scrolled = false;
         }
+
+        // Hide on scroll down, show on scroll up
+        if (currentY > lastScrollY && currentY > scrollThreshold) {
+          nav.classList.add('nav--hidden');
+        } else {
+          nav.classList.remove('nav--hidden');
+        }
+
+        lastScrollY = currentY;
       }, { passive: true });
     })();
 
