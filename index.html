@@ -1375,6 +1375,65 @@
       line-height: 1.7;
     }
 
+    .locations__directions {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .locations__directions-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm);
+      opacity: 0.75;
+      margin-bottom: 8px;
+    }
+
+    .locations__directions p {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .locations__directions p:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact__email {
+      margin-top: 24px;
+    }
+
+    .contact__email-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 28px;
+    }
+
+    .contact__email-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .contact__email-address {
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(18px, 2.2vw, 26px);
+      letter-spacing: 0.02em;
+      color: var(--warm);
+      transition: color 0.2s;
+    }
+
+    .contact__email-address:hover {
+      color: #e6bb5e;
+    }
+
     @media (max-width: 768px) {
       .locations__grid {
         grid-template-columns: 1fr;
@@ -2449,6 +2508,12 @@
             Mon–Fri 8:00–4:00 (closed 12:00–12:45)<br>
             Sat 8:00–Noon
           </div>
+          <div class="locations__directions">
+            <div class="locations__directions-label">Driving Directions</div>
+            <p>From Centerville: 4 miles south on 1077 Hwy, left on 1000 Rd.</p>
+            <p>From Mound City: North edge on 7 Hwy, left on Hwy 554, travel 10 miles.</p>
+            <p>From Blue Mound: 5 miles north on 1077 Hwy, right on 1000 Rd.</p>
+          </div>
         </div>
       </div>
 
@@ -2470,6 +2535,11 @@
           <div class="locations__hours">
             Mon–Fri 8:00–4:00 (closed 12:00–12:45)<br>
             Sat 8:00–Noon
+          </div>
+          <div class="locations__directions">
+            <div class="locations__directions-label">Driving Directions</div>
+            <p>From Hwy 69: Exit at 239, head east ~2 miles, north on Vernon Rd 1 mile — on west side.</p>
+            <p>Alt: From 69 Hwy, KS-52/Mound City exit, east on Old 69 Hwy (Ungeheuer Rd), 5 miles south, east on E 400th Rd 1 mile, north on Vernon Rd — entrance on left.</p>
           </div>
         </div>
       </div>
@@ -2501,7 +2571,7 @@
             <line x1="12" y1="21" x2="32" y2="21"/>
           </svg>
           <h3 class="services__card-title">Roll-Off Dumpster Rental</h3>
-          <p class="services__card-desc">Need to clear out a property, tear down a building, or clean up a job site? We deliver roll-off dumpsters straight to your location. Fill it on your schedule — we pick it up and haul it away. Available at both yards.</p>
+          <p class="services__card-desc">20–60 yard containers delivered straight to your location. Clear out a property, tear down a building, or clean up a job site — fill it on your schedule and we pick it up. Call 913-756-2387 for pricing and availability.</p>
         </div>
 
         <!-- Card 2 — Steel Sales -->
@@ -2513,7 +2583,7 @@
             <line x1="22" y1="6" x2="22" y2="38"/>
           </svg>
           <h3 class="services__card-title">Steel Sales</h3>
-          <p class="services__card-desc">We stock structural and commercial steel for your next project — beams, plate, angle iron, channel, tubing, and more. Sold by the piece or by the load at competitive prices. Stop by either location to see what's in the yard.</p>
+          <p class="services__card-desc">Pipe, Channel Iron, Tubing, I-Beam, H-Beam, Rebar, Solid Stock, and more — new and used. Sold by the piece or by the load at competitive prices. Most inventory at Prescott.</p>
         </div>
 
         <!-- Card 3 — Fence Supplies -->
@@ -2529,7 +2599,7 @@
             <path d="M33 6l3-2 3 2"/>
           </svg>
           <h3 class="services__card-title">Fence Supplies</h3>
-          <p class="services__card-desc">Barbed wire, T-posts, gates, panels, and everything else you need to fence your property. Whether it's livestock, agriculture, or perimeter fencing, we carry supplies at prices that beat the big-box stores.</p>
+          <p class="services__card-desc">Sheffield T-Post, Red Brand, Stay Tuff Wire, Pipe Caps, Gate Hardware, and more. T-Post &amp; Red Brand Barbed Wire now available at Centerville. Authorized dealer: Priefert, Tarter, For-Most.</p>
         </div>
       </div>
     </div>
@@ -2570,6 +2640,13 @@
           <div class="contact__phone-card">
             <div class="contact__phone-label">Prescott</div>
             <a href="tel:9134714310" class="contact__phone-number">913-471-4310</a>
+          </div>
+        </div>
+
+        <div class="contact__email">
+          <div class="contact__email-card">
+            <div class="contact__email-label">Email (Both Locations)</div>
+            <a href="mailto:wesrecycling@wesrecycling.com" class="contact__email-address">wesrecycling@wesrecycling.com</a>
           </div>
         </div>
 
