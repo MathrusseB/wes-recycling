@@ -666,6 +666,333 @@
         font-size: 10px;
       }
     }
+
+    /* ── Pricing Section ─────────────────────────────────── */
+    .pricing {
+      background: var(--surface);
+      padding: 120px clamp(20px, 6vw, 80px);
+    }
+
+    .pricing__header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .pricing__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm);
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    .pricing__eyebrow::before,
+    .pricing__eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    .pricing__headline {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .pricing__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .pricing__badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--warm);
+      flex-shrink: 0;
+    }
+
+    .pricing__table-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .pricing__table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    .pricing__table thead th {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-align: left;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 400;
+    }
+
+    .pricing__table thead th:last-child {
+      text-align: right;
+    }
+
+    .pricing__table thead th:nth-child(2) {
+      text-align: right;
+    }
+
+    .pricing__table tbody tr {
+      transition: background 0.2s;
+    }
+
+    .pricing__table tbody tr:nth-child(odd) {
+      background: var(--surface);
+    }
+
+    .pricing__table tbody tr:nth-child(even) {
+      background: #1A1A1A;
+    }
+
+    .pricing__table tbody tr:hover {
+      background: rgba(212, 168, 75, 0.06);
+    }
+
+    .pricing__table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-weight: 300;
+    }
+
+    .pricing__table td:nth-child(2) {
+      text-align: right;
+      color: var(--warm);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .pricing__table td:last-child {
+      text-align: right;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .pricing__note {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 14px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-secondary);
+      opacity: 0.6;
+    }
+
+    @media (max-width: 640px) {
+      .pricing {
+        padding: 80px clamp(20px, 6vw, 80px);
+      }
+
+      .pricing__table {
+        font-size: 14px;
+      }
+
+      .pricing__table td,
+      .pricing__table thead th {
+        padding: 12px 14px;
+      }
+    }
+
+    @media (max-width: 393px) {
+      .pricing {
+        padding: 64px 16px;
+      }
+
+      .pricing__eyebrow {
+        font-size: 10px;
+      }
+
+      .pricing__table {
+        font-size: 13px;
+      }
+
+      .pricing__table td,
+      .pricing__table thead th {
+        padding: 10px 10px;
+      }
+    }
+
+    /* ── Locations Section ────────────────────────────────── */
+    .locations {
+      background: var(--bg);
+      padding: 120px clamp(20px, 6vw, 80px);
+    }
+
+    .locations__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .locations__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm);
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    .locations__eyebrow::before,
+    .locations__eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    .locations__headline {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .locations__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .locations__card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .locations__card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .locations__map {
+      width: 100%;
+      height: 220px;
+      border: none;
+      display: block;
+      background: #1A1A1A;
+    }
+
+    .locations__info {
+      padding: 28px 24px;
+    }
+
+    .locations__name {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 26px;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .locations__detail {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 6px;
+    }
+
+    .locations__phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 20px;
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 0.04em;
+      color: var(--warm);
+      margin: 10px 0 4px;
+      transition: color 0.2s;
+    }
+
+    .locations__phone:hover {
+      color: #e6bb5e;
+    }
+
+    .locations__hours {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .locations__grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .locations {
+        padding: 80px clamp(20px, 6vw, 80px);
+      }
+
+      .locations__header {
+        margin-bottom: 40px;
+      }
+
+      .locations__map {
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 393px) {
+      .locations {
+        padding: 64px 16px;
+      }
+
+      .locations__eyebrow {
+        font-size: 10px;
+      }
+
+      .locations__info {
+        padding: 22px 18px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -830,6 +1157,138 @@
         </svg>
         <h3 class="what-we-buy__card-title">Industrial Scrap</h3>
         <p class="what-we-buy__card-desc">Demolition, factory remnants, mixed loads.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ─────────────────────────────────────── -->
+  <section class="pricing" id="pricing">
+    <div class="pricing__header">
+      <div class="pricing__eyebrow">Current Pricing</div>
+      <h2 class="pricing__headline">TODAY'S RATES.</h2>
+      <div class="pricing__badge">
+        <span class="pricing__badge-dot"></span>
+        Last Updated: April 10, 2026
+      </div>
+    </div>
+
+    <div class="pricing__table-wrap">
+      <table class="pricing__table">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Price</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Copper #1</td>
+            <td>$3.80 – $4.20</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Copper #2</td>
+            <td>$3.50 – $3.80</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Insulated Copper Wire</td>
+            <td>$1.50 – $2.40</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Aluminum Cans</td>
+            <td>$0.45 – $0.55</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Aluminum Sheet/Cast</td>
+            <td>$0.55 – $0.75</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Brass</td>
+            <td>$1.80 – $2.20</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Stainless Steel</td>
+            <td>$0.30 – $0.50</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Light Iron / Tin</td>
+            <td>$120 – $160</td>
+            <td>per ton</td>
+          </tr>
+          <tr>
+            <td>Heavy Iron / Steel</td>
+            <td>$160 – $200</td>
+            <td>per ton</td>
+          </tr>
+          <tr>
+            <td>Vehicles (complete)</td>
+            <td>$180 – $350</td>
+            <td>each</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="pricing__note">Prices subject to change. Call ahead to confirm.</p>
+  </section>
+
+  <!-- ── LOCATIONS ───────────────────────────────────── -->
+  <section class="locations" id="locations">
+    <div class="locations__header">
+      <div class="locations__eyebrow">Our Yards</div>
+      <h2 class="locations__headline">TWO LOCATIONS. ONE STANDARD.</h2>
+    </div>
+
+    <div class="locations__grid">
+      <!-- Centerville -->
+      <div class="locations__card fade-up">
+        <iframe
+          class="locations__map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3130.0!2d-94.88!3d38.24!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s5399+W+1000+Rd+Centerville+KS+66014!5e0!3m2!1sen!2sus!4v1"
+          title="Centerville location map"
+          allowfullscreen
+        ></iframe>
+        <div class="locations__info">
+          <h3 class="locations__name">Centerville</h3>
+          <p class="locations__detail">5399 W 1000 Rd., Centerville, KS 66014</p>
+          <a href="tel:9137562387" class="locations__phone">913-756-2387</a>
+          <p class="locations__detail">Fax: 913-756-2500</p>
+          <div class="locations__hours">
+            Mon–Fri 8:00–4:00 (closed 12:00–12:45)<br>
+            Sat 8:00–Noon
+          </div>
+        </div>
+      </div>
+
+      <!-- Prescott -->
+      <div class="locations__card fade-up">
+        <iframe
+          class="locations__map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3130.0!2d-94.70!3d38.06!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s4008+Vernon+Road+Prescott+KS+66767!5e0!3m2!1sen!2sus!4v1"
+          title="Prescott location map"
+          allowfullscreen
+        ></iframe>
+        <div class="locations__info">
+          <h3 class="locations__name">Prescott</h3>
+          <p class="locations__detail">4008 Vernon Road, Prescott, KS 66767</p>
+          <a href="tel:9134714310" class="locations__phone">913-471-4310</a>
+          <p class="locations__detail">Fax: 913-471-4319</p>
+          <div class="locations__hours">
+            Mon–Fri 8:00–4:00 (closed 12:00–12:45)<br>
+            Sat 8:00–Noon
+          </div>
+        </div>
       </div>
     </div>
   </section>
