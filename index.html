@@ -191,8 +191,8 @@
 
     .hero__bg {
       position: absolute;
-      inset: -30px 0;
-      height: calc(100% + 60px);
+      inset: -80px 0;
+      height: calc(100% + 160px);
       background-image: url('images/IMG_6795.jpeg');
       background-size: cover;
       background-position: center;
@@ -414,8 +414,8 @@
 
     .about__bg {
       position: absolute;
-      inset: -30px 0;
-      height: calc(100% + 60px);
+      inset: -80px 0;
+      height: calc(100% + 160px);
       background-image: url('images/IMG_6791.jpeg');
       background-size: cover;
       background-position: center;
@@ -680,7 +680,7 @@
 
     /* Word reveal: clip-path + translateY, staggered per word */
     .hero.hero--entered .hero__word {
-      clip-path: inset(-10% 0 -10% 0);
+      clip-path: inset(-10% 0 0 0);
       transform: translateY(0);
       transition: clip-path 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
     }
@@ -729,7 +729,7 @@
     }
 
     .section-word.revealed {
-      clip-path: inset(-10% 0 -10% 0);
+      clip-path: inset(-10% 0 0 0);
       transform: translateY(0);
     }
 
@@ -1169,8 +1169,8 @@
 
     .services__bg {
       position: absolute;
-      inset: -30px 0;
-      height: calc(100% + 60px);
+      inset: -80px 0;
+      height: calc(100% + 160px);
       background-image: url('images/IMG_6793.jpeg');
       background-size: cover;
       background-position: center;
@@ -1335,8 +1335,8 @@
 
     .cta__bg {
       position: absolute;
-      inset: -30px 0;
-      height: calc(100% + 60px);
+      inset: -80px 0;
+      height: calc(100% + 160px);
       background-image: url('images/IMG_6787.jpeg');
       background-size: cover;
       background-position: center;
@@ -1784,7 +1784,7 @@
 
   <!-- ── NAV ──────────────────────────────────────────── -->
   <nav class="nav" id="nav">
-    <a href="#" class="nav__logo"><img src="images/logo-no-background.svg" alt="Wes' Recycling"></a>
+    <a href="#" class="nav__logo"><img src="images/logo-clear.png" alt="Wes' Recycling"></a>
 
     <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span>
@@ -2255,7 +2255,7 @@
 
     <!-- Footer logo -->
     <div class="footer__logo">
-      <img src="images/logo-no-background.svg" alt="Wes' Recycling">
+      <img src="images/logo-clear.png" alt="Wes' Recycling">
     </div>
 
     <!-- Bottom bar -->
@@ -2523,8 +2523,8 @@
           if (rect.bottom < 0 || rect.top > wh) return;
           // progress: 0 when section enters bottom, 1 when it exits top
           var progress = (wh - rect.top) / (wh + rect.height);
-          // map 0..1 to -30..+30
-          var offset = (progress - 0.5) * 60;
+          // map 0..1 to -80..+80
+          var offset = (progress - 0.5) * 160;
           wrap.firstElementChild.style.setProperty('--parallax', offset + 'px');
         });
       }
