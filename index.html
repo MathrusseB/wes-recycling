@@ -621,23 +621,148 @@
       line-height: 1.5;
     }
 
-    /* Fade-up animation */
+    /* ── Scroll Animation System ────────────────────────── */
+    /* Shared easing */
+    :root {
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Hero entrance (page load, not scroll) */
+    .hero__eyebrow,
+    .hero__headline,
+    .hero__sub,
+    .hero__buttons,
+    .hero__scroll {
+      opacity: 0;
+    }
+
+    .hero__eyebrow {
+      transform: translateX(-30px);
+      transition: opacity 400ms var(--ease-out-expo), transform 400ms var(--ease-out-expo);
+    }
+    .hero__headline {
+      transform: translateY(40px);
+      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
+      transition-delay: 200ms;
+    }
+    .hero__sub {
+      transform: translateY(30px);
+      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
+      transition-delay: 400ms;
+    }
+    .hero__buttons {
+      transform: translateY(30px);
+      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
+      transition-delay: 600ms;
+    }
+    .hero__scroll {
+      transition: opacity 400ms var(--ease-out-expo);
+      transition-delay: 1000ms;
+    }
+
+    .hero.hero--entered .hero__eyebrow,
+    .hero.hero--entered .hero__headline,
+    .hero.hero--entered .hero__sub,
+    .hero.hero--entered .hero__buttons,
+    .hero.hero--entered .hero__scroll {
+      opacity: 1;
+      transform: none;
+    }
+    /* Keep scroll indicator at half-opacity when visible */
+    .hero.hero--entered .hero__scroll { opacity: 1; }
+    .hero.hero--entered .hero__eyebrow { opacity: 0.85; }
+
+    /* ── Section reveal base classes ─────────────────────── */
+    /* Eyebrow: fade in + slide right */
+    .anim-eyebrow {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 400ms var(--ease-out-expo), transform 400ms var(--ease-out-expo);
+    }
+    /* Headline: fade in + slide up */
+    .anim-headline {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
+      transition-delay: 100ms;
+    }
+    /* Body text: fade in + slide up */
+    .anim-body {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+      transition-delay: 200ms;
+    }
+    /* Cards: fade in + slide up (stagger via JS) */
+    .anim-card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+    }
+    /* Stat boxes: fade in + scale */
+    .anim-stat {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+    }
+    /* Pricing rows: fade in + slide right */
+    .anim-row {
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 400ms var(--ease-out-expo), transform 400ms var(--ease-out-expo);
+    }
+    /* Contact left: slide from left */
+    .anim-slide-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
+    }
+    /* Contact right: slide from right */
+    .anim-slide-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
+      transition-delay: 150ms;
+    }
+
+    /* Visible state — applied by IntersectionObserver */
+    .anim-eyebrow.visible,
+    .anim-headline.visible,
+    .anim-body.visible,
+    .anim-card.visible,
+    .anim-stat.visible,
+    .anim-row.visible,
+    .anim-slide-left.visible,
+    .anim-slide-right.visible {
+      opacity: 1;
+      transform: none;
+    }
+    /* Eyebrows keep their designed opacity */
+    .anim-eyebrow.visible { opacity: 0.85; }
+
+    /* Legacy fade-up (still used on cards in HTML) */
     .fade-up {
       opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transform: translateY(30px);
+      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
     }
-
-    .fade-up.is-visible {
+    .fade-up.is-visible,
+    .fade-up.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
+    /* ── Reduced motion ──────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
+      .hero__eyebrow, .hero__headline, .hero__sub,
+      .hero__buttons, .hero__scroll,
+      .anim-eyebrow, .anim-headline, .anim-body,
+      .anim-card, .anim-stat, .anim-row,
+      .anim-slide-left, .anim-slide-right,
       .fade-up {
-        opacity: 1;
-        transform: none;
-        transition: none;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
       }
     }
 
@@ -1819,36 +1944,120 @@
       }, { passive: true });
     })();
 
-    /* ── Fade-up on scroll (IntersectionObserver) ────────── */
+    /* ── Scroll Animation System (IntersectionObserver) ──── */
     (function () {
       var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+      /* ── Hero entrance on page load ─────────────────────── */
+      if (!prefersReduced) {
+        requestAnimationFrame(function () {
+          document.querySelector('.hero').classList.add('hero--entered');
+        });
+      } else {
+        document.querySelector('.hero').classList.add('hero--entered');
+      }
+
       if (prefersReduced) return;
 
-      var cards = document.querySelectorAll('.fade-up');
+      /* ── Tag elements for animation ─────────────────────── */
+      // Sections to animate (not hero — it's page-load only)
+      var sections = document.querySelectorAll('.about, .what-we-buy, .pricing, .locations, .services, .contact');
 
+      sections.forEach(function (section) {
+        // Eyebrows
+        var eyebrow = section.querySelector('[class*="__eyebrow"]');
+        if (eyebrow) eyebrow.classList.add('anim-eyebrow');
+
+        // Headlines
+        var headline = section.querySelector('[class*="__headline"]');
+        if (headline) headline.classList.add('anim-headline');
+
+        // Body text (about section)
+        var body = section.querySelector('.about__body');
+        if (body) body.classList.add('anim-body');
+
+        // Pricing badge
+        var badge = section.querySelector('.pricing__badge');
+        if (badge) badge.classList.add('anim-body');
+
+        // Stat boxes
+        section.querySelectorAll('.about__stat').forEach(function (stat) {
+          stat.classList.add('anim-stat');
+        });
+
+        // Pricing table rows
+        section.querySelectorAll('.pricing__table tbody tr').forEach(function (row) {
+          row.classList.add('anim-row');
+        });
+
+        // Cards (what-we-buy, services) — these already have fade-up
+        section.querySelectorAll('.fade-up').forEach(function (card) {
+          card.classList.add('anim-card');
+        });
+
+        // Location cards
+        section.querySelectorAll('.locations__card').forEach(function (card) {
+          card.classList.add('anim-card');
+        });
+
+        // Contact columns
+        var contactLeft = section.querySelector('.contact__left');
+        if (contactLeft) contactLeft.classList.add('anim-slide-left');
+
+        var contactForm = section.querySelector('.contact__form');
+        if (contactForm) contactForm.classList.add('anim-slide-right');
+      });
+
+      /* ── IntersectionObserver ───────────────────────────── */
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
 
-          var el = entry.target;
-          var parent = el.parentElement;
-          var siblings = Array.prototype.filter.call(parent.children, function (c) {
-            return c.classList.contains('fade-up');
+          var section = entry.target;
+          observer.unobserve(section);
+
+          // Eyebrow — immediate
+          var eyebrow = section.querySelector('.anim-eyebrow');
+          if (eyebrow) eyebrow.classList.add('visible');
+
+          // Headline — 100ms after eyebrow
+          var headline = section.querySelector('.anim-headline');
+          if (headline) setTimeout(function () { headline.classList.add('visible'); }, 100);
+
+          // Body / badge — 200ms
+          section.querySelectorAll('.anim-body').forEach(function (el, i) {
+            setTimeout(function () { el.classList.add('visible'); }, 200 + i * 100);
           });
-          var index = siblings.indexOf(el);
-          var delay = index * 100;
 
-          setTimeout(function () {
-            el.classList.add('is-visible');
-          }, delay);
+          // Cards (what-we-buy, services, locations) — stagger 100ms
+          var cards = section.querySelectorAll('.anim-card');
+          cards.forEach(function (card, i) {
+            setTimeout(function () { card.classList.add('visible'); card.classList.add('is-visible'); }, 200 + i * 100);
+          });
 
-          observer.unobserve(el);
+          // Stat boxes — stagger 150ms
+          var stats = section.querySelectorAll('.anim-stat');
+          stats.forEach(function (stat, i) {
+            setTimeout(function () { stat.classList.add('visible'); }, 200 + i * 150);
+          });
+
+          // Pricing rows — stagger 50ms
+          var rows = section.querySelectorAll('.anim-row');
+          rows.forEach(function (row, i) {
+            setTimeout(function () { row.classList.add('visible'); }, 200 + i * 50);
+          });
+
+          // Contact slide-left / slide-right
+          var slideLeft = section.querySelector('.anim-slide-left');
+          if (slideLeft) setTimeout(function () { slideLeft.classList.add('visible'); }, 100);
+
+          var slideRight = section.querySelector('.anim-slide-right');
+          if (slideRight) setTimeout(function () { slideRight.classList.add('visible'); }, 250);
         });
       }, { threshold: 0.15 });
 
-      cards.forEach(function (card) {
-        observer.observe(card);
+      sections.forEach(function (section) {
+        observer.observe(section);
       });
     })();
   </script>
