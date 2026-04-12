@@ -663,14 +663,13 @@
     .hero.hero--entered .hero__eyebrow,
     .hero.hero--entered .hero__headline,
     .hero.hero--entered .hero__sub,
-    .hero.hero--entered .hero__buttons,
-    .hero.hero--entered .hero__scroll {
+    .hero.hero--entered .hero__buttons {
       opacity: 1;
       transform: none;
     }
-    /* Keep scroll indicator at half-opacity when visible */
-    .hero.hero--entered .hero__scroll { opacity: 1; }
     .hero.hero--entered .hero__eyebrow { opacity: 0.85; }
+    /* Scroll indicator: only fade in — preserve translateX(-50%) centering */
+    .hero.hero--entered .hero__scroll { opacity: 1; }
 
     /* ── Section reveal base classes ─────────────────────── */
     /* Eyebrow: fade in + slide right */
@@ -755,13 +754,18 @@
     /* ── Reduced motion ──────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       .hero__eyebrow, .hero__headline, .hero__sub,
-      .hero__buttons, .hero__scroll,
+      .hero__buttons,
       .anim-eyebrow, .anim-headline, .anim-body,
       .anim-card, .anim-stat, .anim-row,
       .anim-slide-left, .anim-slide-right,
       .fade-up {
         opacity: 1 !important;
         transform: none !important;
+        transition: none !important;
+      }
+      /* Scroll indicator: show immediately but keep centering transform */
+      .hero__scroll {
+        opacity: 1 !important;
         transition: none !important;
       }
     }
@@ -1949,12 +1953,17 @@
       var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       /* ── Hero entrance on page load ─────────────────────── */
+      var hero = document.querySelector('.hero');
       if (!prefersReduced) {
+        /* Double-rAF ensures the browser has painted opacity:0 before
+           we trigger the transition to opacity:1 */
         requestAnimationFrame(function () {
-          document.querySelector('.hero').classList.add('hero--entered');
+          requestAnimationFrame(function () {
+            hero.classList.add('hero--entered');
+          });
         });
       } else {
-        document.querySelector('.hero').classList.add('hero--entered');
+        hero.classList.add('hero--entered');
       }
 
       if (prefersReduced) return;
