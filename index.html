@@ -955,6 +955,85 @@
       opacity: 0.6;
     }
 
+    .pricing__happy-hour {
+      max-width: 800px;
+      margin: 40px auto 0;
+      background: rgba(212, 168, 75, 0.08);
+      border: 1px solid rgba(212, 168, 75, 0.25);
+      border-radius: 12px;
+      padding: 20px 28px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--warm);
+      letter-spacing: 0.04em;
+    }
+
+    .pricing__happy-hour span {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0;
+    }
+
+    .pricing__sub-header {
+      max-width: 800px;
+      margin: 64px auto 24px;
+      text-align: center;
+    }
+
+    .pricing__sub-title {
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .pricing__sub-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .pricing__converter-note {
+      max-width: 800px;
+      margin: 48px auto 0;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      text-align: center;
+    }
+
+    .pricing__converter-note strong {
+      display: block;
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(20px, 3vw, 28px);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .pricing__converter-note p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
     @media (max-width: 640px) {
       .pricing {
         padding: clamp(80px, 12vh, 140px) clamp(20px, 6vw, 80px);
@@ -986,6 +1065,186 @@
       .pricing__table td,
       .pricing__table thead th {
         padding: 10px 10px;
+      }
+    }
+
+    /* ── Yard Regulations Section ────────────────────────── */
+    .regulations {
+      background: var(--bg);
+      padding: clamp(120px, 15vh, 200px) clamp(20px, 6vw, 80px);
+      margin-bottom: 60px;
+    }
+
+    .regulations__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .regulations__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm);
+      opacity: 0.85;
+      margin-bottom: 32px;
+    }
+
+    .regulations__eyebrow::before,
+    .regulations__eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    .regulations__headline {
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(48px, 8vw, 120px);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .regulations__headline::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.4);
+      margin: 0 auto 16px;
+    }
+
+    .regulations__content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .regulations__block {
+      margin-bottom: 56px;
+    }
+
+    .regulations__block:last-child {
+      margin-bottom: 0;
+    }
+
+    .regulations__block-title {
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(22px, 3vw, 32px);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .regulations__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .regulations__list li {
+      position: relative;
+      padding: 10px 0 10px 20px;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .regulations__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--warm);
+      opacity: 0.6;
+    }
+
+    .regulations__list li:last-child {
+      border-bottom: none;
+    }
+
+    .regulations__reject-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      columns: 2;
+      column-gap: 40px;
+    }
+
+    .regulations__reject-list li {
+      position: relative;
+      padding: 8px 0 8px 22px;
+      font-size: 15px;
+      font-weight: 400;
+      color: #cf6679;
+      line-height: 1.5;
+      break-inside: avoid;
+    }
+
+    .regulations__reject-list li::before {
+      content: '\00D7';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #cf6679;
+      line-height: 1;
+    }
+
+    .regulations__warning {
+      margin-top: 32px;
+      padding: 16px 24px;
+      background: rgba(207, 102, 121, 0.08);
+      border: 1px solid rgba(207, 102, 121, 0.2);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #cf6679;
+      text-align: center;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 640px) {
+      .regulations {
+        padding: clamp(80px, 12vh, 140px) clamp(20px, 6vw, 80px);
+      }
+
+      .regulations__reject-list {
+        columns: 1;
+      }
+
+      .regulations__list li,
+      .regulations__reject-list li {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 393px) {
+      .regulations {
+        padding: clamp(64px, 10vh, 120px) 16px;
+      }
+
+      .regulations__eyebrow {
+        font-size: 10px;
+      }
+
+      .regulations__block-title {
+        font-size: 20px;
       }
     }
 
@@ -1114,6 +1373,65 @@
       font-weight: 300;
       color: var(--text-secondary);
       line-height: 1.7;
+    }
+
+    .locations__directions {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .locations__directions-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm);
+      opacity: 0.75;
+      margin-bottom: 8px;
+    }
+
+    .locations__directions p {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .locations__directions p:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact__email {
+      margin-top: 24px;
+    }
+
+    .contact__email-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 28px;
+    }
+
+    .contact__email-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .contact__email-address {
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(18px, 2.2vw, 26px);
+      letter-spacing: 0.02em;
+      color: var(--warm);
+      transition: color 0.2s;
+    }
+
+    .contact__email-address:hover {
+      color: #e6bb5e;
     }
 
     @media (max-width: 768px) {
@@ -2018,6 +2336,149 @@
     </div>
 
     <p class="pricing__note fade-in">Prices subject to change. Call ahead to confirm.</p>
+
+    <div class="pricing__happy-hour fade-in">
+      Happy Hour Pricing &mdash; Tuesday &amp; Thursday 1&ndash;4pm
+      <span>Special scrap rates at both locations during Happy Hour</span>
+    </div>
+
+    <!-- ── eSCRAP PRICING ──────────────────────────────── -->
+    <div class="pricing__sub-header fade-in">
+      <h3 class="pricing__sub-title">eSCRAP PRICING</h3>
+      <div class="pricing__sub-badge">Updated Feb 17, 2026</div>
+    </div>
+
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CD Roms / Floppies / Fingers</td>
+            <td>$0.06</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Hard Drives</td>
+            <td>$0.12</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Junk Boards</td>
+            <td>$0.06</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Mother Boards</td>
+            <td>$0.51</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Power Supplies</td>
+            <td>$0.07</td>
+            <td>per lb</td>
+          </tr>
+          <tr>
+            <td>Towers</td>
+            <td>$0.06</td>
+            <td>per lb</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="pricing__note fade-in">Same pricing at both locations.</p>
+
+    <!-- ── CATALYTIC CONVERTERS ─────────────────────────── -->
+    <div class="pricing__converter-note fade-in">
+      <strong>Catalytic Converters</strong>
+      <p>Converter pricing varies &mdash; all converters must be brought in for inspection. No phone quotes.</p>
+    </div>
+  </section>
+
+  <!-- ── YARD REGULATIONS ────────────────────────────── -->
+  <section class="regulations" id="regulations">
+    <div class="regulations__header">
+      <div class="regulations__eyebrow fade-in">Yard Regulations</div>
+      <h2 class="regulations__headline fade-in">KNOW BEFORE YOU GO.</h2>
+    </div>
+
+    <div class="regulations__content">
+
+      <!-- Yard Rules -->
+      <div class="regulations__block fade-in">
+        <h3 class="regulations__block-title">Yard Rules</h3>
+        <ul class="regulations__list">
+          <li>Speed limit: 5 mph at all times</li>
+          <li>Do not park on scales</li>
+          <li>No passengers allowed on truck beds or trailers</li>
+          <li>All passengers must exit the vehicle and stand in the designated area while being unloaded by mechanical equipment</li>
+          <li>Shirt and shoes must be worn at all times</li>
+          <li>Children under 16 must be accompanied by an adult at all times</li>
+          <li>Valid state-issued photo ID required to be on file</li>
+          <li>Items must be sorted before going to small scales</li>
+          <li>Non-ferrous loads must be pre-sorted by customer before bringing in to scrap</li>
+          <li>Deductions will be made for dirt, tires, wood, concrete, etc. at the discretion of the yard supervisor</li>
+          <li>$100 minimum charge for sorting items with radiation (subject to rejection)</li>
+          <li>Wes' Recycling is not responsible for damage to vehicles, tires, or trailers</li>
+        </ul>
+      </div>
+
+      <!-- Vehicle Requirements -->
+      <div class="regulations__block fade-in">
+        <h3 class="regulations__block-title">Vehicle Requirements</h3>
+        <ul class="regulations__list">
+          <li>Title required on all complete vehicles</li>
+          <li>Vehicles 35 years or older can be brought in without title &mdash; a Bill of Sale will be filled out</li>
+          <li>All fluids must be drained</li>
+          <li>Mercury switches removed</li>
+          <li>Air conditioning units must be disconnected</li>
+          <li>Refrigerants must be removed from all vehicles and appliances</li>
+          <li>Up to 4 passenger tires per vehicle before deducting tire weight</li>
+          <li>Will NOT accept hybrid or electric vehicles unless ALL EV batteries have been removed</li>
+        </ul>
+      </div>
+
+      <!-- Tank Rules -->
+      <div class="regulations__block fade-in">
+        <h3 class="regulations__block-title">Tank Rules</h3>
+        <ul class="regulations__list">
+          <li>Tanks larger than 100 gallons must have a 3' &times; 3' hole</li>
+          <li>Fuel tanks must have an 8" &times; 8" hole and be dry</li>
+          <li>Propane tanks, helium tanks, and fire extinguishers must have valve removed OR a hole big enough to see into the container</li>
+          <li>All tanks must be empty and dry</li>
+        </ul>
+      </div>
+
+      <!-- We Will NOT Accept -->
+      <div class="regulations__block fade-in">
+        <h3 class="regulations__block-title">We Will NOT Accept</h3>
+        <ul class="regulations__reject-list">
+          <li>Beer Kegs</li>
+          <li>Paint</li>
+          <li>Items containing Refrigerant</li>
+          <li>Radioactive Materials</li>
+          <li>Explosive Materials</li>
+          <li>Capacitors or anything with PCBs</li>
+          <li>Neon Signs</li>
+          <li>Thermostats</li>
+          <li>Mercury Switches</li>
+          <li>Closed Propane Tanks</li>
+          <li>Hybrid/Electric Vehicles (unless batteries removed)</li>
+          <li>Freon</li>
+        </ul>
+      </div>
+
+      <div class="regulations__warning fade-in">
+        Refusal to follow regulations may result in refusal to do business with you.
+      </div>
+
+    </div>
   </section>
 
   <!-- ── LOCATIONS ───────────────────────────────────── -->
@@ -2047,6 +2508,12 @@
             Mon–Fri 8:00–4:00 (closed 12:00–12:45)<br>
             Sat 8:00–Noon
           </div>
+          <div class="locations__directions">
+            <div class="locations__directions-label">Driving Directions</div>
+            <p>From Centerville: 4 miles south on 1077 Hwy, left on 1000 Rd.</p>
+            <p>From Mound City: North edge on 7 Hwy, left on Hwy 554, travel 10 miles.</p>
+            <p>From Blue Mound: 5 miles north on 1077 Hwy, right on 1000 Rd.</p>
+          </div>
         </div>
       </div>
 
@@ -2068,6 +2535,11 @@
           <div class="locations__hours">
             Mon–Fri 8:00–4:00 (closed 12:00–12:45)<br>
             Sat 8:00–Noon
+          </div>
+          <div class="locations__directions">
+            <div class="locations__directions-label">Driving Directions</div>
+            <p>From Hwy 69: Exit at 239, head east ~2 miles, north on Vernon Rd 1 mile — on west side.</p>
+            <p>Alt: From 69 Hwy, KS-52/Mound City exit, east on Old 69 Hwy (Ungeheuer Rd), 5 miles south, east on E 400th Rd 1 mile, north on Vernon Rd — entrance on left.</p>
           </div>
         </div>
       </div>
@@ -2099,7 +2571,7 @@
             <line x1="12" y1="21" x2="32" y2="21"/>
           </svg>
           <h3 class="services__card-title">Roll-Off Dumpster Rental</h3>
-          <p class="services__card-desc">Need to clear out a property, tear down a building, or clean up a job site? We deliver roll-off dumpsters straight to your location. Fill it on your schedule — we pick it up and haul it away. Available at both yards.</p>
+          <p class="services__card-desc">20–60 yard containers delivered straight to your location. Clear out a property, tear down a building, or clean up a job site — fill it on your schedule and we pick it up. Call 913-756-2387 for pricing and availability.</p>
         </div>
 
         <!-- Card 2 — Steel Sales -->
@@ -2111,7 +2583,7 @@
             <line x1="22" y1="6" x2="22" y2="38"/>
           </svg>
           <h3 class="services__card-title">Steel Sales</h3>
-          <p class="services__card-desc">We stock structural and commercial steel for your next project — beams, plate, angle iron, channel, tubing, and more. Sold by the piece or by the load at competitive prices. Stop by either location to see what's in the yard.</p>
+          <p class="services__card-desc">Pipe, Channel Iron, Tubing, I-Beam, H-Beam, Rebar, Solid Stock, and more — new and used. Sold by the piece or by the load at competitive prices. Most inventory at Prescott.</p>
         </div>
 
         <!-- Card 3 — Fence Supplies -->
@@ -2127,7 +2599,7 @@
             <path d="M33 6l3-2 3 2"/>
           </svg>
           <h3 class="services__card-title">Fence Supplies</h3>
-          <p class="services__card-desc">Barbed wire, T-posts, gates, panels, and everything else you need to fence your property. Whether it's livestock, agriculture, or perimeter fencing, we carry supplies at prices that beat the big-box stores.</p>
+          <p class="services__card-desc">Sheffield T-Post, Red Brand, Stay Tuff Wire, Pipe Caps, Gate Hardware, and more. T-Post &amp; Red Brand Barbed Wire now available at Centerville. Authorized dealer: Priefert, Tarter, For-Most.</p>
         </div>
       </div>
     </div>
@@ -2168,6 +2640,13 @@
           <div class="contact__phone-card">
             <div class="contact__phone-label">Prescott</div>
             <a href="tel:9134714310" class="contact__phone-number">913-471-4310</a>
+          </div>
+        </div>
+
+        <div class="contact__email">
+          <div class="contact__email-card">
+            <div class="contact__email-label">Email (Both Locations)</div>
+            <a href="mailto:wesrecycling@wesrecycling.com" class="contact__email-address">wesrecycling@wesrecycling.com</a>
           </div>
         </div>
 
@@ -2342,7 +2821,7 @@
       /* ── 1. Split section headlines into word spans ────── */
       var headlines = document.querySelectorAll(
         '.about__headline, .what-we-buy__headline, .pricing__headline,' +
-        '.locations__headline, .services__headline, .cta__headline, .contact__headline'
+        '.regulations__headline, .locations__headline, .services__headline, .cta__headline, .contact__headline'
       );
 
       headlines.forEach(function (h) {
@@ -2414,13 +2893,13 @@
       cards.forEach(function (c) { cardObs.observe(c); });
 
       /* ── 4. Stagger pricing table rows ────────────────── */
-      var rows = document.querySelectorAll('.pricing__table tbody tr');
-      rows.forEach(function (row) {
-        row.classList.add('stagger-row');
-      });
+      var tableWraps = document.querySelectorAll('.pricing__table-wrap');
+      tableWraps.forEach(function (tableWrap) {
+        var rows = tableWrap.querySelectorAll('tbody tr');
+        rows.forEach(function (row) {
+          row.classList.add('stagger-row');
+        });
 
-      var tableWrap = document.querySelector('.pricing__table-wrap');
-      if (tableWrap) {
         var rowObs = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
             if (!e.isIntersecting) return;
@@ -2433,7 +2912,7 @@
           });
         }, { threshold: 0.1 });
         rowObs.observe(tableWrap);
-      }
+      });
 
       /* ── 5. Standard fade-in (everything else) ────────── */
       document.querySelectorAll('.fade-in').forEach(function (el) {
