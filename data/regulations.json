@@ -1,0 +1,79 @@
+{
+  "yardRules": [
+    "Speed limit: 5 mph at all times",
+    "Do not park on scales",
+    "No passengers allowed on truck beds or on trailers",
+    "All passengers must exit the vehicle and stand in the designated area while being unloaded by mechanical equipment",
+    "Shirt and shoes must be worn at all times",
+    "Children under 16 must be accompanied by an adult at all times",
+    "Valid state-issued photo ID required to be on file",
+    "Items must be sorted before going to small scales",
+    "Non-ferrous loads must be pre-sorted by customer before bringing in to scrap",
+    "Deductions will be made for dirt, tires, wood, concrete, etc. at the discretion of the yard supervisor",
+    "$100 minimum charge for sorting items with radiation (subject to rejection)",
+    "Wes' Recycling is not responsible for damage to vehicles, tires, or trailers"
+  ],
+  "vehicleRequirements": [
+    "Title required on all complete vehicles",
+    "Vehicles 35 years or older (1989 or older) can be brought in without title — a Bill of Sale will be filled out",
+    "All fluids must be drained",
+    "Mercury switches removed",
+    "Air conditioning units must be disconnected",
+    "Refrigerants must be removed from all vehicles and appliances",
+    "Up to 4 passenger tires per vehicle before deducting tire weight",
+    "Will NOT accept hybrid or electric vehicles unless ALL EV batteries have been removed"
+  ],
+  "rvCamperGuidelines": [
+    "Purchased at net ton price with NO deductions for debris",
+    "All RV/Campers inspected prior to purchase",
+    "Will NOT be accepted if excessive debris and/or trash is found in the unit"
+  ],
+  "tankRules": [
+    "Propane tanks, helium tanks, and fire extinguishers must have valve removed OR a hole big enough to see into the container",
+    "Tanks larger than 100 gallons must have a 3' x 3' hole",
+    "Fuel tanks must have an 8\" x 8\" hole and be dry",
+    "All tanks must be empty and dry"
+  ],
+  "steelPrepSpecs": {
+    "shortSteel": {
+      "title": "#2 Short Steel",
+      "specs": "Maximum dimensions: 2' x 3' x 4'. Must be clean of concrete, wood, and other non-metallic attachments."
+    },
+    "preparedSteel": {
+      "title": "P&S Prepared Steel",
+      "specs": "Maximum dimensions: 2' x 5'. Minimum 1/4\" thick. Clean of concrete, wood, and other non-metallic attachments."
+    }
+  },
+  "applianceRules": [
+    "Appliances containing refrigerants must have NO FREON — seller responsible for proper removal prior to bringing to yard",
+    "Signed verification is required confirming refrigerant removal"
+  ],
+  "willNotAccept": [
+    "Beer Kegs",
+    "Paint",
+    "Items containing Refrigerant",
+    "Radioactive Materials",
+    "Explosive Materials",
+    "Capacitors or anything with PCBs",
+    "Neon Signs",
+    "Thermostats",
+    "Mercury Switches",
+    "Closed Propane Tanks",
+    "Hybrid/Electric Vehicles (unless ALL batteries removed)",
+    "Freon"
+  ],
+  "safetyGuidelines": [
+    "Observe posted speed limits",
+    "Follow Wes' Recycling employees' directions",
+    "No passengers allowed in truck beds or on trailers",
+    "Children under 16 must be accompanied by an adult at all times",
+    "Shoes must be worn at all times",
+    "Exit your vehicle when it is being unloaded by mechanical equipment",
+    "Wes' Recycling is not responsible for damages to vehicles, tires, or trailers",
+    "Refrigerants must be removed from all vehicles and appliances — signed verification is required",
+    "Must be with parents or 18 years of age or older to sell steel",
+    "Credit Cards Accepted",
+    "All scales tested & certified per local, state, & federal requirements"
+  ],
+  "warningBanner": "Refusal to follow regulations may result in refusal to do business with you."
+}
