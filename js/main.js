@@ -1,3 +1,6 @@
+/* ── JS-ready flag: enables animation initial states in CSS ── */
+document.documentElement.classList.add('js-ready');
+
 /* ── Mobile menu toggle ─────────────────────────────── */
 (function () {
   var hamburger = document.getElementById('hamburger');
@@ -166,10 +169,6 @@
   });
 
   /* ── 5. Standard fade-in (everything else) ────────── */
-  document.querySelectorAll('.fade-in').forEach(function (el) {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-  });
   var fadeObs = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) {
