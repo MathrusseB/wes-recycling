@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Admin panel for Wes' Recycling — manage pricing, regulations, and equipment.">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin | Wes' Recycling</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">Wes' Recycling</a>
+
+    <div class="nav__links">
+      <a href="index.html#what-we-buy">What We Buy</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="index.html#locations">Locations</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+
+    <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Fullscreen overlay menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="index.html#what-we-buy">What We Buy</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="index.html#locations">Locations</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#contact" class="nav__cta">Contact</a>
+  </div>
+
+  <!-- ── PASSWORD GATE ───────────────────────────────── -->
+  <div class="admin-gate" id="adminGate">
+    <div class="admin-gate__box">
+      <div class="admin-gate__eyebrow">Restricted</div>
+      <h1 class="admin-gate__title">ADMIN ACCESS.</h1>
+      <input type="password" class="admin-gate__input" id="adminPassword" placeholder="Enter password" autocomplete="off">
+      <button class="admin-gate__btn" id="adminLogin">Enter</button>
+      <p class="admin-gate__error" id="gateError"></p>
+    </div>
+  </div>
+
+  <!-- ── ADMIN PANEL (hidden until authenticated) ───── -->
+  <section class="admin" id="adminPanel" style="display:none; padding-top: calc(var(--nav-height) + clamp(80px, 10vh, 140px));">
+    <div class="admin__header">
+      <div class="admin__eyebrow">Management</div>
+      <h1 class="admin__headline">ADMIN PANEL.</h1>
+    </div>
+
+    <!-- Tab buttons -->
+    <div class="admin__tabs">
+      <button class="admin__tab admin__tab--active" data-tab="pricing">Pricing</button>
+      <button class="admin__tab" data-tab="regulations">Regulations</button>
+      <button class="admin__tab" data-tab="equipment">Equipment</button>
+    </div>
+
+    <!-- Pricing Tab -->
+    <div class="admin__tab-content" id="tab-pricing">
+      <div class="admin__section-bar">
+        <h2 class="admin__section-title">Pricing Editor</h2>
+        <button class="admin__save-btn" id="savePricing">Save Changes</button>
+      </div>
+      <p class="admin__hint">Edit prices below. Changes are saved to your browser and will override the default data on the public pricing page.</p>
+
+      <!-- Last Updated -->
+      <div class="admin__field-group">
+        <label class="admin__label">Last Updated</label>
+        <input type="text" class="admin__input" id="field-lastUpdated">
+      </div>
+
+      <!-- Happy Hour -->
+      <div class="admin__sub-header">Happy Hour</div>
+      <div class="admin__field-row">
+        <div class="admin__field-group">
+          <label class="admin__label">Days</label>
+          <input type="text" class="admin__input" id="field-happyDays">
+        </div>
+        <div class="admin__field-group">
+          <label class="admin__label">Time</label>
+          <input type="text" class="admin__input" id="field-happyTime">
+        </div>
+      </div>
+      <div class="admin__field-group">
+        <label class="admin__label">Specials</label>
+        <input type="text" class="admin__input" id="field-happySpecials">
+      </div>
+
+      <!-- Dynamic tables inserted here by JS -->
+      <div id="pricingEditor"></div>
+
+      <!-- eScrap Updated -->
+      <div class="admin__field-group" style="margin-top:32px;">
+        <label class="admin__label">eScrap Last Updated</label>
+        <input type="text" class="admin__input" id="field-eScrapUpdated">
+      </div>
+
+      <!-- Catalytic Converter Note -->
+      <div class="admin__sub-header">Catalytic Converters</div>
+      <div class="admin__field-group">
+        <label class="admin__label">Note</label>
+        <textarea class="admin__input admin__textarea" id="field-converterNote"></textarea>
+      </div>
+
+      <div class="admin__save-bar">
+        <button class="admin__save-btn" id="savePricingBottom">Save Changes</button>
+        <span class="admin__save-status" id="saveStatus"></span>
+      </div>
+    </div>
+
+    <!-- Regulations Tab (placeholder) -->
+    <div class="admin__tab-content" id="tab-regulations" style="display:none;">
+      <div class="admin__placeholder">
+        <p>Regulations management coming soon.</p>
+      </div>
+    </div>
+
+    <!-- Equipment Tab (placeholder) -->
+    <div class="admin__tab-content" id="tab-equipment" style="display:none;">
+      <div class="admin__placeholder">
+        <p>Equipment management coming soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────── -->
+  <footer class="footer">
+
+    <!-- Marquee -->
+    <div class="footer__marquee">
+      <div class="footer__marquee-track">
+        <span class="footer__marquee-text">SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- 3-Column Grid -->
+    <div class="footer__grid">
+
+      <!-- Column 1: Centerville -->
+      <div class="footer__col">
+        <div class="footer__col-header">Centerville.</div>
+        <p class="footer__address">
+          5399 W 1000 Rd.<br>
+          Centerville, KS 66014
+        </p>
+        <a href="tel:9137562387" class="footer__phone">913-756-2387</a>
+      </div>
+
+      <!-- Column 2: Prescott -->
+      <div class="footer__col">
+        <div class="footer__col-header">Prescott.</div>
+        <p class="footer__address">
+          4008 Vernon Road<br>
+          Prescott, KS 66767
+        </p>
+        <a href="tel:9134714310" class="footer__phone">913-471-4310</a>
+      </div>
+
+      <!-- Column 3: Connect -->
+      <div class="footer__col">
+        <div class="footer__col-header">Connect.</div>
+        <div class="footer__social-links">
+          <a href="https://www.instagram.com/wes_recycling/" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/WesRecyclingInc/" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </a>
+        </div>
+        <p class="footer__hours-summary">
+          Mon – Sat: Open<br>
+          Sun: Closed
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer logo -->
+    <div class="footer__logo">
+      <img src="images/logo-clear.png" alt="Wes' Recycling">
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Wes' Recycling Inc.</p>
+      <p class="footer__credit">Built by <a href="https://kleosdesign.com" target="_blank" rel="noopener noreferrer">Kleos.</a></p>
+    </div>
+
+  </footer>
+
+  <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      /* ── Password Gate ──────────────────────────────── */
+      var gate = document.getElementById('adminGate');
+      var panel = document.getElementById('adminPanel');
+      var pwInput = document.getElementById('adminPassword');
+      var loginBtn = document.getElementById('adminLogin');
+      var errorMsg = document.getElementById('gateError');
+      var PASS = 'wes2026';
+      var STORAGE_KEY = 'wesPricingAdmin';
+
+      /* If already authed this session, skip gate */
+      if (sessionStorage.getItem('wesAdminAuth') === '1') {
+        gate.style.display = 'none';
+        panel.style.display = '';
+        loadPricing();
+      }
+
+      function attemptLogin() {
+        if (pwInput.value === PASS) {
+          sessionStorage.setItem('wesAdminAuth', '1');
+          gate.style.display = 'none';
+          panel.style.display = '';
+          loadPricing();
+        } else {
+          errorMsg.textContent = 'Incorrect password.';
+          pwInput.value = '';
+          pwInput.focus();
+        }
+      }
+
+      loginBtn.addEventListener('click', attemptLogin);
+      pwInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') attemptLogin();
+      });
+
+      /* ── Tab Switching ──────────────────────────────── */
+      var tabs = document.querySelectorAll('.admin__tab');
+      var contents = document.querySelectorAll('.admin__tab-content');
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var target = tab.getAttribute('data-tab');
+          tabs.forEach(function (t) { t.classList.remove('admin__tab--active'); });
+          tab.classList.add('admin__tab--active');
+          contents.forEach(function (c) {
+            c.style.display = c.id === 'tab-' + target ? '' : 'none';
+          });
+        });
+      });
+
+      /* ── Pricing Tab Logic ──────────────────────────── */
+      var pricingData = null;
+
+      function loadPricing() {
+        /* Try localStorage first, fall back to JSON file */
+        var stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          try {
+            pricingData = JSON.parse(stored);
+            renderPricing(pricingData);
+            return;
+          } catch (e) { /* fall through */ }
+        }
+        fetch('data/pricing.json')
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            pricingData = data;
+            renderPricing(data);
+          })
+          .catch(function (err) {
+            console.error('Failed to load pricing data:', err);
+          });
+      }
+
+      function renderPricing(data) {
+        /* Top-level fields */
+        document.getElementById('field-lastUpdated').value = data.lastUpdated || '';
+        document.getElementById('field-happyDays').value = data.happyHour ? data.happyHour.days : '';
+        document.getElementById('field-happyTime').value = data.happyHour ? data.happyHour.time : '';
+        document.getElementById('field-happySpecials').value = data.happyHour ? data.happyHour.specials : '';
+        document.getElementById('field-eScrapUpdated').value = data.eScrapUpdated || '';
+        document.getElementById('field-converterNote').value = data.catalyticConverters ? data.catalyticConverters.note : '';
+
+        var editor = document.getElementById('pricingEditor');
+        editor.innerHTML = '';
+
+        /* Ferrous — 4-column (material, centerville, prescott, unit) */
+        editor.appendChild(buildTableEditor('Ferrous Metals', data.ferrous, ['material', 'centerville', 'prescott', 'unit'], 'ferrous'));
+
+        /* Non-Ferrous subcategories — 3-column (material, price, unit) */
+        var nfLabels = {
+          aluminum: 'Aluminum',
+          copper: 'Copper',
+          brass: 'Brass',
+          lead: 'Lead',
+          radiators: 'Radiators',
+          batteries: 'Batteries',
+          stainlessSteel: 'Stainless Steel',
+          misc: 'Miscellaneous'
+        };
+        var nfKeys = Object.keys(nfLabels);
+        nfKeys.forEach(function (key) {
+          if (data.nonFerrous && data.nonFerrous[key]) {
+            editor.appendChild(buildTableEditor(nfLabels[key], data.nonFerrous[key], ['material', 'price', 'unit'], 'nonFerrous.' + key));
+          }
+        });
+
+        /* eScrap — 3-column (item, price, unit) */
+        editor.appendChild(buildTableEditor('eScrap', data.eScrap, ['item', 'price', 'unit'], 'eScrap'));
+      }
+
+      function buildTableEditor(title, rows, columns, dataPath) {
+        var wrap = document.createElement('div');
+        wrap.className = 'admin__table-section';
+
+        var header = document.createElement('div');
+        header.className = 'admin__sub-header';
+        header.textContent = title;
+        wrap.appendChild(header);
+
+        var table = document.createElement('table');
+        table.className = 'admin__editor-table';
+
+        /* thead */
+        var thead = document.createElement('thead');
+        var headRow = document.createElement('tr');
+        columns.forEach(function (col) {
+          var th = document.createElement('th');
+          th.textContent = col.charAt(0).toUpperCase() + col.slice(1).replace(/([A-Z])/g, ' $1');
+          headRow.appendChild(th);
+        });
+        thead.appendChild(headRow);
+        table.appendChild(thead);
+
+        /* tbody */
+        var tbody = document.createElement('tbody');
+        rows.forEach(function (row, rowIdx) {
+          var tr = document.createElement('tr');
+          columns.forEach(function (col) {
+            var td = document.createElement('td');
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'admin__cell-input';
+            input.value = row[col] || '';
+            input.setAttribute('data-path', dataPath);
+            input.setAttribute('data-row', rowIdx);
+            input.setAttribute('data-col', col);
+            td.appendChild(input);
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+
+        wrap.appendChild(table);
+        return wrap;
+      }
+
+      /* ── Save to localStorage ───────────────────────── */
+      function collectAndSave() {
+        if (!pricingData) return;
+
+        /* Collect top-level fields */
+        pricingData.lastUpdated = document.getElementById('field-lastUpdated').value;
+        pricingData.eScrapUpdated = document.getElementById('field-eScrapUpdated').value;
+        if (!pricingData.happyHour) pricingData.happyHour = {};
+        pricingData.happyHour.days = document.getElementById('field-happyDays').value;
+        pricingData.happyHour.time = document.getElementById('field-happyTime').value;
+        pricingData.happyHour.specials = document.getElementById('field-happySpecials').value;
+        if (!pricingData.catalyticConverters) pricingData.catalyticConverters = {};
+        pricingData.catalyticConverters.note = document.getElementById('field-converterNote').value;
+
+        /* Collect table cell inputs */
+        var inputs = document.querySelectorAll('.admin__cell-input');
+        inputs.forEach(function (input) {
+          var path = input.getAttribute('data-path');
+          var rowIdx = parseInt(input.getAttribute('data-row'), 10);
+          var col = input.getAttribute('data-col');
+
+          var target = resolvePath(pricingData, path);
+          if (target && target[rowIdx]) {
+            target[rowIdx][col] = input.value;
+          }
+        });
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(pricingData));
+
+        var status = document.getElementById('saveStatus');
+        status.textContent = 'Saved!';
+        setTimeout(function () { status.textContent = ''; }, 2000);
+      }
+
+      function resolvePath(obj, path) {
+        var parts = path.split('.');
+        var current = obj;
+        for (var i = 0; i < parts.length; i++) {
+          if (current == null) return null;
+          current = current[parts[i]];
+        }
+        return current;
+      }
+
+      document.getElementById('savePricing').addEventListener('click', collectAndSave);
+      document.getElementById('savePricingBottom').addEventListener('click', collectAndSave);
+    })();
+  </script>
+
+</body>
+</html>
