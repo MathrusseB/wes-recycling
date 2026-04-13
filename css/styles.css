@@ -669,25 +669,30 @@ body {
 }
 
 /* Hero entrance (page load, not scroll) */
-.hero__eyebrow,
-.hero__headline,
-.hero__sub,
-.hero__buttons,
-.hero__scroll {
-  opacity: 0;
-}
 
 /* Word spans for clip-path reveal */
 .hero__word {
   display: inline-block;
-  clip-path: inset(100% 0 0 0);
-  transform: translateY(40px);
   overflow: visible;
   padding-bottom: 0.15em;
 }
 
+/* Animation initial states — scoped to .js-ready so content is visible without JS */
+.js-ready .hero__eyebrow,
+.js-ready .hero__headline,
+.js-ready .hero__sub,
+.js-ready .hero__buttons,
+.js-ready .hero__scroll {
+  opacity: 0;
+}
+
+.js-ready .hero__word {
+  clip-path: inset(100% 0 0 0);
+  transform: translateY(40px);
+}
+
 /* Eyebrow: slide in from left after 300ms hold */
-.hero__eyebrow {
+.js-ready .hero__eyebrow {
   transform: translateX(-30px);
 }
 .hero.hero--entered .hero__eyebrow {
@@ -718,10 +723,10 @@ body {
 .hero.hero--entered .hero__word:nth-child(6) { transition-delay: 970ms; }
 
 /* Subtitle + buttons: fade in after headline */
-.hero__sub {
+.js-ready .hero__sub {
   transform: translateY(20px);
 }
-.hero__buttons {
+.js-ready .hero__buttons {
   transform: translateY(20px);
 }
 .hero.hero--entered .hero__sub {
@@ -747,11 +752,14 @@ body {
 /* ── Section headline word reveal (scroll-triggered) ── */
 .section-word {
   display: inline-block;
+  overflow: visible;
+  padding-bottom: 0.15em;
+}
+
+.js-ready .section-word {
   clip-path: inset(100% 0 0 0);
   transform: translateY(40px);
   transition: clip-path 700ms var(--ease-out-expo), transform 700ms var(--ease-out-expo);
-  overflow: visible;
-  padding-bottom: 0.15em;
 }
 
 .section-word.revealed {
@@ -760,7 +768,7 @@ body {
 }
 
 /* ── Staggered card/row reveals ─────────────────────── */
-.stagger-card {
+.js-ready .stagger-card {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
@@ -771,7 +779,7 @@ body {
   transform: translateY(0);
 }
 
-.stagger-row {
+.js-ready .stagger-row {
   opacity: 0;
   transform: translateX(-30px);
   transition: opacity 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
@@ -780,6 +788,12 @@ body {
 .stagger-row.revealed {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* ── Fade-in initial state (JS only) ───────────────── */
+.js-ready .fade-in {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 /* ── Reduced motion ──────────────────────────────────── */
