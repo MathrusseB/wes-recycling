@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Admin panel for Wes' Recycling — manage pricing, regulations, and equipment.">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin | Wes' Recycling</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">Wes' Recycling</a>
+
+    <div class="nav__links">
+      <a href="index.html#what-we-buy">What We Buy</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="index.html#locations">Locations</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+
+    <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Fullscreen overlay menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="index.html#what-we-buy">What We Buy</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="index.html#locations">Locations</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#contact" class="nav__cta">Contact</a>
+  </div>
+
+  <!-- ── PASSWORD GATE ───────────────────────────────── -->
+  <div class="admin-gate" id="adminGate">
+    <div class="admin-gate__box">
+      <div class="admin-gate__eyebrow">Restricted</div>
+      <h1 class="admin-gate__title">ADMIN ACCESS.</h1>
+      <input type="password" class="admin-gate__input" id="adminPassword" placeholder="Enter password" autocomplete="off">
+      <button class="admin-gate__btn" id="adminLogin">Enter</button>
+      <p class="admin-gate__error" id="gateError"></p>
+    </div>
+  </div>
+
+  <!-- ── ADMIN PANEL (hidden until authenticated) ───── -->
+  <section class="admin" id="adminPanel" style="display:none; padding-top: calc(var(--nav-height) + clamp(80px, 10vh, 140px));">
+    <div class="admin__header">
+      <div class="admin__eyebrow">Management</div>
+      <h1 class="admin__headline">ADMIN PANEL.</h1>
+    </div>
+
+    <!-- Tab buttons -->
+    <div class="admin__tabs">
+      <button class="admin__tab admin__tab--active" data-tab="pricing">Pricing</button>
+      <button class="admin__tab" data-tab="regulations">Regulations</button>
+      <button class="admin__tab" data-tab="equipment">Equipment</button>
+    </div>
+
+    <!-- Pricing Tab -->
+    <div class="admin__tab-content" id="tab-pricing">
+      <div class="admin__section-bar">
+        <h2 class="admin__section-title">Pricing Editor</h2>
+        <button class="admin__save-btn" id="savePricing">Save Changes</button>
+      </div>
+      <p class="admin__hint">Edit prices below. Changes are saved to your browser and will override the default data on the public pricing page.</p>
+
+      <!-- Last Updated -->
+      <div class="admin__field-group">
+        <label class="admin__label">Last Updated</label>
+        <input type="text" class="admin__input" id="field-lastUpdated">
+      </div>
+
+      <!-- Happy Hour -->
+      <div class="admin__sub-header">Happy Hour</div>
+      <div class="admin__field-row">
+        <div class="admin__field-group">
+          <label class="admin__label">Days</label>
+          <input type="text" class="admin__input" id="field-happyDays">
+        </div>
+        <div class="admin__field-group">
+          <label class="admin__label">Time</label>
+          <input type="text" class="admin__input" id="field-happyTime">
+        </div>
+      </div>
+      <div class="admin__field-group">
+        <label class="admin__label">Specials</label>
+        <input type="text" class="admin__input" id="field-happySpecials">
+      </div>
+
+      <!-- Dynamic tables inserted here by JS -->
+      <div id="pricingEditor"></div>
+
+      <!-- eScrap Updated -->
+      <div class="admin__field-group" style="margin-top:32px;">
+        <label class="admin__label">eScrap Last Updated</label>
+        <input type="text" class="admin__input" id="field-eScrapUpdated">
+      </div>
+
+      <!-- Catalytic Converter Note -->
+      <div class="admin__sub-header">Catalytic Converters</div>
+      <div class="admin__field-group">
+        <label class="admin__label">Note</label>
+        <textarea class="admin__input admin__textarea" id="field-converterNote"></textarea>
+      </div>
+
+      <div class="admin__save-bar">
+        <button class="admin__save-btn" id="savePricingBottom">Save Changes</button>
+        <span class="admin__save-status" id="saveStatus"></span>
+      </div>
+    </div>
+
+    <!-- Regulations Tab -->
+    <div class="admin__tab-content" id="tab-regulations" style="display:none;">
+      <div class="admin__section-bar">
+        <h2 class="admin__section-title">Regulations Editor</h2>
+        <button class="admin__save-btn" id="saveRegulations">Save Changes</button>
+      </div>
+      <p class="admin__hint">Edit yard rules and regulations below. Add or remove individual rules per category.</p>
+
+      <!-- Warning Banner -->
+      <div class="admin__field-group">
+        <label class="admin__label">Warning Banner</label>
+        <input type="text" class="admin__input" id="field-warningBanner">
+      </div>
+
+      <!-- Dynamic regulation categories inserted by JS -->
+      <div id="regulationsEditor"></div>
+
+      <div class="admin__save-bar">
+        <button class="admin__save-btn" id="saveRegulationsBottom">Save Changes</button>
+        <span class="admin__save-status" id="regSaveStatus"></span>
+      </div>
+    </div>
+
+    <!-- Equipment Tab -->
+    <div class="admin__tab-content" id="tab-equipment" style="display:none;">
+      <div class="admin__section-bar">
+        <h2 class="admin__section-title">Equipment Editor</h2>
+        <button class="admin__save-btn" id="saveEquipment">Save Changes</button>
+      </div>
+      <p class="admin__hint">Manage equipment listings below. Add new listings or edit/delete existing ones.</p>
+
+      <!-- Add New Listing Form -->
+      <div class="admin__new-listing" id="newListingForm">
+        <div class="admin__sub-header">Add New Listing</div>
+        <div class="admin__field-row">
+          <div class="admin__field-group">
+            <label class="admin__label">Title</label>
+            <input type="text" class="admin__input" id="newListingTitle" placeholder="e.g. Cat 236B">
+          </div>
+          <div class="admin__field-group">
+            <label class="admin__label">Price</label>
+            <input type="text" class="admin__input" id="newListingPrice" placeholder="e.g. $32,000 OBO">
+          </div>
+        </div>
+        <div class="admin__field-group">
+          <label class="admin__label">Description</label>
+          <textarea class="admin__input admin__textarea" id="newListingDesc" placeholder="Describe the item..."></textarea>
+        </div>
+        <div class="admin__field-row">
+          <div class="admin__field-group">
+            <label class="admin__label">Category</label>
+            <select class="admin__input admin__select" id="newListingCategory">
+              <option value="Boats">Boats</option>
+              <option value="Cars">Cars</option>
+              <option value="Farm Machinery &amp; Equipment">Farm Machinery &amp; Equipment</option>
+              <option value="Storage Containers">Storage Containers</option>
+              <option value="Trailers">Trailers</option>
+              <option value="Trucks">Trucks</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="admin__field-group">
+            <label class="admin__label">Contact Phone</label>
+            <input type="text" class="admin__input" id="newListingContact" placeholder="e.g. 913-756-2387">
+          </div>
+        </div>
+        <div class="admin__field-row">
+          <div class="admin__field-group">
+            <label class="admin__label">Email</label>
+            <input type="email" class="admin__input" id="newListingEmail" placeholder="e.g. sherryb@wesrecycling.com">
+          </div>
+          <div class="admin__field-group">
+            <label class="admin__label">Image URL</label>
+            <input type="text" class="admin__input" id="newListingImage" placeholder="https://...">
+          </div>
+        </div>
+        <button class="admin__add-btn admin__add-listing-btn" id="addListingBtn">+ Add Listing</button>
+      </div>
+
+      <!-- Existing Listings -->
+      <div class="admin__sub-header" style="margin-top:40px;">Current Listings</div>
+      <div id="equipmentEditor"></div>
+
+      <div class="admin__save-bar">
+        <button class="admin__save-btn" id="saveEquipmentBottom">Save Changes</button>
+        <span class="admin__save-status" id="equipSaveStatus"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────── -->
+  <footer class="footer">
+
+    <!-- Marquee -->
+    <div class="footer__marquee">
+      <div class="footer__marquee-track">
+        <span class="footer__marquee-text">SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- 3-Column Grid -->
+    <div class="footer__grid">
+
+      <!-- Column 1: Centerville -->
+      <div class="footer__col">
+        <div class="footer__col-header">Centerville.</div>
+        <p class="footer__address">
+          5399 W 1000 Rd.<br>
+          Centerville, KS 66014
+        </p>
+        <a href="tel:9137562387" class="footer__phone">913-756-2387</a>
+      </div>
+
+      <!-- Column 2: Prescott -->
+      <div class="footer__col">
+        <div class="footer__col-header">Prescott.</div>
+        <p class="footer__address">
+          4008 Vernon Road<br>
+          Prescott, KS 66767
+        </p>
+        <a href="tel:9134714310" class="footer__phone">913-471-4310</a>
+      </div>
+
+      <!-- Column 3: Connect -->
+      <div class="footer__col">
+        <div class="footer__col-header">Connect.</div>
+        <div class="footer__social-links">
+          <a href="https://www.instagram.com/wes_recycling/" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/WesRecyclingInc/" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </a>
+        </div>
+        <p class="footer__hours-summary">
+          Mon – Sat: Open<br>
+          Sun: Closed
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer logo -->
+    <div class="footer__logo">
+      <img src="images/logo-clear.png" alt="Wes' Recycling">
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Wes' Recycling Inc.</p>
+      <p class="footer__credit">Built by <a href="https://kleosdesign.com" target="_blank" rel="noopener noreferrer">Kleos.</a></p>
+    </div>
+
+  </footer>
+
+  <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      /* ── Password Gate ──────────────────────────────── */
+      var gate = document.getElementById('adminGate');
+      var panel = document.getElementById('adminPanel');
+      var pwInput = document.getElementById('adminPassword');
+      var loginBtn = document.getElementById('adminLogin');
+      var errorMsg = document.getElementById('gateError');
+      var PASS = 'wes2026';
+      var STORAGE_KEY = 'wesPricingAdmin';
+      var REG_STORAGE_KEY = 'wesRegulationsAdmin';
+      var EQUIP_STORAGE_KEY = 'wesEquipmentAdmin';
+
+      /* If already authed this session, skip gate */
+      if (sessionStorage.getItem('wesAdminAuth') === '1') {
+        gate.style.display = 'none';
+        panel.style.display = '';
+        loadPricing();
+        loadRegulations();
+        loadEquipment();
+      }
+
+      function attemptLogin() {
+        if (pwInput.value === PASS) {
+          sessionStorage.setItem('wesAdminAuth', '1');
+          gate.style.display = 'none';
+          panel.style.display = '';
+          loadPricing();
+          loadRegulations();
+          loadEquipment();
+        } else {
+          errorMsg.textContent = 'Incorrect password.';
+          pwInput.value = '';
+          pwInput.focus();
+        }
+      }
+
+      loginBtn.addEventListener('click', attemptLogin);
+      pwInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') attemptLogin();
+      });
+
+      /* ── Tab Switching ──────────────────────────────── */
+      var tabs = document.querySelectorAll('.admin__tab');
+      var contents = document.querySelectorAll('.admin__tab-content');
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var target = tab.getAttribute('data-tab');
+          tabs.forEach(function (t) { t.classList.remove('admin__tab--active'); });
+          tab.classList.add('admin__tab--active');
+          contents.forEach(function (c) {
+            c.style.display = c.id === 'tab-' + target ? '' : 'none';
+          });
+        });
+      });
+
+      /* ── Pricing Tab Logic ──────────────────────────── */
+      var pricingData = null;
+
+      function loadPricing() {
+        /* Try localStorage first, fall back to JSON file */
+        var stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          try {
+            pricingData = JSON.parse(stored);
+            renderPricing(pricingData);
+            return;
+          } catch (e) { /* fall through */ }
+        }
+        fetch('data/pricing.json')
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            pricingData = data;
+            renderPricing(data);
+          })
+          .catch(function (err) {
+            console.error('Failed to load pricing data:', err);
+          });
+      }
+
+      function renderPricing(data) {
+        /* Top-level fields */
+        document.getElementById('field-lastUpdated').value = data.lastUpdated || '';
+        document.getElementById('field-happyDays').value = data.happyHour ? data.happyHour.days : '';
+        document.getElementById('field-happyTime').value = data.happyHour ? data.happyHour.time : '';
+        document.getElementById('field-happySpecials').value = data.happyHour ? data.happyHour.specials : '';
+        document.getElementById('field-eScrapUpdated').value = data.eScrapUpdated || '';
+        document.getElementById('field-converterNote').value = data.catalyticConverters ? data.catalyticConverters.note : '';
+
+        var editor = document.getElementById('pricingEditor');
+        editor.innerHTML = '';
+
+        /* Ferrous — 4-column (material, centerville, prescott, unit) */
+        editor.appendChild(buildTableEditor('Ferrous Metals', data.ferrous, ['material', 'centerville', 'prescott', 'unit'], 'ferrous'));
+
+        /* Non-Ferrous subcategories — 3-column (material, price, unit) */
+        var nfLabels = {
+          aluminum: 'Aluminum',
+          copper: 'Copper',
+          brass: 'Brass',
+          lead: 'Lead',
+          radiators: 'Radiators',
+          batteries: 'Batteries',
+          stainlessSteel: 'Stainless Steel',
+          misc: 'Miscellaneous'
+        };
+        var nfKeys = Object.keys(nfLabels);
+        nfKeys.forEach(function (key) {
+          if (data.nonFerrous && data.nonFerrous[key]) {
+            editor.appendChild(buildTableEditor(nfLabels[key], data.nonFerrous[key], ['material', 'price', 'unit'], 'nonFerrous.' + key));
+          }
+        });
+
+        /* eScrap — 3-column (item, price, unit) */
+        editor.appendChild(buildTableEditor('eScrap', data.eScrap, ['item', 'price', 'unit'], 'eScrap'));
+      }
+
+      function buildTableEditor(title, rows, columns, dataPath) {
+        var wrap = document.createElement('div');
+        wrap.className = 'admin__table-section';
+
+        var header = document.createElement('div');
+        header.className = 'admin__sub-header';
+        header.textContent = title;
+        wrap.appendChild(header);
+
+        var table = document.createElement('table');
+        table.className = 'admin__editor-table';
+
+        /* thead */
+        var thead = document.createElement('thead');
+        var headRow = document.createElement('tr');
+        columns.forEach(function (col) {
+          var th = document.createElement('th');
+          th.textContent = col.charAt(0).toUpperCase() + col.slice(1).replace(/([A-Z])/g, ' $1');
+          headRow.appendChild(th);
+        });
+        thead.appendChild(headRow);
+        table.appendChild(thead);
+
+        /* tbody */
+        var tbody = document.createElement('tbody');
+        rows.forEach(function (row, rowIdx) {
+          var tr = document.createElement('tr');
+          columns.forEach(function (col) {
+            var td = document.createElement('td');
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'admin__cell-input';
+            input.value = row[col] || '';
+            input.setAttribute('data-path', dataPath);
+            input.setAttribute('data-row', rowIdx);
+            input.setAttribute('data-col', col);
+            td.appendChild(input);
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+
+        wrap.appendChild(table);
+        return wrap;
+      }
+
+      /* ── Save to localStorage ───────────────────────── */
+      function collectAndSave() {
+        if (!pricingData) return;
+
+        /* Collect top-level fields */
+        pricingData.lastUpdated = document.getElementById('field-lastUpdated').value;
+        pricingData.eScrapUpdated = document.getElementById('field-eScrapUpdated').value;
+        if (!pricingData.happyHour) pricingData.happyHour = {};
+        pricingData.happyHour.days = document.getElementById('field-happyDays').value;
+        pricingData.happyHour.time = document.getElementById('field-happyTime').value;
+        pricingData.happyHour.specials = document.getElementById('field-happySpecials').value;
+        if (!pricingData.catalyticConverters) pricingData.catalyticConverters = {};
+        pricingData.catalyticConverters.note = document.getElementById('field-converterNote').value;
+
+        /* Collect table cell inputs */
+        var inputs = document.querySelectorAll('.admin__cell-input');
+        inputs.forEach(function (input) {
+          var path = input.getAttribute('data-path');
+          var rowIdx = parseInt(input.getAttribute('data-row'), 10);
+          var col = input.getAttribute('data-col');
+
+          var target = resolvePath(pricingData, path);
+          if (target && target[rowIdx]) {
+            target[rowIdx][col] = input.value;
+          }
+        });
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(pricingData));
+
+        var status = document.getElementById('saveStatus');
+        status.textContent = 'Saved!';
+        setTimeout(function () { status.textContent = ''; }, 2000);
+      }
+
+      function resolvePath(obj, path) {
+        var parts = path.split('.');
+        var current = obj;
+        for (var i = 0; i < parts.length; i++) {
+          if (current == null) return null;
+          current = current[parts[i]];
+        }
+        return current;
+      }
+
+      document.getElementById('savePricing').addEventListener('click', collectAndSave);
+      document.getElementById('savePricingBottom').addEventListener('click', collectAndSave);
+
+      /* ── Regulations Tab Logic ──────────────────────── */
+      var regulationsData = null;
+
+      var REG_CATEGORIES = [
+        { key: 'yardRules', label: 'Yard Rules' },
+        { key: 'vehicleRequirements', label: 'Vehicle Requirements' },
+        { key: 'rvCamperGuidelines', label: 'RV / Camper Guidelines' },
+        { key: 'tankRules', label: 'Tank Rules' },
+        { key: 'applianceRules', label: 'Appliance Rules' },
+        { key: 'willNotAccept', label: 'Will Not Accept' },
+        { key: 'safetyGuidelines', label: 'Safety Guidelines' }
+      ];
+
+      var STEEL_PREP_KEYS = [
+        { key: 'shortSteel', label: '#2 Short Steel' },
+        { key: 'preparedSteel', label: 'P&S Prepared Steel' }
+      ];
+
+      function loadRegulations() {
+        var stored = localStorage.getItem(REG_STORAGE_KEY);
+        if (stored) {
+          try {
+            regulationsData = JSON.parse(stored);
+            renderRegulations(regulationsData);
+            return;
+          } catch (e) { /* fall through */ }
+        }
+        fetch('data/regulations.json')
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            regulationsData = data;
+            renderRegulations(data);
+          })
+          .catch(function (err) {
+            console.error('Failed to load regulations data:', err);
+          });
+      }
+
+      function renderRegulations(data) {
+        document.getElementById('field-warningBanner').value = data.warningBanner || '';
+
+        var editor = document.getElementById('regulationsEditor');
+        editor.innerHTML = '';
+
+        /* Array-based categories */
+        REG_CATEGORIES.forEach(function (cat) {
+          var rules = data[cat.key];
+          if (!rules) return;
+          editor.appendChild(buildRuleList(cat.label, cat.key, rules));
+        });
+
+        /* Steel Prep Specs (special: title + specs per entry) */
+        var steelWrap = document.createElement('div');
+        steelWrap.className = 'admin__table-section';
+
+        var steelHeader = document.createElement('div');
+        steelHeader.className = 'admin__sub-header';
+        steelHeader.textContent = 'Steel Prep Specs';
+        steelWrap.appendChild(steelHeader);
+
+        STEEL_PREP_KEYS.forEach(function (entry) {
+          var spec = data.steelPrepSpecs && data.steelPrepSpecs[entry.key];
+          if (!spec) return;
+
+          var block = document.createElement('div');
+          block.className = 'admin__steel-spec';
+
+          var titleGroup = document.createElement('div');
+          titleGroup.className = 'admin__field-group';
+          var titleLabel = document.createElement('label');
+          titleLabel.className = 'admin__label';
+          titleLabel.textContent = entry.label + ' — Title';
+          var titleInput = document.createElement('input');
+          titleInput.type = 'text';
+          titleInput.className = 'admin__input';
+          titleInput.setAttribute('data-steel', entry.key);
+          titleInput.setAttribute('data-field', 'title');
+          titleInput.value = spec.title || '';
+          titleGroup.appendChild(titleLabel);
+          titleGroup.appendChild(titleInput);
+          block.appendChild(titleGroup);
+
+          var specsGroup = document.createElement('div');
+          specsGroup.className = 'admin__field-group';
+          var specsLabel = document.createElement('label');
+          specsLabel.className = 'admin__label';
+          specsLabel.textContent = entry.label + ' — Specs';
+          var specsInput = document.createElement('textarea');
+          specsInput.className = 'admin__input admin__textarea';
+          specsInput.setAttribute('data-steel', entry.key);
+          specsInput.setAttribute('data-field', 'specs');
+          specsInput.value = spec.specs || '';
+          specsGroup.appendChild(specsLabel);
+          specsGroup.appendChild(specsInput);
+          block.appendChild(specsGroup);
+
+          steelWrap.appendChild(block);
+        });
+
+        editor.appendChild(steelWrap);
+      }
+
+      function buildRuleList(label, dataKey, rules) {
+        var section = document.createElement('div');
+        section.className = 'admin__table-section';
+        section.setAttribute('data-reg-key', dataKey);
+
+        var header = document.createElement('div');
+        header.className = 'admin__sub-header';
+        header.textContent = label;
+        section.appendChild(header);
+
+        var list = document.createElement('div');
+        list.className = 'admin__rule-list';
+
+        rules.forEach(function (ruleText, idx) {
+          list.appendChild(createRuleRow(ruleText, dataKey, idx));
+        });
+
+        section.appendChild(list);
+
+        var addBtn = document.createElement('button');
+        addBtn.type = 'button';
+        addBtn.className = 'admin__add-btn';
+        addBtn.textContent = '+ Add Rule';
+        addBtn.addEventListener('click', function () {
+          var arr = regulationsData[dataKey];
+          arr.push('');
+          var newRow = createRuleRow('', dataKey, arr.length - 1);
+          list.appendChild(newRow);
+          newRow.querySelector('input').focus();
+        });
+        section.appendChild(addBtn);
+
+        return section;
+      }
+
+      function createRuleRow(text, dataKey, idx) {
+        var row = document.createElement('div');
+        row.className = 'admin__rule-row';
+
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'admin__input admin__rule-input';
+        input.value = text;
+        input.setAttribute('data-reg', dataKey);
+        input.setAttribute('data-idx', idx);
+
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'admin__delete-btn';
+        delBtn.title = 'Delete rule';
+        delBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+        delBtn.addEventListener('click', function () {
+          var arr = regulationsData[dataKey];
+          var currentIdx = parseInt(input.getAttribute('data-idx'), 10);
+          arr.splice(currentIdx, 1);
+          /* Re-render the full list to keep indices correct */
+          var section = row.closest('[data-reg-key]');
+          var listEl = section.querySelector('.admin__rule-list');
+          listEl.innerHTML = '';
+          arr.forEach(function (r, i) {
+            listEl.appendChild(createRuleRow(r, dataKey, i));
+          });
+        });
+
+        row.appendChild(input);
+        row.appendChild(delBtn);
+        return row;
+      }
+
+      function collectAndSaveRegulations() {
+        if (!regulationsData) return;
+
+        regulationsData.warningBanner = document.getElementById('field-warningBanner').value;
+
+        /* Collect all rule inputs back into the data arrays */
+        REG_CATEGORIES.forEach(function (cat) {
+          var inputs = document.querySelectorAll('input[data-reg="' + cat.key + '"]');
+          var arr = [];
+          inputs.forEach(function (input) {
+            arr.push(input.value);
+          });
+          regulationsData[cat.key] = arr;
+        });
+
+        /* Collect steel prep specs */
+        if (!regulationsData.steelPrepSpecs) regulationsData.steelPrepSpecs = {};
+        STEEL_PREP_KEYS.forEach(function (entry) {
+          if (!regulationsData.steelPrepSpecs[entry.key]) regulationsData.steelPrepSpecs[entry.key] = {};
+          var titleInput = document.querySelector('[data-steel="' + entry.key + '"][data-field="title"]');
+          var specsInput = document.querySelector('[data-steel="' + entry.key + '"][data-field="specs"]');
+          if (titleInput) regulationsData.steelPrepSpecs[entry.key].title = titleInput.value;
+          if (specsInput) regulationsData.steelPrepSpecs[entry.key].specs = specsInput.value;
+        });
+
+        localStorage.setItem(REG_STORAGE_KEY, JSON.stringify(regulationsData));
+
+        var status = document.getElementById('regSaveStatus');
+        status.textContent = 'Saved!';
+        setTimeout(function () { status.textContent = ''; }, 2000);
+      }
+
+      document.getElementById('saveRegulations').addEventListener('click', collectAndSaveRegulations);
+      document.getElementById('saveRegulationsBottom').addEventListener('click', collectAndSaveRegulations);
+
+      /* ── Equipment Tab Logic ────────────────────────── */
+      var equipmentData = null;
+      var EQUIP_CATEGORIES = ['Boats', 'Cars', 'Farm Machinery & Equipment', 'Storage Containers', 'Trailers', 'Trucks', 'Other'];
+
+      function loadEquipment() {
+        var stored = localStorage.getItem(EQUIP_STORAGE_KEY);
+        if (stored) {
+          try {
+            equipmentData = JSON.parse(stored);
+            renderEquipment();
+            return;
+          } catch (e) { /* fall through */ }
+        }
+        fetch('data/listings.json')
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            equipmentData = data;
+            renderEquipment();
+          })
+          .catch(function (err) {
+            console.error('Failed to load equipment data:', err);
+          });
+      }
+
+      function nextListingId() {
+        var max = 0;
+        (equipmentData.listings || []).forEach(function (l) {
+          var n = parseInt(l.id, 10);
+          if (n > max) max = n;
+        });
+        return String(max + 1);
+      }
+
+      function todayISO() {
+        var d = new Date();
+        var mm = String(d.getMonth() + 1).padStart(2, '0');
+        var dd = String(d.getDate()).padStart(2, '0');
+        return d.getFullYear() + '-' + mm + '-' + dd;
+      }
+
+      /* ── Add new listing ────────────────────────────── */
+      document.getElementById('addListingBtn').addEventListener('click', function () {
+        var title = document.getElementById('newListingTitle').value.trim();
+        if (!title) {
+          document.getElementById('newListingTitle').focus();
+          return;
+        }
+
+        var listing = {
+          id: nextListingId(),
+          title: title,
+          description: document.getElementById('newListingDesc').value.trim(),
+          price: document.getElementById('newListingPrice').value.trim(),
+          category: document.getElementById('newListingCategory').value,
+          contact: document.getElementById('newListingContact').value.trim(),
+          email: document.getElementById('newListingEmail').value.trim(),
+          datePosted: todayISO(),
+          image: document.getElementById('newListingImage').value.trim()
+        };
+
+        if (!equipmentData) equipmentData = { listings: [] };
+        if (!equipmentData.listings) equipmentData.listings = [];
+        equipmentData.listings.push(listing);
+        renderEquipment();
+
+        /* Clear form */
+        document.getElementById('newListingTitle').value = '';
+        document.getElementById('newListingDesc').value = '';
+        document.getElementById('newListingPrice').value = '';
+        document.getElementById('newListingCategory').selectedIndex = 0;
+        document.getElementById('newListingContact').value = '';
+        document.getElementById('newListingEmail').value = '';
+        document.getElementById('newListingImage').value = '';
+      });
+
+      /* ── Render listing cards ───────────────────────── */
+      function renderEquipment() {
+        var editor = document.getElementById('equipmentEditor');
+        editor.innerHTML = '';
+
+        var listings = equipmentData && equipmentData.listings ? equipmentData.listings : [];
+
+        if (listings.length === 0) {
+          var empty = document.createElement('p');
+          empty.className = 'admin__hint';
+          empty.style.textAlign = 'center';
+          empty.style.padding = '40px 0';
+          empty.textContent = 'No listings yet. Use the form above to add one.';
+          editor.appendChild(empty);
+          return;
+        }
+
+        listings.forEach(function (listing, idx) {
+          editor.appendChild(buildListingCard(listing, idx));
+        });
+      }
+
+      function buildListingCard(listing, idx) {
+        var card = document.createElement('div');
+        card.className = 'admin__listing-card';
+        card.setAttribute('data-listing-idx', idx);
+
+        /* Header row: title + delete */
+        var headerRow = document.createElement('div');
+        headerRow.className = 'admin__listing-header';
+
+        var titleSpan = document.createElement('span');
+        titleSpan.className = 'admin__listing-title';
+        titleSpan.textContent = listing.title || '(untitled)';
+
+        var catBadge = document.createElement('span');
+        catBadge.className = 'admin__listing-badge';
+        catBadge.textContent = listing.category || '';
+
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'admin__delete-btn';
+        delBtn.title = 'Delete listing';
+        delBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+        delBtn.addEventListener('click', function () {
+          equipmentData.listings.splice(idx, 1);
+          renderEquipment();
+        });
+
+        headerRow.appendChild(titleSpan);
+        headerRow.appendChild(catBadge);
+        headerRow.appendChild(delBtn);
+        card.appendChild(headerRow);
+
+        /* Editable fields */
+        var fields = [
+          { key: 'title', label: 'Title', type: 'input' },
+          { key: 'description', label: 'Description', type: 'textarea' },
+          { key: 'price', label: 'Price', type: 'input' },
+          { key: 'category', label: 'Category', type: 'select' },
+          { key: 'contact', label: 'Contact Phone', type: 'input' },
+          { key: 'email', label: 'Email', type: 'input' },
+          { key: 'image', label: 'Image URL', type: 'input' },
+          { key: 'datePosted', label: 'Date Posted', type: 'input' }
+        ];
+
+        var grid = document.createElement('div');
+        grid.className = 'admin__listing-fields';
+
+        fields.forEach(function (f) {
+          var group = document.createElement('div');
+          group.className = 'admin__field-group';
+          if (f.type === 'textarea') group.classList.add('admin__field-group--full');
+
+          var label = document.createElement('label');
+          label.className = 'admin__label';
+          label.textContent = f.label;
+          group.appendChild(label);
+
+          var el;
+          if (f.type === 'select') {
+            el = document.createElement('select');
+            el.className = 'admin__input admin__select';
+            EQUIP_CATEGORIES.forEach(function (cat) {
+              var opt = document.createElement('option');
+              opt.value = cat;
+              opt.textContent = cat;
+              if (cat === listing[f.key]) opt.selected = true;
+              el.appendChild(opt);
+            });
+          } else if (f.type === 'textarea') {
+            el = document.createElement('textarea');
+            el.className = 'admin__input admin__textarea';
+            el.value = listing[f.key] || '';
+          } else {
+            el = document.createElement('input');
+            el.type = 'text';
+            el.className = 'admin__input';
+            el.value = listing[f.key] || '';
+          }
+
+          el.setAttribute('data-equip-idx', idx);
+          el.setAttribute('data-equip-field', f.key);
+          group.appendChild(el);
+          grid.appendChild(group);
+        });
+
+        card.appendChild(grid);
+        return card;
+      }
+
+      /* ── Save equipment ─────────────────────────────── */
+      function collectAndSaveEquipment() {
+        if (!equipmentData) return;
+
+        /* Collect all field values back into the data */
+        var inputs = document.querySelectorAll('[data-equip-idx]');
+        inputs.forEach(function (el) {
+          var idx = parseInt(el.getAttribute('data-equip-idx'), 10);
+          var field = el.getAttribute('data-equip-field');
+          if (equipmentData.listings[idx]) {
+            equipmentData.listings[idx][field] = el.value;
+          }
+        });
+
+        localStorage.setItem(EQUIP_STORAGE_KEY, JSON.stringify(equipmentData));
+
+        /* Re-render to sync header titles/badges with edited values */
+        renderEquipment();
+
+        var status = document.getElementById('equipSaveStatus');
+        status.textContent = 'Saved!';
+        setTimeout(function () { status.textContent = ''; }, 2000);
+      }
+
+      document.getElementById('saveEquipment').addEventListener('click', collectAndSaveEquipment);
+      document.getElementById('saveEquipmentBottom').addEventListener('click', collectAndSaveEquipment);
+    })();
+  </script>
+
+</body>
+</html>
