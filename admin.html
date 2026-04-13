@@ -145,10 +145,69 @@
       </div>
     </div>
 
-    <!-- Equipment Tab (placeholder) -->
+    <!-- Equipment Tab -->
     <div class="admin__tab-content" id="tab-equipment" style="display:none;">
-      <div class="admin__placeholder">
-        <p>Equipment management coming soon.</p>
+      <div class="admin__section-bar">
+        <h2 class="admin__section-title">Equipment Editor</h2>
+        <button class="admin__save-btn" id="saveEquipment">Save Changes</button>
+      </div>
+      <p class="admin__hint">Manage equipment listings below. Add new listings or edit/delete existing ones.</p>
+
+      <!-- Add New Listing Form -->
+      <div class="admin__new-listing" id="newListingForm">
+        <div class="admin__sub-header">Add New Listing</div>
+        <div class="admin__field-row">
+          <div class="admin__field-group">
+            <label class="admin__label">Title</label>
+            <input type="text" class="admin__input" id="newListingTitle" placeholder="e.g. Cat 236B">
+          </div>
+          <div class="admin__field-group">
+            <label class="admin__label">Price</label>
+            <input type="text" class="admin__input" id="newListingPrice" placeholder="e.g. $32,000 OBO">
+          </div>
+        </div>
+        <div class="admin__field-group">
+          <label class="admin__label">Description</label>
+          <textarea class="admin__input admin__textarea" id="newListingDesc" placeholder="Describe the item..."></textarea>
+        </div>
+        <div class="admin__field-row">
+          <div class="admin__field-group">
+            <label class="admin__label">Category</label>
+            <select class="admin__input admin__select" id="newListingCategory">
+              <option value="Boats">Boats</option>
+              <option value="Cars">Cars</option>
+              <option value="Farm Machinery &amp; Equipment">Farm Machinery &amp; Equipment</option>
+              <option value="Storage Containers">Storage Containers</option>
+              <option value="Trailers">Trailers</option>
+              <option value="Trucks">Trucks</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="admin__field-group">
+            <label class="admin__label">Contact Phone</label>
+            <input type="text" class="admin__input" id="newListingContact" placeholder="e.g. 913-756-2387">
+          </div>
+        </div>
+        <div class="admin__field-row">
+          <div class="admin__field-group">
+            <label class="admin__label">Email</label>
+            <input type="email" class="admin__input" id="newListingEmail" placeholder="e.g. sherryb@wesrecycling.com">
+          </div>
+          <div class="admin__field-group">
+            <label class="admin__label">Image URL</label>
+            <input type="text" class="admin__input" id="newListingImage" placeholder="https://...">
+          </div>
+        </div>
+        <button class="admin__add-btn admin__add-listing-btn" id="addListingBtn">+ Add Listing</button>
+      </div>
+
+      <!-- Existing Listings -->
+      <div class="admin__sub-header" style="margin-top:40px;">Current Listings</div>
+      <div id="equipmentEditor"></div>
+
+      <div class="admin__save-bar">
+        <button class="admin__save-btn" id="saveEquipmentBottom">Save Changes</button>
+        <span class="admin__save-status" id="equipSaveStatus"></span>
       </div>
     </div>
   </section>
@@ -232,6 +291,7 @@
       var PASS = 'wes2026';
       var STORAGE_KEY = 'wesPricingAdmin';
       var REG_STORAGE_KEY = 'wesRegulationsAdmin';
+      var EQUIP_STORAGE_KEY = 'wesEquipmentAdmin';
 
       /* If already authed this session, skip gate */
       if (sessionStorage.getItem('wesAdminAuth') === '1') {
@@ -239,6 +299,7 @@
         panel.style.display = '';
         loadPricing();
         loadRegulations();
+        loadEquipment();
       }
 
       function attemptLogin() {
@@ -248,6 +309,7 @@
           panel.style.display = '';
           loadPricing();
           loadRegulations();
+          loadEquipment();
         } else {
           errorMsg.textContent = 'Incorrect password.';
           pwInput.value = '';
@@ -635,6 +697,219 @@
 
       document.getElementById('saveRegulations').addEventListener('click', collectAndSaveRegulations);
       document.getElementById('saveRegulationsBottom').addEventListener('click', collectAndSaveRegulations);
+
+      /* ── Equipment Tab Logic ────────────────────────── */
+      var equipmentData = null;
+      var EQUIP_CATEGORIES = ['Boats', 'Cars', 'Farm Machinery & Equipment', 'Storage Containers', 'Trailers', 'Trucks', 'Other'];
+
+      function loadEquipment() {
+        var stored = localStorage.getItem(EQUIP_STORAGE_KEY);
+        if (stored) {
+          try {
+            equipmentData = JSON.parse(stored);
+            renderEquipment();
+            return;
+          } catch (e) { /* fall through */ }
+        }
+        fetch('data/listings.json')
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            equipmentData = data;
+            renderEquipment();
+          })
+          .catch(function (err) {
+            console.error('Failed to load equipment data:', err);
+          });
+      }
+
+      function nextListingId() {
+        var max = 0;
+        (equipmentData.listings || []).forEach(function (l) {
+          var n = parseInt(l.id, 10);
+          if (n > max) max = n;
+        });
+        return String(max + 1);
+      }
+
+      function todayISO() {
+        var d = new Date();
+        var mm = String(d.getMonth() + 1).padStart(2, '0');
+        var dd = String(d.getDate()).padStart(2, '0');
+        return d.getFullYear() + '-' + mm + '-' + dd;
+      }
+
+      /* ── Add new listing ────────────────────────────── */
+      document.getElementById('addListingBtn').addEventListener('click', function () {
+        var title = document.getElementById('newListingTitle').value.trim();
+        if (!title) {
+          document.getElementById('newListingTitle').focus();
+          return;
+        }
+
+        var listing = {
+          id: nextListingId(),
+          title: title,
+          description: document.getElementById('newListingDesc').value.trim(),
+          price: document.getElementById('newListingPrice').value.trim(),
+          category: document.getElementById('newListingCategory').value,
+          contact: document.getElementById('newListingContact').value.trim(),
+          email: document.getElementById('newListingEmail').value.trim(),
+          datePosted: todayISO(),
+          image: document.getElementById('newListingImage').value.trim()
+        };
+
+        if (!equipmentData) equipmentData = { listings: [] };
+        if (!equipmentData.listings) equipmentData.listings = [];
+        equipmentData.listings.push(listing);
+        renderEquipment();
+
+        /* Clear form */
+        document.getElementById('newListingTitle').value = '';
+        document.getElementById('newListingDesc').value = '';
+        document.getElementById('newListingPrice').value = '';
+        document.getElementById('newListingCategory').selectedIndex = 0;
+        document.getElementById('newListingContact').value = '';
+        document.getElementById('newListingEmail').value = '';
+        document.getElementById('newListingImage').value = '';
+      });
+
+      /* ── Render listing cards ───────────────────────── */
+      function renderEquipment() {
+        var editor = document.getElementById('equipmentEditor');
+        editor.innerHTML = '';
+
+        var listings = equipmentData && equipmentData.listings ? equipmentData.listings : [];
+
+        if (listings.length === 0) {
+          var empty = document.createElement('p');
+          empty.className = 'admin__hint';
+          empty.style.textAlign = 'center';
+          empty.style.padding = '40px 0';
+          empty.textContent = 'No listings yet. Use the form above to add one.';
+          editor.appendChild(empty);
+          return;
+        }
+
+        listings.forEach(function (listing, idx) {
+          editor.appendChild(buildListingCard(listing, idx));
+        });
+      }
+
+      function buildListingCard(listing, idx) {
+        var card = document.createElement('div');
+        card.className = 'admin__listing-card';
+        card.setAttribute('data-listing-idx', idx);
+
+        /* Header row: title + delete */
+        var headerRow = document.createElement('div');
+        headerRow.className = 'admin__listing-header';
+
+        var titleSpan = document.createElement('span');
+        titleSpan.className = 'admin__listing-title';
+        titleSpan.textContent = listing.title || '(untitled)';
+
+        var catBadge = document.createElement('span');
+        catBadge.className = 'admin__listing-badge';
+        catBadge.textContent = listing.category || '';
+
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'admin__delete-btn';
+        delBtn.title = 'Delete listing';
+        delBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+        delBtn.addEventListener('click', function () {
+          equipmentData.listings.splice(idx, 1);
+          renderEquipment();
+        });
+
+        headerRow.appendChild(titleSpan);
+        headerRow.appendChild(catBadge);
+        headerRow.appendChild(delBtn);
+        card.appendChild(headerRow);
+
+        /* Editable fields */
+        var fields = [
+          { key: 'title', label: 'Title', type: 'input' },
+          { key: 'description', label: 'Description', type: 'textarea' },
+          { key: 'price', label: 'Price', type: 'input' },
+          { key: 'category', label: 'Category', type: 'select' },
+          { key: 'contact', label: 'Contact Phone', type: 'input' },
+          { key: 'email', label: 'Email', type: 'input' },
+          { key: 'image', label: 'Image URL', type: 'input' },
+          { key: 'datePosted', label: 'Date Posted', type: 'input' }
+        ];
+
+        var grid = document.createElement('div');
+        grid.className = 'admin__listing-fields';
+
+        fields.forEach(function (f) {
+          var group = document.createElement('div');
+          group.className = 'admin__field-group';
+          if (f.type === 'textarea') group.classList.add('admin__field-group--full');
+
+          var label = document.createElement('label');
+          label.className = 'admin__label';
+          label.textContent = f.label;
+          group.appendChild(label);
+
+          var el;
+          if (f.type === 'select') {
+            el = document.createElement('select');
+            el.className = 'admin__input admin__select';
+            EQUIP_CATEGORIES.forEach(function (cat) {
+              var opt = document.createElement('option');
+              opt.value = cat;
+              opt.textContent = cat;
+              if (cat === listing[f.key]) opt.selected = true;
+              el.appendChild(opt);
+            });
+          } else if (f.type === 'textarea') {
+            el = document.createElement('textarea');
+            el.className = 'admin__input admin__textarea';
+            el.value = listing[f.key] || '';
+          } else {
+            el = document.createElement('input');
+            el.type = 'text';
+            el.className = 'admin__input';
+            el.value = listing[f.key] || '';
+          }
+
+          el.setAttribute('data-equip-idx', idx);
+          el.setAttribute('data-equip-field', f.key);
+          group.appendChild(el);
+          grid.appendChild(group);
+        });
+
+        card.appendChild(grid);
+        return card;
+      }
+
+      /* ── Save equipment ─────────────────────────────── */
+      function collectAndSaveEquipment() {
+        if (!equipmentData) return;
+
+        /* Collect all field values back into the data */
+        var inputs = document.querySelectorAll('[data-equip-idx]');
+        inputs.forEach(function (el) {
+          var idx = parseInt(el.getAttribute('data-equip-idx'), 10);
+          var field = el.getAttribute('data-equip-field');
+          if (equipmentData.listings[idx]) {
+            equipmentData.listings[idx][field] = el.value;
+          }
+        });
+
+        localStorage.setItem(EQUIP_STORAGE_KEY, JSON.stringify(equipmentData));
+
+        /* Re-render to sync header titles/badges with edited values */
+        renderEquipment();
+
+        var status = document.getElementById('equipSaveStatus');
+        status.textContent = 'Saved!';
+        setTimeout(function () { status.textContent = ''; }, 2000);
+      }
+
+      document.getElementById('saveEquipment').addEventListener('click', collectAndSaveEquipment);
+      document.getElementById('saveEquipmentBottom').addEventListener('click', collectAndSaveEquipment);
     })();
   </script>
 
