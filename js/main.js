@@ -72,7 +72,7 @@
   /* ── 1. Split section headlines into word spans ────── */
   var headlines = document.querySelectorAll(
     '.about__headline, .what-we-buy__headline, .pricing__headline,' +
-    '.regulations__headline, .locations__headline, .services__headline, .gateway__headline, .equipment__headline, .cta__headline, .contact__headline'
+    '.regulations__headline, .locations__headline, .services__headline, .gateway__headline, .equipment__headline, .subpage__headline, .cta__headline, .contact__headline'
   );
 
   headlines.forEach(function (h) {
