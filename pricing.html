@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Current scrap metal pricing at Wes' Recycling — ferrous, non-ferrous, eScrap, and catalytic converters. Updated daily. Two locations in Linn County, KS.">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>Pricing | Wes' Recycling</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">Wes' Recycling</a>
+
+    <div class="nav__links">
+      <a href="index.html#what-we-buy">What We Buy</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="index.html#locations">Locations</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+
+    <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Fullscreen overlay menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="index.html#what-we-buy">What We Buy</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="index.html#locations">Locations</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#contact" class="nav__cta">Contact</a>
+  </div>
+
+  <!-- ── PRICING PAGE CONTENT ────────────────────────── -->
+  <section class="pricing" id="pricing" style="padding-top: calc(var(--nav-height) + clamp(80px, 10vh, 140px));">
+    <div class="pricing__header">
+      <div class="pricing__eyebrow fade-in">Current Pricing</div>
+      <h1 class="pricing__headline fade-in">TODAY'S RATES.</h1>
+      <div class="pricing__badge fade-in">
+        <span class="pricing__badge-dot"></span>
+        Last Updated: <span id="lastUpdated">April 10, 2026</span>
+      </div>
+    </div>
+
+    <!-- Happy Hour -->
+    <div class="pricing__happy-hour fade-in" id="happyHour">
+      Happy Hour Pricing &mdash; <span id="happyDays">Tuesday &amp; Thursday</span> <span id="happyTime">1pm&ndash;4pm</span>
+      <span id="happySpecials">Shred $195/NT, Clean Alum Car Wheels $1.00/lb</span>
+    </div>
+
+    <!-- ── FERROUS ────────────────────────────────────── -->
+    <div class="pricing__sub-header fade-in">
+      <h2 class="pricing__sub-title">Ferrous Metals</h2>
+    </div>
+
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table" id="ferrousTable">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Centerville</th>
+            <th>Prescott</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- ── NON-FERROUS ────────────────────────────────── -->
+
+    <!-- Aluminum -->
+    <div class="pricing__sub-header fade-in">
+      <h2 class="pricing__sub-title">Aluminum</h2>
+    </div>
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table" id="aluminumTable">
+        <thead>
+          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Copper -->
+    <div class="pricing__sub-header fade-in">
+      <h2 class="pricing__sub-title">Copper</h2>
+    </div>
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table" id="copperTable">
+        <thead>
+          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Brass -->
+    <div class="pricing__sub-header fade-in">
+      <h2 class="pricing__sub-title">Brass</h2>
+    </div>
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table" id="brassTable">
+        <thead>
+          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Lead -->
+    <div class="pricing__sub-header fade-in">
+      <h2 class="pricing__sub-title">Lead</h2>
+    </div>
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table" id="leadTable">
+        <thead>
+          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Radiators -->
+    <div class="pricing__sub-header fade-in">
+      <h2 class="pricing__sub-title">Radiators</h2>
+    </div>
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table" id="radiatorsTable">
+        <thead>
+          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Batteries -->
+    <div class="pricing__sub-header fade-in">
+      <h2 class="pricing__sub-title">Batteries</h2>
+    </div>
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table" id="batteriesTable">
+        <thead>
+          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Stainless Steel -->
+    <div class="pricing__sub-header fade-in">
+      <h2 class="pricing__sub-title">Stainless Steel</h2>
+    </div>
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table" id="stainlessTable">
+        <thead>
+          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Misc -->
+    <div class="pricing__sub-header fade-in">
+      <h2 class="pricing__sub-title">Miscellaneous</h2>
+    </div>
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table" id="miscTable">
+        <thead>
+          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- ── eSCRAP ─────────────────────────────────────── -->
+    <div class="pricing__sub-header fade-in">
+      <h2 class="pricing__sub-title">eScrap</h2>
+      <div class="pricing__sub-badge" id="eScrapBadge">Updated Feb 17, 2026</div>
+    </div>
+    <div class="pricing__table-wrap fade-in">
+      <table class="pricing__table" id="eScrapTable">
+        <thead>
+          <tr><th>Item</th><th>Price</th><th>Unit</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <p class="pricing__note fade-in">Same eScrap pricing at both locations.</p>
+
+    <!-- ── CATALYTIC CONVERTERS ────────────────────────── -->
+    <div class="pricing__converter-note fade-in" id="converterNote">
+      <strong>Catalytic Converters</strong>
+      <p>Converter pricing varies &mdash; all converters must be brought in for inspection. We will not quote any prices for converters over the phone.</p>
+    </div>
+
+    <!-- ── FOOTER NOTES ───────────────────────────────── -->
+    <div class="pricing__notices fade-in">
+      <p>All scales tested &amp; certified per local, state, &amp; federal requirements.</p>
+      <p>Credit Cards Accepted.</p>
+      <p>Prices subject to change &mdash; call ahead to confirm.</p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────── -->
+  <footer class="footer">
+
+    <!-- Marquee -->
+    <div class="footer__marquee">
+      <div class="footer__marquee-track">
+        <span class="footer__marquee-text">SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp; SCRAP METAL &mdash; CASH ON THE SPOT &mdash; WES' RECYCLING &nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- 3-Column Grid -->
+    <div class="footer__grid">
+
+      <!-- Column 1: Centerville -->
+      <div class="footer__col">
+        <div class="footer__col-header">Centerville.</div>
+        <p class="footer__address">
+          5399 W 1000 Rd.<br>
+          Centerville, KS 66014
+        </p>
+        <a href="tel:9137562387" class="footer__phone">913-756-2387</a>
+      </div>
+
+      <!-- Column 2: Prescott -->
+      <div class="footer__col">
+        <div class="footer__col-header">Prescott.</div>
+        <p class="footer__address">
+          4008 Vernon Road<br>
+          Prescott, KS 66767
+        </p>
+        <a href="tel:9134714310" class="footer__phone">913-471-4310</a>
+      </div>
+
+      <!-- Column 3: Connect -->
+      <div class="footer__col">
+        <div class="footer__col-header">Connect.</div>
+        <div class="footer__social-links">
+          <a href="https://www.instagram.com/wes_recycling/" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/WesRecyclingInc/" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </a>
+        </div>
+        <p class="footer__hours-summary">
+          Mon – Sat: Open<br>
+          Sun: Closed
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer logo -->
+    <div class="footer__logo">
+      <img src="images/logo-clear.png" alt="Wes' Recycling">
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Wes' Recycling Inc.</p>
+      <p class="footer__credit">Built by <a href="https://kleosdesign.com" target="_blank" rel="noopener noreferrer">Kleos.</a></p>
+    </div>
+
+  </footer>
+
+  <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function fillTable(tableId, rows, columns) {
+        var tbody = document.getElementById(tableId).querySelector('tbody');
+        rows.forEach(function (row) {
+          var tr = document.createElement('tr');
+          columns.forEach(function (col) {
+            var td = document.createElement('td');
+            td.textContent = row[col] || '';
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+      }
+
+      fetch('data/pricing.json')
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          // Last updated
+          document.getElementById('lastUpdated').textContent = data.lastUpdated;
+
+          // Happy Hour
+          if (data.happyHour) {
+            document.getElementById('happyDays').textContent = data.happyHour.days;
+            document.getElementById('happyTime').textContent = data.happyHour.time;
+            document.getElementById('happySpecials').textContent = data.happyHour.specials;
+          }
+
+          // Ferrous — 4 columns
+          fillTable('ferrousTable', data.ferrous, ['material', 'centerville', 'prescott', 'unit']);
+
+          // Non-ferrous categories
+          var nf = data.nonFerrous;
+          var cols = ['material', 'price', 'unit'];
+          fillTable('aluminumTable', nf.aluminum, cols);
+          fillTable('copperTable', nf.copper, cols);
+          fillTable('brassTable', nf.brass, cols);
+          fillTable('leadTable', nf.lead, cols);
+          fillTable('radiatorsTable', nf.radiators, cols);
+          fillTable('batteriesTable', nf.batteries, cols);
+          fillTable('stainlessTable', nf.stainlessSteel, cols);
+          fillTable('miscTable', nf.misc, cols);
+
+          // eScrap
+          document.getElementById('eScrapBadge').textContent = 'Updated ' + data.eScrapUpdated;
+          fillTable('eScrapTable', data.eScrap, ['item', 'price', 'unit']);
+
+          // Catalytic converters
+          if (data.catalyticConverters) {
+            var note = document.getElementById('converterNote');
+            note.querySelector('p').textContent = data.catalyticConverters.note;
+          }
+        })
+        .catch(function (err) {
+          console.error('Failed to load pricing data:', err);
+        });
+    })();
+  </script>
+
+</body>
+</html>

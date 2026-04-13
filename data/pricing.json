@@ -1,0 +1,94 @@
+{
+  "lastUpdated": "April 10, 2026",
+  "ferrous": [
+    { "material": "Auto Cast", "centerville": "$225", "prescott": "$225", "unit": "per ton" },
+    { "material": "Breakage", "centerville": "$120", "prescott": "$120", "unit": "per ton" },
+    { "material": "Light Iron / Tin", "centerville": "$120", "prescott": "$140", "unit": "per ton" },
+    { "material": "Heavy Iron / Structural", "centerville": "$160", "prescott": "$180", "unit": "per ton" },
+    { "material": "#2 Short Steel", "centerville": "$180", "prescott": "$195", "unit": "per ton" },
+    { "material": "P&S Prepared Steel", "centerville": "$200", "prescott": "$210", "unit": "per ton" },
+    { "material": "Shred", "centerville": "$195", "prescott": "$195", "unit": "per net ton" },
+    { "material": "Vehicles (complete, w/title)", "centerville": "$180–$350", "prescott": "$180–$350", "unit": "each" },
+    { "material": "Farm Equipment / Machinery", "centerville": "Call", "prescott": "Call", "unit": "" }
+  ],
+  "nonFerrous": {
+    "aluminum": [
+      { "material": "Breakage Heavy-30%", "price": "$0.17", "unit": "per lb" },
+      { "material": "Cast Aluminum", "price": "$0.55", "unit": "per lb" },
+      { "material": "Aluminum Cans", "price": "$0.50", "unit": "per lb" },
+      { "material": "Clean Extrusion", "price": "$0.70", "unit": "per lb" },
+      { "material": "Dirty Extrusion", "price": "$0.50", "unit": "per lb" },
+      { "material": "Aluminum Siding", "price": "$0.55", "unit": "per lb" },
+      { "material": "Aluminum Sheet", "price": "$0.60", "unit": "per lb" },
+      { "material": "Clean Car Wheels", "price": "$0.75", "unit": "per lb" },
+      { "material": "Dirty Car Wheels", "price": "$0.55", "unit": "per lb" },
+      { "material": "Aluminum Litho", "price": "$0.65", "unit": "per lb" }
+    ],
+    "lead": [
+      { "material": "Soft Lead", "price": "$0.40", "unit": "per lb" },
+      { "material": "Wheel Weights", "price": "$0.15", "unit": "per lb" }
+    ],
+    "radiators": [
+      { "material": "Auto Radiators (Copper/Brass)", "price": "$1.50", "unit": "per lb" },
+      { "material": "Aluminum Radiators", "price": "$0.35", "unit": "per lb" },
+      { "material": "Heater Cores", "price": "$1.10", "unit": "per lb" }
+    ],
+    "batteries": [
+      { "material": "Car Batteries", "price": "$0.20", "unit": "per lb" },
+      { "material": "Sealed Lead-Acid", "price": "$0.18", "unit": "per lb" }
+    ],
+    "brass": [
+      { "material": "Yellow Brass", "price": "$1.80", "unit": "per lb" },
+      { "material": "Red Brass", "price": "$2.20", "unit": "per lb" },
+      { "material": "Brass Shells", "price": "$1.75", "unit": "per lb" },
+      { "material": "Brass Fittings", "price": "$1.70", "unit": "per lb" }
+    ],
+    "copper": [
+      { "material": "#1 Bare Bright", "price": "$4.20", "unit": "per lb" },
+      { "material": "#1 Copper", "price": "$3.90", "unit": "per lb" },
+      { "material": "#2 Copper", "price": "$3.60", "unit": "per lb" },
+      { "material": "#1 Insulated Wire (85%+)", "price": "$2.40", "unit": "per lb" },
+      { "material": "#2 Insulated Wire (50–84%)", "price": "$1.50", "unit": "per lb" },
+      { "material": "Light Insulated Wire (<50%)", "price": "$0.80", "unit": "per lb" },
+      { "material": "Copper Pipe (clean)", "price": "$3.80", "unit": "per lb" },
+      { "material": "Copper Pipe (soldered)", "price": "$3.40", "unit": "per lb" },
+      { "material": "Romex Wire", "price": "$1.80", "unit": "per lb" }
+    ],
+    "stainlessSteel": [
+      { "material": "304 Stainless Steel", "price": "$0.50", "unit": "per lb" },
+      { "material": "316 Stainless Steel", "price": "$0.70", "unit": "per lb" },
+      { "material": "Other / Mixed Stainless", "price": "$0.30", "unit": "per lb" }
+    ],
+    "misc": [
+      { "material": "Electric Motors (clean)", "price": "$0.18", "unit": "per lb" },
+      { "material": "Sealed Units / Compressors", "price": "$0.10", "unit": "per lb" },
+      { "material": "Alternators / Starters", "price": "$0.20", "unit": "per lb" },
+      { "material": "Ballasts (non-PCB)", "price": "$0.08", "unit": "per lb" },
+      { "material": "Christmas Lights", "price": "$0.15", "unit": "per lb" }
+    ]
+  },
+  "eScrap": [
+    { "item": "CD Roms / Floppies / Fingers", "price": "$0.06", "unit": "per lb" },
+    { "item": "Hard Drives", "price": "$0.12", "unit": "per lb" },
+    { "item": "Junk Boards", "price": "$0.06", "unit": "per lb" },
+    { "item": "Mother Boards", "price": "$0.51", "unit": "per lb" },
+    { "item": "Power Supplies", "price": "$0.07", "unit": "per lb" },
+    { "item": "Towers", "price": "$0.06", "unit": "per lb" }
+  ],
+  "eScrapUpdated": "February 17, 2026",
+  "catalyticConverters": {
+    "note": "Converter pricing varies — all converters must be brought in for inspection. We will not quote any prices for converters over the phone.",
+    "categories": "Many categories, pricing varies"
+  },
+  "happyHour": {
+    "days": "Tuesday & Thursday",
+    "time": "1pm – 4pm",
+    "specials": "Shred $195/NT, Clean Alum Car Wheels $1.00/lb"
+  },
+  "notices": [
+    "All scales tested & certified per local, state, & federal requirements",
+    "Credit Cards Accepted",
+    "Prices subject to change — call ahead to confirm",
+    "Same eScrap pricing at both locations"
+  ]
+}
