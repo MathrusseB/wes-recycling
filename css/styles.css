@@ -207,7 +207,7 @@ body {
   position: absolute;
   inset: -80px 0;
   height: calc(100% + 160px);
-  background-image: url('images/IMG_6795.jpeg');
+  background-image: url('../images/IMG_6795.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -424,7 +424,7 @@ body {
   position: absolute;
   inset: -80px 0;
   height: calc(100% + 160px);
-  background-image: url('images/IMG_6791.jpeg');
+  background-image: url('../images/IMG_6791.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1531,7 +1531,7 @@ body {
   position: absolute;
   inset: -80px 0;
   height: calc(100% + 160px);
-  background-image: url('images/IMG_6793.jpeg');
+  background-image: url('../images/IMG_6789.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1689,7 +1689,7 @@ body {
   position: absolute;
   inset: -80px 0;
   height: calc(100% + 160px);
-  background-image: url('images/IMG_6787.jpeg');
+  background-image: url('../images/IMG_6787.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
