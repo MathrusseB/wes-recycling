@@ -122,10 +122,26 @@
       </div>
     </div>
 
-    <!-- Regulations Tab (placeholder) -->
+    <!-- Regulations Tab -->
     <div class="admin__tab-content" id="tab-regulations" style="display:none;">
-      <div class="admin__placeholder">
-        <p>Regulations management coming soon.</p>
+      <div class="admin__section-bar">
+        <h2 class="admin__section-title">Regulations Editor</h2>
+        <button class="admin__save-btn" id="saveRegulations">Save Changes</button>
+      </div>
+      <p class="admin__hint">Edit yard rules and regulations below. Add or remove individual rules per category.</p>
+
+      <!-- Warning Banner -->
+      <div class="admin__field-group">
+        <label class="admin__label">Warning Banner</label>
+        <input type="text" class="admin__input" id="field-warningBanner">
+      </div>
+
+      <!-- Dynamic regulation categories inserted by JS -->
+      <div id="regulationsEditor"></div>
+
+      <div class="admin__save-bar">
+        <button class="admin__save-btn" id="saveRegulationsBottom">Save Changes</button>
+        <span class="admin__save-status" id="regSaveStatus"></span>
       </div>
     </div>
 
@@ -215,12 +231,14 @@
       var errorMsg = document.getElementById('gateError');
       var PASS = 'wes2026';
       var STORAGE_KEY = 'wesPricingAdmin';
+      var REG_STORAGE_KEY = 'wesRegulationsAdmin';
 
       /* If already authed this session, skip gate */
       if (sessionStorage.getItem('wesAdminAuth') === '1') {
         gate.style.display = 'none';
         panel.style.display = '';
         loadPricing();
+        loadRegulations();
       }
 
       function attemptLogin() {
@@ -229,6 +247,7 @@
           gate.style.display = 'none';
           panel.style.display = '';
           loadPricing();
+          loadRegulations();
         } else {
           errorMsg.textContent = 'Incorrect password.';
           pwInput.value = '';
@@ -410,6 +429,212 @@
 
       document.getElementById('savePricing').addEventListener('click', collectAndSave);
       document.getElementById('savePricingBottom').addEventListener('click', collectAndSave);
+
+      /* ── Regulations Tab Logic ──────────────────────── */
+      var regulationsData = null;
+
+      var REG_CATEGORIES = [
+        { key: 'yardRules', label: 'Yard Rules' },
+        { key: 'vehicleRequirements', label: 'Vehicle Requirements' },
+        { key: 'rvCamperGuidelines', label: 'RV / Camper Guidelines' },
+        { key: 'tankRules', label: 'Tank Rules' },
+        { key: 'applianceRules', label: 'Appliance Rules' },
+        { key: 'willNotAccept', label: 'Will Not Accept' },
+        { key: 'safetyGuidelines', label: 'Safety Guidelines' }
+      ];
+
+      var STEEL_PREP_KEYS = [
+        { key: 'shortSteel', label: '#2 Short Steel' },
+        { key: 'preparedSteel', label: 'P&S Prepared Steel' }
+      ];
+
+      function loadRegulations() {
+        var stored = localStorage.getItem(REG_STORAGE_KEY);
+        if (stored) {
+          try {
+            regulationsData = JSON.parse(stored);
+            renderRegulations(regulationsData);
+            return;
+          } catch (e) { /* fall through */ }
+        }
+        fetch('data/regulations.json')
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            regulationsData = data;
+            renderRegulations(data);
+          })
+          .catch(function (err) {
+            console.error('Failed to load regulations data:', err);
+          });
+      }
+
+      function renderRegulations(data) {
+        document.getElementById('field-warningBanner').value = data.warningBanner || '';
+
+        var editor = document.getElementById('regulationsEditor');
+        editor.innerHTML = '';
+
+        /* Array-based categories */
+        REG_CATEGORIES.forEach(function (cat) {
+          var rules = data[cat.key];
+          if (!rules) return;
+          editor.appendChild(buildRuleList(cat.label, cat.key, rules));
+        });
+
+        /* Steel Prep Specs (special: title + specs per entry) */
+        var steelWrap = document.createElement('div');
+        steelWrap.className = 'admin__table-section';
+
+        var steelHeader = document.createElement('div');
+        steelHeader.className = 'admin__sub-header';
+        steelHeader.textContent = 'Steel Prep Specs';
+        steelWrap.appendChild(steelHeader);
+
+        STEEL_PREP_KEYS.forEach(function (entry) {
+          var spec = data.steelPrepSpecs && data.steelPrepSpecs[entry.key];
+          if (!spec) return;
+
+          var block = document.createElement('div');
+          block.className = 'admin__steel-spec';
+
+          var titleGroup = document.createElement('div');
+          titleGroup.className = 'admin__field-group';
+          var titleLabel = document.createElement('label');
+          titleLabel.className = 'admin__label';
+          titleLabel.textContent = entry.label + ' — Title';
+          var titleInput = document.createElement('input');
+          titleInput.type = 'text';
+          titleInput.className = 'admin__input';
+          titleInput.setAttribute('data-steel', entry.key);
+          titleInput.setAttribute('data-field', 'title');
+          titleInput.value = spec.title || '';
+          titleGroup.appendChild(titleLabel);
+          titleGroup.appendChild(titleInput);
+          block.appendChild(titleGroup);
+
+          var specsGroup = document.createElement('div');
+          specsGroup.className = 'admin__field-group';
+          var specsLabel = document.createElement('label');
+          specsLabel.className = 'admin__label';
+          specsLabel.textContent = entry.label + ' — Specs';
+          var specsInput = document.createElement('textarea');
+          specsInput.className = 'admin__input admin__textarea';
+          specsInput.setAttribute('data-steel', entry.key);
+          specsInput.setAttribute('data-field', 'specs');
+          specsInput.value = spec.specs || '';
+          specsGroup.appendChild(specsLabel);
+          specsGroup.appendChild(specsInput);
+          block.appendChild(specsGroup);
+
+          steelWrap.appendChild(block);
+        });
+
+        editor.appendChild(steelWrap);
+      }
+
+      function buildRuleList(label, dataKey, rules) {
+        var section = document.createElement('div');
+        section.className = 'admin__table-section';
+        section.setAttribute('data-reg-key', dataKey);
+
+        var header = document.createElement('div');
+        header.className = 'admin__sub-header';
+        header.textContent = label;
+        section.appendChild(header);
+
+        var list = document.createElement('div');
+        list.className = 'admin__rule-list';
+
+        rules.forEach(function (ruleText, idx) {
+          list.appendChild(createRuleRow(ruleText, dataKey, idx));
+        });
+
+        section.appendChild(list);
+
+        var addBtn = document.createElement('button');
+        addBtn.type = 'button';
+        addBtn.className = 'admin__add-btn';
+        addBtn.textContent = '+ Add Rule';
+        addBtn.addEventListener('click', function () {
+          var arr = regulationsData[dataKey];
+          arr.push('');
+          var newRow = createRuleRow('', dataKey, arr.length - 1);
+          list.appendChild(newRow);
+          newRow.querySelector('input').focus();
+        });
+        section.appendChild(addBtn);
+
+        return section;
+      }
+
+      function createRuleRow(text, dataKey, idx) {
+        var row = document.createElement('div');
+        row.className = 'admin__rule-row';
+
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'admin__input admin__rule-input';
+        input.value = text;
+        input.setAttribute('data-reg', dataKey);
+        input.setAttribute('data-idx', idx);
+
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'admin__delete-btn';
+        delBtn.title = 'Delete rule';
+        delBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+        delBtn.addEventListener('click', function () {
+          var arr = regulationsData[dataKey];
+          var currentIdx = parseInt(input.getAttribute('data-idx'), 10);
+          arr.splice(currentIdx, 1);
+          /* Re-render the full list to keep indices correct */
+          var section = row.closest('[data-reg-key]');
+          var listEl = section.querySelector('.admin__rule-list');
+          listEl.innerHTML = '';
+          arr.forEach(function (r, i) {
+            listEl.appendChild(createRuleRow(r, dataKey, i));
+          });
+        });
+
+        row.appendChild(input);
+        row.appendChild(delBtn);
+        return row;
+      }
+
+      function collectAndSaveRegulations() {
+        if (!regulationsData) return;
+
+        regulationsData.warningBanner = document.getElementById('field-warningBanner').value;
+
+        /* Collect all rule inputs back into the data arrays */
+        REG_CATEGORIES.forEach(function (cat) {
+          var inputs = document.querySelectorAll('input[data-reg="' + cat.key + '"]');
+          var arr = [];
+          inputs.forEach(function (input) {
+            arr.push(input.value);
+          });
+          regulationsData[cat.key] = arr;
+        });
+
+        /* Collect steel prep specs */
+        if (!regulationsData.steelPrepSpecs) regulationsData.steelPrepSpecs = {};
+        STEEL_PREP_KEYS.forEach(function (entry) {
+          if (!regulationsData.steelPrepSpecs[entry.key]) regulationsData.steelPrepSpecs[entry.key] = {};
+          var titleInput = document.querySelector('[data-steel="' + entry.key + '"][data-field="title"]');
+          var specsInput = document.querySelector('[data-steel="' + entry.key + '"][data-field="specs"]');
+          if (titleInput) regulationsData.steelPrepSpecs[entry.key].title = titleInput.value;
+          if (specsInput) regulationsData.steelPrepSpecs[entry.key].specs = specsInput.value;
+        });
+
+        localStorage.setItem(REG_STORAGE_KEY, JSON.stringify(regulationsData));
+
+        var status = document.getElementById('regSaveStatus');
+        status.textContent = 'Saved!';
+        setTimeout(function () { status.textContent = ''; }, 2000);
+      }
+
+      document.getElementById('saveRegulations').addEventListener('click', collectAndSaveRegulations);
+      document.getElementById('saveRegulationsBottom').addEventListener('click', collectAndSaveRegulations);
     })();
   </script>
 
