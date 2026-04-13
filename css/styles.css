@@ -1056,6 +1056,43 @@ body {
   }
 }
 
+/* ── Ferrous 4-column table override ─────────────────── */
+#ferrousTable thead th:nth-child(2),
+#ferrousTable thead th:nth-child(3) {
+  text-align: right;
+}
+
+#ferrousTable td:nth-child(2),
+#ferrousTable td:nth-child(3) {
+  text-align: right;
+  color: var(--warm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Pricing page notices ────────────────────────────── */
+.pricing__notices {
+  max-width: 800px;
+  margin: 48px auto 0;
+  padding: 24px 28px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.pricing__notices p {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 4px;
+}
+
+.pricing__notices p:last-child {
+  margin-bottom: 0;
+}
+
 /* ── Yard Regulations Section ────────────────────────── */
 .regulations {
   background: var(--bg);
