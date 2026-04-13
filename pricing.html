@@ -61,24 +61,29 @@
     </div>
 
     <!-- ── FERROUS ────────────────────────────────────── -->
-    <div class="pricing__row">
-      <img class="pricing__row-image" src="images/ferrous-metals.jpg" alt="Ferrous metals">
-      <div class="pricing__row-content">
-        <div class="pricing__sub-header fade-in">
-          <h2 class="pricing__sub-title">Ferrous Metals</h2>
-        </div>
-        <div class="pricing__table-wrap fade-in">
-          <table class="pricing__table" id="ferrousTable">
-            <thead>
-              <tr>
-                <th>Material</th>
-                <th>Centerville</th>
-                <th>Prescott</th>
-                <th>Unit</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">Ferrous Metals</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__row">
+          <img class="pricing__row-image" src="images/ferrous-metals.jpg" alt="Ferrous metals">
+          <div class="pricing__row-content">
+            <div class="pricing__table-wrap">
+              <table class="pricing__table" id="ferrousTable">
+                <thead>
+                  <tr>
+                    <th>Material</th>
+                    <th>Centerville</th>
+                    <th>Prescott</th>
+                    <th>Unit</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -86,32 +91,60 @@
     <!-- ── NON-FERROUS ────────────────────────────────── -->
 
     <!-- Aluminum -->
-    <div class="pricing__row pricing__row--reverse">
-      <img class="pricing__row-image" src="images/aluminum.jpg" alt="Aluminum">
-      <div class="pricing__row-content">
-        <div class="pricing__sub-header fade-in">
-          <h2 class="pricing__sub-title">Aluminum</h2>
-        </div>
-        <div class="pricing__table-wrap fade-in">
-          <table class="pricing__table" id="aluminumTable">
-            <thead>
-              <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">Aluminum</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__row pricing__row--reverse">
+          <img class="pricing__row-image" src="images/aluminum.jpg" alt="Aluminum">
+          <div class="pricing__row-content">
+            <div class="pricing__table-wrap">
+              <table class="pricing__table" id="aluminumTable">
+                <thead>
+                  <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Copper -->
-    <div class="pricing__row">
-      <img class="pricing__row-image" src="images/copper.jpg" alt="Copper">
-      <div class="pricing__row-content">
-        <div class="pricing__sub-header fade-in">
-          <h2 class="pricing__sub-title">Copper</h2>
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">Copper</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__row">
+          <img class="pricing__row-image" src="images/copper.jpg" alt="Copper">
+          <div class="pricing__row-content">
+            <div class="pricing__table-wrap">
+              <table class="pricing__table" id="copperTable">
+                <thead>
+                  <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
         </div>
-        <div class="pricing__table-wrap fade-in">
-          <table class="pricing__table" id="copperTable">
+      </div>
+    </div>
+
+    <!-- Brass -->
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">Brass</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__table-wrap">
+          <table class="pricing__table" id="brassTable">
             <thead>
               <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
             </thead>
@@ -121,107 +154,131 @@
       </div>
     </div>
 
-    <!-- Brass -->
-    <div class="pricing__sub-header fade-in">
-      <h2 class="pricing__sub-title">Brass</h2>
-    </div>
-    <div class="pricing__table-wrap fade-in">
-      <table class="pricing__table" id="brassTable">
-        <thead>
-          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-
     <!-- Lead -->
-    <div class="pricing__sub-header fade-in">
-      <h2 class="pricing__sub-title">Lead</h2>
-    </div>
-    <div class="pricing__table-wrap fade-in">
-      <table class="pricing__table" id="leadTable">
-        <thead>
-          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">Lead</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__table-wrap">
+          <table class="pricing__table" id="leadTable">
+            <thead>
+              <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <!-- Radiators -->
-    <div class="pricing__sub-header fade-in">
-      <h2 class="pricing__sub-title">Radiators</h2>
-    </div>
-    <div class="pricing__table-wrap fade-in">
-      <table class="pricing__table" id="radiatorsTable">
-        <thead>
-          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">Radiators</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__table-wrap">
+          <table class="pricing__table" id="radiatorsTable">
+            <thead>
+              <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <!-- Batteries -->
-    <div class="pricing__sub-header fade-in">
-      <h2 class="pricing__sub-title">Batteries</h2>
-    </div>
-    <div class="pricing__table-wrap fade-in">
-      <table class="pricing__table" id="batteriesTable">
-        <thead>
-          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">Batteries</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__table-wrap">
+          <table class="pricing__table" id="batteriesTable">
+            <thead>
+              <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <!-- Stainless Steel -->
-    <div class="pricing__sub-header fade-in">
-      <h2 class="pricing__sub-title">Stainless Steel</h2>
-    </div>
-    <div class="pricing__table-wrap fade-in">
-      <table class="pricing__table" id="stainlessTable">
-        <thead>
-          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">Stainless Steel</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__table-wrap">
+          <table class="pricing__table" id="stainlessTable">
+            <thead>
+              <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <!-- Misc -->
-    <div class="pricing__sub-header fade-in">
-      <h2 class="pricing__sub-title">Miscellaneous</h2>
-    </div>
-    <div class="pricing__table-wrap fade-in">
-      <table class="pricing__table" id="miscTable">
-        <thead>
-          <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">Miscellaneous</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__table-wrap">
+          <table class="pricing__table" id="miscTable">
+            <thead>
+              <tr><th>Material</th><th>Price</th><th>Unit</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <!-- ── eSCRAP ─────────────────────────────────────── -->
-    <div class="pricing__sub-header fade-in">
-      <h2 class="pricing__sub-title">eScrap</h2>
-      <div class="pricing__sub-badge" id="eScrapBadge">Updated Feb 17, 2026</div>
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">eScrap</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__sub-badge" id="eScrapBadge">Updated Feb 17, 2026</div>
+        <div class="pricing__table-wrap">
+          <table class="pricing__table" id="eScrapTable">
+            <thead>
+              <tr><th>Item</th><th>Price</th><th>Unit</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="pricing__note">Same eScrap pricing at both locations.</p>
+      </div>
     </div>
-    <div class="pricing__table-wrap fade-in">
-      <table class="pricing__table" id="eScrapTable">
-        <thead>
-          <tr><th>Item</th><th>Price</th><th>Unit</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-
-    <p class="pricing__note fade-in">Same eScrap pricing at both locations.</p>
 
     <!-- ── CATALYTIC CONVERTERS ────────────────────────── -->
-    <div class="pricing__row pricing__row--reverse">
-      <img class="pricing__row-image" src="images/catalytic-converter.jpg" alt="Catalytic converters">
-      <div class="pricing__row-content">
-        <div class="pricing__converter-note fade-in" id="converterNote">
-          <strong>Catalytic Converters</strong>
-          <p>Converter pricing varies &mdash; all converters must be brought in for inspection. We will not quote any prices for converters over the phone.</p>
+    <div class="pricing__accordion">
+      <button class="pricing__accordion-header" aria-expanded="false">
+        <h2 class="pricing__sub-title">Catalytic Converters</h2>
+        <svg class="pricing__accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="pricing__accordion-body">
+        <div class="pricing__row pricing__row--reverse">
+          <img class="pricing__row-image" src="images/catalytic-converter.jpg" alt="Catalytic converters">
+          <div class="pricing__row-content">
+            <div class="pricing__converter-note" id="converterNote">
+              <strong>Pricing Info</strong>
+              <p>Converter pricing varies &mdash; all converters must be brought in for inspection. We will not quote any prices for converters over the phone.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -359,6 +416,36 @@
         .catch(function (err) {
           console.error('Failed to load pricing data:', err);
         });
+    })();
+  </script>
+  <script>
+    (function () {
+      document.querySelectorAll('.pricing__accordion-header').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var accordion = btn.parentElement;
+          var body = accordion.querySelector('.pricing__accordion-body');
+          var isOpen = accordion.classList.contains('is-open');
+
+          if (isOpen) {
+            body.style.maxHeight = body.scrollHeight + 'px';
+            requestAnimationFrame(function () {
+              body.style.maxHeight = '0';
+            });
+            accordion.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+          } else {
+            body.style.maxHeight = body.scrollHeight + 'px';
+            accordion.classList.add('is-open');
+            btn.setAttribute('aria-expanded', 'true');
+            body.addEventListener('transitionend', function handler() {
+              if (accordion.classList.contains('is-open')) {
+                body.style.maxHeight = 'none';
+              }
+              body.removeEventListener('transitionend', handler);
+            });
+          }
+        });
+      });
     })();
   </script>
 

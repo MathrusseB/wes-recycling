@@ -1139,6 +1139,76 @@ body {
   margin-bottom: 0;
 }
 
+/* ── Pricing accordions ─────────────────────────────── */
+.pricing__accordion {
+  max-width: 1100px;
+  margin: 12px auto 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pricing__accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 28px;
+  background: rgba(255, 255, 255, 0.04);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.pricing__accordion-header:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.pricing__accordion-header .pricing__sub-title {
+  margin-bottom: 0;
+  font-size: clamp(22px, 3vw, 36px);
+}
+
+.pricing__accordion-chevron {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  transition: transform 0.3s ease;
+}
+
+.pricing__accordion.is-open .pricing__accordion-chevron {
+  transform: rotate(180deg);
+}
+
+.pricing__accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.pricing__accordion-body > .pricing__table-wrap,
+.pricing__accordion-body > .pricing__sub-badge,
+.pricing__accordion-body > .pricing__note {
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.pricing__accordion-body > .pricing__sub-badge {
+  display: inline-flex;
+  margin: 16px 0 12px 28px;
+}
+
+.pricing__accordion-body > .pricing__note {
+  padding-bottom: 20px;
+}
+
+.pricing__accordion-body > .pricing__row {
+  margin: 0 auto;
+  padding: 8px 12px 20px;
+}
+
 /* ── Pricing image rows ──────────────────────────────── */
 .pricing__row-image {
   display: none;
