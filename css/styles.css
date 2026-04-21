@@ -684,6 +684,8 @@ body {
   display: inline-block;
   overflow: visible;
   padding-bottom: 0.15em;
+  padding-right: 0.08em;
+  padding-left: 0.02em;
 }
 
 /* Animation initial states — scoped to .js-ready so content is visible without JS */
@@ -763,6 +765,8 @@ body {
   display: inline-block;
   overflow: visible;
   padding: 0.1em 0;
+  padding-right: 0.08em;
+  padding-left: 0.02em;
 }
 
 .js-ready .section-word {
@@ -775,6 +779,10 @@ body {
   clip-path: inset(-10% 0 0 0);
   transform: translateY(0);
 }
+
+/* ── Accent words in headlines ─────────────────────── */
+.accent-word { color: #5B8DBF; }
+.accent-word--warm { color: #D4A84B; }
 
 /* ── Staggered card/row reveals ─────────────────────── */
 .js-ready .stagger-card {

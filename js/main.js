@@ -83,12 +83,24 @@ document.documentElement.classList.add('js-ready');
     h.classList.remove('fade-in');
 
     var text = h.textContent;
-    var words = text.split(/\s+/);
+    var words = text.split(/\s+/).filter(Boolean);
+    var accentTarget = h.dataset.accent ? h.dataset.accent.toUpperCase() : null;
+    var warmTarget = h.dataset.accentWarm ? h.dataset.accentWarm.toUpperCase() : null;
+    var accentDone = false;
+    var warmDone = false;
     // Preserve the ::before pseudo-element by keeping it implicit
     h.innerHTML = '';
     words.forEach(function (word) {
       var span = document.createElement('span');
       span.className = 'section-word';
+      var normalized = word.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+      if (!accentDone && accentTarget && normalized === accentTarget) {
+        span.className += ' accent-word';
+        accentDone = true;
+      } else if (!warmDone && warmTarget && normalized === warmTarget) {
+        span.className += ' accent-word--warm';
+        warmDone = true;
+      }
       span.textContent = word;
       h.appendChild(document.createTextNode(' '));
       h.appendChild(span);
