@@ -780,6 +780,10 @@ body {
   transform: translateY(0);
 }
 
+/* ── Accent words in headlines ─────────────────────── */
+.accent-word { color: #5B8DBF; }
+.accent-word--warm { color: #D4A84B; }
+
 /* ── Staggered card/row reveals ─────────────────────── */
 .js-ready .stagger-card {
   opacity: 0;
