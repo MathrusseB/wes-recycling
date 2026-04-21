@@ -234,6 +234,7 @@ body {
   padding-left: clamp(40px, 8vw, 120px);
   max-width: 820px;
   padding-top: var(--nav-height);
+  overflow: visible;
 }
 
 .hero__eyebrow {
@@ -264,6 +265,8 @@ body {
   text-transform: uppercase;
   color: var(--text);
   margin-bottom: 24px;
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .hero__headline::before {
@@ -451,6 +454,7 @@ body {
   max-width: 720px;
   padding: clamp(120px, 15vh, 200px) clamp(20px, 6vw, 80px);
   padding-left: clamp(40px, 8vw, 120px);
+  overflow: visible;
 }
 
 .about__image {
@@ -485,6 +489,8 @@ body {
   text-transform: uppercase;
   color: var(--text);
   margin-bottom: 24px;
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .about__headline::before {
@@ -584,6 +590,7 @@ body {
 .what-we-buy__header {
   text-align: left;
   margin-bottom: 64px;
+  overflow: visible;
 }
 
 .what-we-buy__eyebrow {
@@ -613,6 +620,8 @@ body {
   letter-spacing: -0.05em;
   text-transform: uppercase;
   color: var(--text);
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .what-we-buy__headline::before {
@@ -753,7 +762,7 @@ body {
 .section-word {
   display: inline-block;
   overflow: visible;
-  padding-bottom: 0.15em;
+  padding: 0.1em 0;
 }
 
 .js-ready .section-word {
@@ -854,6 +863,7 @@ body {
 .pricing__header {
   text-align: left;
   margin-bottom: 48px;
+  overflow: visible;
 }
 
 .pricing__eyebrow {
@@ -884,6 +894,8 @@ body {
   text-transform: uppercase;
   color: var(--text);
   margin-bottom: 24px;
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .pricing__headline::before {
@@ -1273,6 +1285,7 @@ body {
 .regulations__header {
   text-align: left;
   margin-bottom: 64px;
+  overflow: visible;
 }
 
 .regulations__eyebrow {
@@ -1302,6 +1315,8 @@ body {
   letter-spacing: -0.05em;
   text-transform: uppercase;
   color: var(--text);
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .regulations__headline::before {
@@ -1476,6 +1491,7 @@ body {
 .locations__header {
   text-align: left;
   margin-bottom: 64px;
+  overflow: visible;
 }
 
 .locations__eyebrow {
@@ -1505,6 +1521,8 @@ body {
   letter-spacing: -0.05em;
   text-transform: uppercase;
   color: var(--text);
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .locations__headline::before {
@@ -1723,11 +1741,13 @@ body {
 .services__inner {
   position: relative;
   z-index: 2;
+  overflow: visible;
 }
 
 .services__header {
   text-align: left;
   margin-bottom: 64px;
+  overflow: visible;
 }
 
 .services__eyebrow {
@@ -1757,6 +1777,8 @@ body {
   letter-spacing: -0.05em;
   text-transform: uppercase;
   color: var(--text);
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .services__headline::before {
@@ -1885,6 +1907,7 @@ body {
   max-width: 900px;
   padding: clamp(120px, 15vh, 200px) clamp(20px, 6vw, 80px);
   padding-left: clamp(40px, 8vw, 120px);
+  overflow: visible;
 }
 
 .cta__image {
@@ -1899,6 +1922,8 @@ body {
   text-transform: uppercase;
   color: var(--text);
   margin-bottom: 24px;
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .cta__headline::before {
@@ -1968,6 +1993,7 @@ body {
 .contact__header {
   text-align: left;
   margin-bottom: 64px;
+  overflow: visible;
 }
 
 .contact__eyebrow {
@@ -1997,6 +2023,8 @@ body {
   letter-spacing: -0.05em;
   text-transform: uppercase;
   color: var(--text);
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .contact__headline::before {
@@ -2314,6 +2342,7 @@ body {
 .subpage__header {
   text-align: left;
   margin-bottom: 64px;
+  overflow: visible;
 }
 
 .subpage__eyebrow {
@@ -2343,6 +2372,8 @@ body {
   letter-spacing: -0.05em;
   text-transform: uppercase;
   color: var(--text);
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .subpage__headline::before {
@@ -2501,6 +2532,7 @@ body {
 .equipment__header {
   text-align: left;
   margin-bottom: 48px;
+  overflow: visible;
 }
 
 .equipment__eyebrow {
@@ -2530,6 +2562,8 @@ body {
   letter-spacing: -0.05em;
   text-transform: uppercase;
   color: var(--text);
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .equipment__headline::before {
@@ -2761,6 +2795,7 @@ body {
 .gateway__header {
   text-align: left;
   margin-bottom: 64px;
+  overflow: visible;
 }
 
 .gateway__eyebrow {
@@ -2790,6 +2825,8 @@ body {
   letter-spacing: -0.05em;
   text-transform: uppercase;
   color: var(--text);
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 .gateway__headline::before {
@@ -2990,6 +3027,7 @@ body {
 
 .admin__header {
   margin-bottom: 40px;
+  overflow: visible;
 }
 
 .admin__eyebrow {
@@ -3008,6 +3046,8 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.02em;
   line-height: 1.1;
+  padding: 0.1em 0;
+  overflow: visible;
 }
 
 /* ── Tabs ────────────────────────────────────────────── */
