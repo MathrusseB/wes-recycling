@@ -516,7 +516,7 @@ body {
 .about__stat-value {
   font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
   font-size: clamp(48px, 6vw, 80px);
-  color: #F0F0F0;
+  color: var(--warm);
   line-height: 1;
   margin-bottom: 8px;
 }
@@ -1019,7 +1019,7 @@ body {
   margin-top: 0;
   font-size: 20px;
   font-weight: 700;
-  color: var(--text);
+  color: var(--warm);
   letter-spacing: 0.04em;
 }
 
@@ -2846,13 +2846,13 @@ body {
 
 .gateway__block-arrow {
   font-size: 24px;
-  color: var(--text-secondary);
+  color: var(--warm);
   transition: color 0.25s, transform 0.25s;
   align-self: flex-start;
 }
 
 .gateway__block:hover .gateway__block-arrow {
-  color: var(--text);
+  color: #e6bb5e;
   transform: translateX(6px);
 }
 
